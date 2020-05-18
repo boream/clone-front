@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "clone-front"
+    }
+  },
+  "defaultProject": "clone-front",
+  "cli": {
+    "analytics": false
+  }
 }
