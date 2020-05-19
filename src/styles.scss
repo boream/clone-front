@@ -8,14 +8,14 @@
 // GLOBAL
 // ------------------------------------
 
-@import './global/variables';
-@import './global/reset';
-@import './global/base';
+@import './sass/global/variables';
+@import './sass/global/reset';
+@import './sass/global/base';
 
-@import './mixins/mixins';
+@import './sass/mixins/mixins';
 
-@import './components/login/form';
-@import './components/login/grid';
+@import './sass/components/login/form';
+@import './sass/components/login/grid';
 
 
 // ------------------------------------

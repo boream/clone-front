@@ -1,22 +1,19 @@
-@import '../../../styles/components/login/form';
-@import '../../../styles/components/login/grid';
-@import '../../../styles/global/variables';
-@import '../../../styles/mixins/mixins';
+@import 'global/variables';
 
-.title {
-  font-family: $font-secundary;
-  font-size: rem(24px);
-  font-weight: $font-weight-bold;
-  margin-top: rem(23px);
-  margin-bottom: rem(31px);
-  margin-left: rem(15px);
-}
+
+
 
 .btn-login {
-  background-color: $login;
+  background-color: $success;
   color: $base;
   font-family: $font-primary;
   margin: 15px 0px;
+}
+
+.link-span {
+  color: #000;
+  font-family: $font-primary;
+  font-size: rem(16px);
 }
 
 .link-singup {
@@ -24,8 +21,4 @@
   font-family: $font-primary;
   font-size: rem(16px);
 
-}
-
-a {
-  color: #000;
 }
