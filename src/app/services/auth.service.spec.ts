@@ -6,19 +6,14 @@ import { AuthService } from './auth.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { LoginComponent } from '../components/login/login.component';
 
 describe('AuthService', () => {
   let authService: AuthService;
   let httpTestingController: HttpTestingController;
+  let storage: WebStorageService;
 
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzNiOWY1Mjc5ODhmMmExYjcyMzg4MCIsImlhdCI6MTU4OTg4NzYwMiwiZXhwIjoxNTkyNDc5NjAyfQ._mEzRzeLZbWIWbX3s8OVnM0yxXCypaHgCki7S-iu6qo';
-  const loginForm = {
-    value: {
-      identifier: 'email@hotmail.com',
-      password: 'email1234',
-    }
-  } as FormGroup;
-
   const mockRespone = {
     "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzNiOWY1Mjc5ODhmMmExYjcyMzg4MCIsImlhdCI6MTU4OTg4NzYwMiwiZXhwIjoxNTkyNDc5NjAyfQ._mEzRzeLZbWIWbX3s8OVnM0yxXCypaHgCki7S-iu6qo",
     "user": {
@@ -51,13 +46,16 @@ describe('AuthService', () => {
         { provide: WebStorageService, useExisting: LOCAL_STORAGE },
       ],
       imports: [
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: 'login', component: LoginComponent}
+      ]),
         HttpClientTestingModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
     authService = TestBed.inject(AuthService);
     httpTestingController = TestBed.inject(HttpTestingController);
+    storage = TestBed.inject(WebStorageService);
   });
 
   afterEach(() => {
@@ -78,7 +76,7 @@ describe('AuthService', () => {
     } as FormGroup;
 
     authService.login(loginForm).subscribe(
-      (res: any) => { expect(res.jwt).toEqual(token, 'expected token') },
+      (res: any) => expect(res.jwt).toEqual(token, 'expected token') ,
       fail
     );
 
@@ -99,7 +97,7 @@ describe('AuthService', () => {
     } as FormGroup;
 
     authService.signup(signupForm).subscribe(
-      (res: any) => { expect(res.jwt).toEqual(token, 'expected token') },
+      (res: any) => expect(res.jwt).toEqual(token, 'expected token'),
       fail
     );
 
@@ -108,6 +106,12 @@ describe('AuthService', () => {
     req.flush(mockRespone);
 
   });
+
+  it('should remove token from local storage', () => {
+    storage.set('token', token);
+    authService.logout();
+    expect(storage.get('token')).toEqual(undefined);
+  })
 
 });
 
