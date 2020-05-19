@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Form } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
 
@@ -28,8 +28,12 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  login(form: FormGroup): Observable<string> {
+  login(form: FormGroup): Observable<any> {
     return this.http.post<any>(`${this.url}/local`, form.value, this.httpOptions);
+  }
+
+  signup(form: FormGroup): Observable<any> {
+    return this.http.post<any>(`${this.url}/local/register`, form.value, this.httpOptions);
   }
 
   logout(): void {
