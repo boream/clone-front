@@ -10,6 +10,7 @@ import { SearchComponent } from './components/search/search.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     LoginComponent,
     SignupComponent,
     PageNotFoundComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
