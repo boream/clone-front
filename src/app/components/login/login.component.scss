@@ -22,3 +22,11 @@
   font-size: rem(16px);
 
 }
+
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 40%;
+}
