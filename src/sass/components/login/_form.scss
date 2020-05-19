@@ -7,6 +7,7 @@
 
 .form {
   margin: 23px 15px 50px 15px;
+
   &__title {
     display: block;
     font-family: $font-secundary;
@@ -16,21 +17,36 @@
     margin-bottom: rem(31px);
   }
 
+  &__group {
+    margin-bottom: rem(15px);
+
+  }
+
   &__label {
     display: block;
-    font-size: rem(16px);
+    font-size: rem(19px);
     font-family: $font-primary;
     padding-bottom: rem(8px);
+
+    &--info{
+      font-weight: 300;
+    }
   }
+
+
+
   &__control {
     display: block;
     width: 100%;
     height: rem(40px);
+    font-size: rem(16px);
     border: 1px solid $border-control;
     border-radius: 5px;
     background-color: transparent;
-    margin-bottom: rem(15px);
+    padding: 5px;
+
   }
+
   &__actions {
     display: flex;
     flex-direction: column;
@@ -46,7 +62,12 @@
 
 .background {
   width: 100%;
+  img{
+    width: 100%;
+  }
 }
+
+
 
 
 
