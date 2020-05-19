@@ -3,11 +3,14 @@
 
 
 
-.btn-login {
+.btn-primary {
   background-color: $success;
   color: $base;
+  font-size: rem(15px);
+  font-weight: 500;
   font-family: $font-primary;
   margin: 15px 0px;
+  width: 100%;
 }
 
 .link-span {
