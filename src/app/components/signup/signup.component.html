@@ -1,1 +1,31 @@
-<p>signup works!</p>
+
+<div>
+  <h1>Sign up for /Clone</h1>
+  <form action="">
+    <div class="form__group">
+      <label for="name">First name</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div class="form__group">
+      <label for="surname">Last name</label>
+      <input type="text" name="surname" id="surname">
+    </div>
+    <div class="form__group">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email">
+    </div>
+    <div class="form__group">
+      <label for="username">Username <span>(only letters, numbers and underscores)</span></label>
+      <input type="text" name="username" id="username">
+    </div>
+    <div class="form__group">
+      <label for="password">Password <span>(min 6 char)</span></label>
+      <input type="password" name="password" id="password">
+    </div>
+    <button type="submit">sing up</button>
+    <span>or
+      <a [routerLink]="['/login']" >login</a>
+    </span>
+  </form>
+  <img src="../../../assets/background.png" alt="">
+</div>
