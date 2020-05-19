@@ -4,66 +4,50 @@
 
 /*----------------------------*/
 /*FORM*/
-@media (min-width: 320px) {
-  .form {
-    width: 90%;
 
-    &__title {
-      display: block;
-
-      font-family: $font-secundary;
-      font-size: rem(24px);
-      font-weight: $font-weight-bold;
-      margin-top: rem(23px);
-      margin-bottom: rem(31px);
-
-    }
-
-    &__details {
-
-    }
-
-    &__group {
-
-      &-label {
-        display: block;
-        font-size: rem(16px);
-        font-family: $font-primary;
-        padding-bottom: rem(8px);
-
-      }
-
-      &-control {
-        display: block;
-        width: 100%;
-        height: rem(40px);
-        border: 1px solid $border-control;
-        border-radius: 5px;
-        background-color: transparent;
-        margin-bottom: rem(15px);
-
-      }
-
-    }
-
-    &__actions {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-    }
-
+.form {
+  margin: 23px 15px 50px 15px;
+  &__title {
+    display: block;
+    font-family: $font-secundary;
+    font-size: rem(24px);
+    font-weight: $font-weight-bold;
+    margin-top: rem(23px);
+    margin-bottom: rem(31px);
   }
 
-  .btn {
-    width: rem(290px);
+  &__label {
+    display: block;
+    font-size: rem(16px);
+    font-family: $font-primary;
+    padding-bottom: rem(8px);
+  }
+  &__control {
+    display: block;
+    width: 100%;
     height: rem(40px);
-    border-radius: rem(5px);
-    border: none;
-
+    border: 1px solid $border-control;
+    border-radius: 5px;
+    background-color: transparent;
+    margin-bottom: rem(15px);
   }
-
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
+.btn {
+  width: rem(290px);
+  height: rem(40px);
+  border-radius: rem(5px);
+  border: none;
+}
+
+.background {
+  width: 100%;
+}
+
 
 
 //tablet styles

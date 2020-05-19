@@ -2,20 +2,21 @@
 
 
 /*para mobile*/
-@media (min-width: 320px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
 }
+
 
 /*para tablet*/
 @media screen and (min-width: 767px) {
   .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
 
