@@ -1,0 +1,29 @@
+
+
+.btn {
+  padding: 5px 8px;
+
+  &__primary {
+    width: 100%;
+    background-color: $success;
+    color: $base;
+    font-weight: 500;
+    font-size: rem(15px);
+    font-family: $font-primary;
+    margin: 15px 0px;
+    text-transform: uppercase;
+  }
+
+}
+
+
+.link-singup {
+  color: #000;
+  font-family: $font-primary;
+  font-size: rem(16px);
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+
+

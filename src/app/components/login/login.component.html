@@ -12,11 +12,13 @@
       </div>
     </div>
     <div class="form__actions">
-        <button type="reset" class="btn btn-login">LOG IN</button>
-        <span class="link-span">or <a href="#" class="link-singup"><u>SIGN UP</u></a></span>
+        <button type="submit" class="btn btn__primary">LOG IN</button>
+        <span>or
+          <a class="link-singup" [routerLink]="['/signup']">signup</a>
+        </span>
     </div>
   </form> <!--//.contact-->
-  <img class="background" src="assets/img/login_img.png" alt="login imagen">
+    <img class="background"   src="assets/img/login_img.png" alt="login imagen">
 </div>
 
 

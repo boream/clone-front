@@ -1,7 +1,7 @@
 
-<div class="">
-  <h1>Sign up for /Clone</h1>
+<div class="container">
   <form class="form" action="">
+    <h1 class="form__title">Sign up for /Clone</h1>
     <div class="form__group">
       <label class="form__label" for="name">First name</label>
       <input class="form__control" type="text" name="name" id="name">
@@ -15,17 +15,19 @@
       <input class="form__control" type="email" name="email" id="email">
     </div>
     <div class="form__group">
-      <label class="form__label" for="username">Username <span>(only letters, numbers and underscores)</span></label>
+      <label class="form__label" for="username">Username <span class="form__label--info">(only letters, numbers and underscores)</span></label>
       <input class="form__control" type="text" name="username" id="username">
     </div>
     <div class="form__group">
-      <label class="form__label" for="password">Password <span>(min 6 char)</span></label>
+      <label class="form__label" for="password">Password <span class="form__label--info">(min 6 char)</span></label>
       <input class="form__control" type="password" name="password" id="password">
     </div>
-    <button class="btn" type="submit">sing up</button>
-    <span>or
-      <a class="" [routerLink]="['/login']" >login</a>
-    </span>
+    <div class="form__actions">
+      <button class="btn btn__primary" type="submit">sing up</button>
+      <span>or
+        <a class="link-singup" [routerLink]="['/login']">login</a>
+      </span>
+    </div>
   </form>
-  <img src="/assets/background.png" alt="">
+  <img class="background" src="/assets/img/login_img.png" alt="">
 </div>
