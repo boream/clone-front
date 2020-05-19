@@ -8,15 +8,17 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
+  }
 }
 
 /*para tablet*/
 @media screen and (min-width: 767px) {
   .container {
-       display: flex;
-       flex-direction: row;
-       justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
   }
 
  }
@@ -25,9 +27,10 @@
 /*para desktop*/
 @media screen and (min-width: 1024px) {
  .container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
  }
 

@@ -6,12 +6,20 @@
 /*FORM*/
 @media (min-width: 320px) {
   .form {
-    width: rem(290px);
-    border: 1px solid red;
+    width: 90%;
 
+    &__title {
+      display: block;
+
+      font-family: $font-secundary;
+      font-size: rem(24px);
+      font-weight: $font-weight-bold;
+      margin-top: rem(23px);
+      margin-bottom: rem(31px);
+
+    }
 
     &__details {
-      border: 1px solid brown;
 
     }
 
@@ -25,7 +33,6 @@
 
       }
 
-
       &-control {
         display: block;
         width: 100%;
@@ -35,19 +42,14 @@
         background-color: transparent;
         margin-bottom: rem(15px);
 
-
       }
 
     }
-
-
 
     &__actions {
       display: flex;
       flex-direction: column;
       align-items: center;
-
-
 
     }
 
@@ -64,12 +66,10 @@
 }
 
 
-
-
-
-
 //tablet styles
 @media screen and (min-width: 767px) {
+
+
 
 }
 
