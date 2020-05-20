@@ -1,6 +1,5 @@
-
-@import 'global/variables';
-@import 'mixins/mixins';
+@import "global/variables";
+@import "mixins/mixins";
 
 /*----------------------------*/
 /*FORM*/
@@ -19,7 +18,6 @@
 
   &__group {
     margin-bottom: rem(15px);
-
   }
 
   &__label {
@@ -28,12 +26,10 @@
     font-family: $font-primary;
     padding-bottom: rem(8px);
 
-    &--info{
+    &--info {
       font-weight: 300;
     }
   }
-
-
 
   &__control {
     display: block;
@@ -44,7 +40,6 @@
     border-radius: 5px;
     background-color: transparent;
     padding: 5px;
-
   }
 
   &__actions {
@@ -54,9 +49,7 @@
 
     span {
       font-family: $font-primary;
-
     }
-
   }
 }
 
@@ -69,26 +62,22 @@
 
 .background {
   width: 100%;
-  img{
+  img {
     width: 100%;
   }
 }
 
-
-
-.error {
-  color: $error;
+.input-error {
   border: 1px solid $error;
 }
 
+.error {
+  color: $error;
+}
 
 //tablet styles
 @media screen and (min-width: 767px) {
-
-
-
 }
-
 
 //desktop styles
 @media screen and (min-width: 1024px) {
@@ -96,6 +85,3 @@
     width: 23rem;
   }
 }
-
-
-
