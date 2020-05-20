@@ -17,16 +17,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.formLogin = this.fb.group({
       identifier: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required, Validators.minLength(6)]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   emailHasError(form) {
-    return  form.controls.identifier.errors?.email || form.controls.identifier.errors?.required;
+    if (form.controls.identifier.touched || form.controls.identifier.dirty) {
+      return form.controls.identifier.errors?.email || form.controls.identifier.errors?.required;
+    }
   }
 
   passwordHasError(form) {
-    return   form.controls.password.errors?.minlength || form.controls.password.errors?.required;
+    if (form.controls.password.dirty) {
+      return form.controls.password.errors?.minlength || form.controls.password.errors?.required;
+    }
   }
 
   submit(form) {
