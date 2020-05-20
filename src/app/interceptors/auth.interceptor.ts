@@ -18,10 +18,10 @@ export class AuthInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.storage.get('token');
     const authUrl = `${environment.apiUrl}local`;
 
     if (!request.url.startsWith(authUrl)) {
+      const token = this.storage.get('token');
       const authReq = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${token}`)
       });
