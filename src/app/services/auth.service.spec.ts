@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { WebStorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -7,11 +7,13 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from '../components/login/login.component';
+import { Location } from "@angular/common";
 
 describe('AuthService', () => {
   let authService: AuthService;
   let httpTestingController: HttpTestingController;
   let storage: WebStorageService;
+  let location: Location;
 
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzNiOWY1Mjc5ODhmMmExYjcyMzg4MCIsImlhdCI6MTU4OTg4NzYwMiwiZXhwIjoxNTkyNDc5NjAyfQ._mEzRzeLZbWIWbX3s8OVnM0yxXCypaHgCki7S-iu6qo';
   const mockRespone = {
@@ -47,8 +49,8 @@ describe('AuthService', () => {
       ],
       imports: [
         RouterTestingModule.withRoutes([
-          { path: 'login', component: LoginComponent}
-      ]),
+          { path: 'login', component: LoginComponent }
+        ]),
         HttpClientTestingModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -56,6 +58,7 @@ describe('AuthService', () => {
     authService = TestBed.inject(AuthService);
     httpTestingController = TestBed.inject(HttpTestingController);
     storage = TestBed.inject(WebStorageService);
+    location = TestBed.get(Location);
   });
 
   afterEach(() => {
@@ -76,7 +79,10 @@ describe('AuthService', () => {
     } as FormGroup;
 
     authService.login(loginForm).subscribe(
-      (res: any) => expect(res.jwt).toEqual(token, 'expected token') ,
+      (res: any) => {
+        expect(res.jwt).toEqual(token, 'expected token');
+        expect(storage.get('token')).toEqual(token);
+      },
       fail
     );
 
@@ -86,7 +92,7 @@ describe('AuthService', () => {
 
   });
 
-  it('should perform a post to /auth/local/register with username, email and password from a FormGroup', () => {
+  it('should perform a post to /auth/local/register with username, email and password from a FormGroup', fakeAsync(() => {
 
     const signupForm = {
       value: {
@@ -104,14 +110,17 @@ describe('AuthService', () => {
     const req = httpTestingController.expectOne(`${environment.apiUrl}auth/local/register`);
     expect(req.request.method).toEqual('POST');
     req.flush(mockRespone);
+    tick();
+    expect(location.path()).toBe('/login');
+  }));
 
-  });
-
-  it('should remove token from local storage', () => {
+  it('should remove token from local storage', fakeAsync(() => {
     storage.set('token', token);
     authService.logout();
     expect(storage.get('token')).toEqual(undefined);
-  })
+    tick();
+    expect(location.path()).toBe('/login');
+  }))
 
 });
 
