@@ -6,13 +6,17 @@
           <label for="identifier" class="form__label"
           [ngClass]="{'error': emailHasError(formLogin) }"
           >Email</label>
-          <input type="text" id="identifier" class="form__control" 
+          <input type="text" id="identifier" class="form__control"
           [ngClass]="{'input-error': emailHasError(formLogin) }"
           formControlName="identifier">
       </div>
       <div class="form__group">
-          <label for="lastname" class="form__label">Password</label>
-          <input type="password" id="lastname" class="form__control" formControlName="password">
+          <label for="password" class="form__label"
+          [ngClass]="{'error': passwordHasError(formLogin) }"
+          >Password</label>
+          <input type="password" id="password" class="form__control"
+          [ngClass]="{'input-error': passwordHasError(formLogin) }" minlength="6"
+          formControlName="password">
       </div>
     </div>
     <div class="form__actions">
