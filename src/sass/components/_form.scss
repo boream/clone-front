@@ -1,0 +1,87 @@
+@import "global/variables";
+@import "mixins/mixins";
+
+/*----------------------------*/
+/*FORM*/
+
+.form {
+  margin: 23px 15px 50px 15px;
+
+  &__title {
+    display: block;
+    font-family: $font-secundary;
+    font-size: rem(24px);
+    font-weight: $font-weight-bold;
+    margin-top: rem(23px);
+    margin-bottom: rem(31px);
+  }
+
+  &__group {
+    margin-bottom: rem(15px);
+  }
+
+  &__label {
+    display: block;
+    font-size: rem(19px);
+    font-family: $font-primary;
+    padding-bottom: rem(8px);
+
+    &--info {
+      font-weight: 300;
+    }
+  }
+
+  &__control {
+    display: block;
+    width: 100%;
+    height: rem(40px);
+    font-size: rem(16px);
+    border: 1px solid $border-control;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 5px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      font-family: $font-primary;
+    }
+  }
+}
+
+.btn {
+  min-width: rem(290px);
+  height: rem(40px);
+  border-radius: rem(5px);
+  border: none;
+}
+
+.background {
+  width: 100%;
+  img {
+    width: 100%;
+  }
+}
+
+.input-error {
+  border: 1px solid $error;
+}
+
+.error {
+  color: $error;
+}
+
+//tablet styles
+@media screen and (min-width: 767px) {
+}
+
+//desktop styles
+@media screen and (min-width: 1024px) {
+  .form__control {
+    width: 23rem;
+  }
+}

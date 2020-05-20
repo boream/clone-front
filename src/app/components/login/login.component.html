@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="container">
+  <form [formGroup]="formLogin" class="form" (ngSubmit)="submit(formLogin)">
+    <h1 class="form__title">/clone</h1>
+    <div class="form__details">
+      <div class="form__group">
+          <label for="identifier" class="form__label"
+          [ngClass]="{'error': emailHasError(formLogin) }"
+          >Email</label>
+          <input type="text" id="identifier" class="form__control"
+          [ngClass]="{'input-error': emailHasError(formLogin) }"
+          formControlName="identifier">
+      </div>
+      <div class="form__group">
+          <label for="password" class="form__label"
+          [ngClass]="{'error': passwordHasError(formLogin) }"
+          >Password</label>
+          <input type="password" id="password" class="form__control"
+          [ngClass]="{'input-error': passwordHasError(formLogin) }" minlength="6"
+          formControlName="password">
+      </div>
+    </div>
+    <div class="form__actions">
+        <button type="submit" class="btn btn__primary" [disabled]="!formLogin.valid">LOG IN</button>
+        <span class="">or
+          <a class="link-singup" [routerLink]="['/signup']">signup</a>
+        </span>
+    </div>
+  </form>
+    <img class="background"   src="assets/img/login_img.png" alt="login imagen">
+</div>
+
+
+

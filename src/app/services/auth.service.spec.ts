@@ -8,6 +8,7 @@ import { FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from '../components/login/login.component';
 import { Location } from "@angular/common";
+import { Register } from '../types/register';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -94,15 +95,15 @@ describe('AuthService', () => {
 
   it('should perform a post to /auth/local/register with username, email and password from a FormGroup', fakeAsync(() => {
 
-    const signupForm = {
-      value: {
-        username: 'email1',
-        email: 'email1@hotmail.com',
-        password: 'email1234',
-      }
-    } as FormGroup;
+    const user: Register = {
+      username: 'email1',
+      email: 'email1@hotmail.com',
+      password: 'email1234',
+      firstname: 'toto',
+      lastname: 'capullin'
+    }
 
-    authService.signup(signupForm).subscribe(
+    authService.signup(user).subscribe(
       (res: any) => expect(res.jwt).toEqual(token, 'expected token'),
       fail
     );
