@@ -12,12 +12,9 @@ export class LoginComponent implements OnInit {
 
   formLogin: FormGroup;
   emailPattern: any =
-  /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
-
+    /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
-
-
   }
 
   ngOnInit(): void {
@@ -28,21 +25,18 @@ export class LoginComponent implements OnInit {
   }
 
   emailHasError(form) {
-    if (form.controls.identifier.touched  || form.controls.identifier.dirty)  {
+    if (form.controls.identifier.touched || form.controls.identifier.dirty) {
       return form.controls.identifier.errors?.pattern || form.controls.identifier.errors?.required;
     }
   }
 
   passwordHasError(form) {
-    if (form.controls.password.touched ||  form.controls.password.dirty)  {
-
+    if (form.controls.password.touched || form.controls.password.dirty) {
       return form.controls.password.errors?.minlength || form.controls.password.errors?.required;
     }
   }
 
   submit(form) {
-    debugger
-    this.auth.login(form).subscribe(_ => this.router.navigate(['/home']))
+    this.auth.login(form).subscribe(() => this.router.navigate(['/home']))
   }
-
 }

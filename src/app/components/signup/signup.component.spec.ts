@@ -41,14 +41,6 @@ describe('SignupComponent', () => {
   });
 
   it('should call service on submit', () => {
-    const form = {
-      value: {
-        identifier: 'hola@hola.com',
-        password: 'asdf'
-      },
-      valid: false
-    }
-
     const user: Register = {
       username: 'hola',
       email: 'hola@hola.com',
