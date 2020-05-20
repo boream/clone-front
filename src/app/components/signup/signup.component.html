@@ -1,26 +1,26 @@
 
 <div class="container">
-  <form class="form" action="">
+  <form [formGroup]="formSignUp" class="form" action="">
     <h1 class="form__title">Sign up for /Clone</h1>
     <div *ngIf="formSignUp.controls.name.touched" class="form__group">
       <label  class="form__label" for="name">First name</label>
-      <input  class="form__control" type="text" name="name" id="name">
+      <input  class="form__control" type="text" name="name" id="name" formControlName="name">
     </div>
     <div class="form__group">
       <label class="form__label" for="surname">Last name</label>
-      <input class="form__control" type="text" name="surname" id="surname">
+      <input class="form__control" type="text" name="surname" id="surname" formControlName="surname">
     </div>
     <div class="form__group">
       <label class="form__label" for="email">Email</label>
-      <input class="form__control" type="email" name="email" id="email">
+      <input class="form__control" type="email" name="email" id="email" formControlName="email">
     </div>
     <div class="form__group">
       <label class="form__label" for="username">Username <span class="form__label--info">(only letters, numbers and underscores)</span></label>
-      <input class="form__control" type="text" name="username" id="username">
+      <input class="form__control" type="text" name="username" id="username" formControlName="username">
     </div>
     <div class="form__group">
       <label class="form__label" for="password">Password <span class="form__label--info">(min 6 char)</span></label>
-      <input class="form__control" type="password" name="password" id="password">
+      <input class="form__control" type="password" name="password" id="password" formControlName="password">
     </div>
     <div class="form__actions">
       <button class="btn btn__primary" type="submit">sing up</button>
