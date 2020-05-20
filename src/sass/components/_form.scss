@@ -1,6 +1,6 @@
 
-@import './../global/variables';
-@import './../mixins/mixins';
+@import 'global/variables';
+@import 'mixins/mixins';
 
 /*----------------------------*/
 /*FORM*/
@@ -54,9 +54,12 @@
 
     span {
       font-family: $font-primary;
+
     }
+
   }
 }
+
 .btn {
   min-width: rem(290px);
   height: rem(40px);
@@ -73,6 +76,10 @@
 
 
 
+.error {
+  color: $error;
+  border: 1px solid $error;
+}
 
 
 //tablet styles
