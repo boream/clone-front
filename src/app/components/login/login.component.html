@@ -14,7 +14,7 @@
           <label for="password" class="form__label"
           [ngClass]="{'error': passwordHasError(formLogin) }"
           >Password</label>
-          <input type="identifier" id="password" class="form__control"
+          <input type="identifier" id="password" class="form__control" type="password"
           [ngClass]="{'input-error': passwordHasError(formLogin) }" minlength="6"
           formControlName="password">
       </div>
