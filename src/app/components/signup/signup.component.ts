@@ -24,27 +24,27 @@ export class SignupComponent implements OnInit {
     this.formSignUp = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(4)]],
       lastname: ['', [Validators.required, Validators.minLength(4)]],
-      identifier: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       username: ['', [Validators.required, Validators.minLength(4), Validators.pattern(this.charactersPattern)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   firstNameHasError(form) {
-    if (form.controls.firstname.touched)  {
+    if (form.controls.firstname?.touched)  {
       return form.controls.firstname.errors?.minlength || form.controls.firstname.errors?.required;
     }
   }
 
   lastNameHasError(form) {
-    if (form.controls.lastname.touched ||  form.controls.lastname.dirty)  {
+    if (form.controls.lastname?.touched ||  form.controls.lastname?.dirty)  {
       return form.controls.lastname.errors?.minlength || form.controls.lastname.errors?.required;
     }
   }
 
   emailHasError(form) {
-    if (form.controls.identifier.touched  || form.controls.identifier.dirty)  {
-      return form.controls.identifier.errors?.pattern || form.controls.identifier.errors?.required;
+    if (form.controls.email?.touched  || form.controls.email?.dirty)  {
+      return form.controls.email.errors?.pattern || form.controls.email?.errors?.required;
     }
   }
 
