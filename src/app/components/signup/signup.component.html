@@ -1,26 +1,48 @@
 
 <div class="container">
-  <form [formGroup]="formSignUp" class="form" action="">
+  <form [formGroup]="formSignUp" class="form" >
     <h1 class="form__title">Sign up for /Clone</h1>
     <div  class="form__group">
-      <label  class="form__label" for="name">First name</label>
-      <input  class="form__control" type="text" name="name" id="name" formControlName="name">
+      <label  class="form__label" for="name"
+      [ngClass]="{'error': firstNameHasError(formSignUp) }"
+      >First name</label>
+      <input  class="form__control" type="text" name="name"
+      [ngClass]="{'input-error': firstNameHasError(formSignUp) }"
+      id="name" formControlName="firstname" minlength="4">
     </div>
     <div class="form__group">
-      <label class="form__label" for="surname">Last name</label>
-      <input class="form__control" type="text" name="surname" id="surname" formControlName="surname">
+      <label class="form__label" for="lastname"
+      [ngClass]="{'error': lastNameHasError(formSignUp) }"
+      >Last name</label>
+      <input class="form__control" type="text" name="lastname" id="lastname"
+      [ngClass]="{'input-error': lastNameHasError(formSignUp) }"
+      formControlName="lastname" minlength="4">
     </div>
     <div class="form__group">
-      <label class="form__label" for="email">Email</label>
-      <input class="form__control" type="email" name="email" id="email" formControlName="email">
+      <label class="form__label" for="email"
+      [ngClass]="{'error': emailHasError(formSignUp) }"
+      >Email</label>
+      <input class="form__control" type="email" name="email"
+      [ngClass]="{'input-error': emailHasError(formSignUp) }"
+      id="email" formControlName="email">
     </div>
     <div class="form__group">
-      <label class="form__label" for="username">Username <span class="form__label--info">(only letters, numbers and underscores)</span></label>
-      <input class="form__control" type="text" name="username" id="username" formControlName="username">
+      <label class="form__label" for="username"
+      [ngClass]="{'error': userNameHasError(formSignUp) }">Username <span class="form__label--info">
+      (only letters, numbers and underscores)</span>
+      </label>
+      <input class="form__control" type="text" name="username" id="username"
+      [ngClass]="{'input-error': userNameHasError(formSignUp) }"
+      formControlName="username" minlength="4">
     </div>
     <div class="form__group">
-      <label class="form__label" for="password">Password <span class="form__label--info">(min 6 char)</span></label>
-      <input class="form__control" type="password" name="password" id="password" formControlName="password">
+      <label class="form__label" for="password"
+      [ngClass]="{'error': passwordHasError(formSignUp) }">
+      Password <span class="form__label--info">(min 6 char)</span>
+      </label>
+      <input class="form__control" type="password" name="password" id="password"
+      [ngClass]="{'input-error': passwordHasError(formSignUp) }"
+      formControlName="password" minlength="6">
     </div>
     <div class="form__actions">
       <button class="btn btn__primary" type="submit">sing up</button>
