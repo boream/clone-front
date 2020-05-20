@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,7 @@ export class SignupComponent implements OnInit {
 
   charactersPattern: any = /A-Za-z0-9\-\_]+/;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private auth: AuthService) {
 
   }
 
@@ -25,9 +26,13 @@ export class SignupComponent implements OnInit {
       firstname: ['', [Validators.required, Validators.minLength(4)]],
       lastname: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      username: ['', [Validators.required, Validators.minLength(4), Validators.pattern(this.charactersPattern)]],
+      username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  submit(form) {
+    this.auth.signup(form.value).subscribe();
   }
 
   firstNameHasError(form) {

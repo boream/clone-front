@@ -1,6 +1,6 @@
 
 <div class="container">
-  <form [formGroup]="formSignUp" class="form" >
+  <form [formGroup]="formSignUp" class="form" (ngSubmit)="submit(formSignUp)">
     <h1 class="form__title">Sign up for /Clone</h1>
     <div  class="form__group">
       <label  class="form__label" for="name"
@@ -45,7 +45,7 @@
       formControlName="password" minlength="6">
     </div>
     <div class="form__actions">
-      <button class="btn btn__primary" type="submit">sing up</button>
+      <button class="btn btn__primary" type="submit" [disabled]="formSignUp.invalid">Sign Up</button>
       <span>or
         <a class="link-singup" [routerLink]="['/login']">login</a>
       </span>
