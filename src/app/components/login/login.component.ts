@@ -11,31 +11,32 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   formLogin: FormGroup;
+  emailPattern: any =
+    /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      identifier: ['', [Validators.required, Validators.email]],
+      identifier: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   emailHasError(form) {
     if (form.controls.identifier.touched || form.controls.identifier.dirty) {
-      return form.controls.identifier.errors?.email || form.controls.identifier.errors?.required;
+      return form.controls.identifier.errors?.pattern || form.controls.identifier.errors?.required;
     }
   }
 
   passwordHasError(form) {
-    if (form.controls.password.dirty) {
+    if (form.controls.password.touched || form.controls.password.dirty) {
       return form.controls.password.errors?.minlength || form.controls.password.errors?.required;
     }
   }
 
   submit(form) {
-    debugger
-    this.auth.login(form).subscribe(_ => this.router.navigate(['/home']))
+    this.auth.login(form).subscribe(() => this.router.navigate(['/home']))
   }
-
 }
