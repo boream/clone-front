@@ -5,7 +5,6 @@ import {
 } from '@angular/common/http/testing';
 import { AuthInterceptor } from './auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
 import { environment } from 'src/environments/environment';
 import { WebStorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -39,6 +38,10 @@ describe('AuthInterceptor', () => {
     httpTestingController = TestBed.inject(HttpTestingController);
     storage = TestBed.inject(WebStorageService);
     http = TestBed.inject(HttpClient);
+  });
+
+  afterEach(() => {
+    httpTestingController.verify();
   });
 
   it('should be created', () => {
