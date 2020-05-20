@@ -11,9 +11,11 @@
           formControlName="identifier">
       </div>
       <div class="form__group">
-          <label for="identifier" class="form__label">Password</label>
-          <input type="password" id="lastname" class="form__control" minlength="6"
-          [ngClass]="{'input-error': passwordHasError(formLogin) }"
+          <label for="password" class="form__label"
+          [ngClass]="{'error': passwordHasError(formLogin) }"
+          >Password</label>
+          <input type="password" id="password" class="form__control"
+          [ngClass]="{'input-error': passwordHasError(formLogin) }" minlength="6"
           formControlName="password">
       </div>
     </div>
