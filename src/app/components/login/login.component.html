@@ -1,6 +1,6 @@
 <div *ngIf="showErrorMessage" class="container-error">
-  <h1 class="container-error__message">{{showErrorMessage}}</h1>
-  <button type="button" class="btn btn__close">&times;</button>
+  <p>{{showErrorMessage}}</p>
+  <button type="button" class="btn btn__close" (click)="errorClose()">&times;</button>
 </div>
 <div class="container">
   <form [formGroup]="formLogin" class="form" (ngSubmit)="submit(formLogin)">

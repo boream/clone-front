@@ -38,12 +38,15 @@ export class LoginComponent implements OnInit {
   }
 
   submit(form) {
-    debugger
     this.auth.login(form).subscribe(
       (res) => {
       }, (error) => {
         this.showErrorMessage = error.error.message[0].messages[0].message;
       }
     )
+  }
+
+  errorClose() {
+    this.showErrorMessage= false;
   }
 }
