@@ -9,11 +9,14 @@
 }
 .container-error {
   display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: rem(16px);
   font-weight: 500;
   background-color: $error;
   color: #fff;
   padding: 20px;
+  transition: ease-in-out 0.8s;
 }
 
 
