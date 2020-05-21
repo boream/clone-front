@@ -1,5 +1,11 @@
 {
   "baseUrl": "http://localhost:4200",
-  "identifier": "email@hotmail.com",
-  "password": "email1234"
+  "user": {
+    "firstname": "test name",
+    "lastname": "test last name",
+    "username": "test",
+    "identifier": "test@hotmail.com",
+    "email": "test@hotmail.com",
+    "password": "test1234"
+  }
 }
