@@ -88,7 +88,10 @@
 
 //desktop styles
 @media screen and (min-width: 1024px) {
-  .form__control {
-    width: 23rem;
+  .form {
+    margin: 23px 50px 50px 50px;
+    &__control {
+      width: 23rem;
+    }
   }
 }
