@@ -8,6 +8,22 @@
   flex-direction: column;
 }
 
+.container-error {
+  display: flex;
+  position: relative;
+  font-family: $font-primary;
+  font-size: rem(16px);
+  font-weight: 500;
+  background-color: $error;
+  color: #fff;
+  padding: 20px;
+
+  &__message {
+    display: inline-block;
+  }
+
+}
+
 
 /*para tablet*/
 @media screen and (min-width: 767px) {

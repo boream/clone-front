@@ -2,6 +2,15 @@
 
 .btn {
   padding: 5px 8px;
+  background-color: transparent;
+  border: none;
+  color: $base;
+  outline: none;
+
+  &__close {
+    position: absolute;
+    left: 150px;
+  }
 
   &__primary {
     width: 100%;
@@ -12,6 +21,9 @@
     font-family: $font-primary;
     margin: 15px 0px;
     text-transform: uppercase;
+  }
+  &__primary--invalid {
+    background-color: green;
   }
 
 }
