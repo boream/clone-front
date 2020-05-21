@@ -1,5 +1,12 @@
 describe('The Login Page', () => {
 
+  before(() => {
+    cy.exec('npm run db:reset')
+    cy.request('POST', 'http://localhost:1337/auth/local/register', Cypress.config('user'))
+      .its('body')
+      .as('currentUser')
+  })
+
   beforeEach(() => {
     cy.visit('/login')
   })
@@ -49,9 +56,9 @@ describe('The Login Page', () => {
 
   it('should log in', () => {
     cy.get('input[formcontrolname=identifier]')
-      .type(Cypress.config('identifier'))
+      .type(Cypress.config('user').identifier)
     cy.get('input[formcontrolname=password]')
-      .type(`${Cypress.config('password')}{enter}`)
+      .type(`${Cypress.config('user').password}{enter}`)
     cy.url().should('include', '/home')
   })
 
