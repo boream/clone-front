@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   emailPattern: any =
     /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
+  showErrorMessage: boolean;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
   }
@@ -37,6 +38,12 @@ export class LoginComponent implements OnInit {
   }
 
   submit(form) {
-    this.auth.login(form).subscribe(() => this.router.navigate(['/home']))
+    debugger
+    this.auth.login(form).subscribe(
+      (res) => {
+      }, (error) => {
+        this.showErrorMessage = error.error.message[0].messages[0].message;
+      }
+    )
   }
 }
