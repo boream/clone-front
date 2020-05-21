@@ -16,6 +16,8 @@ export class SignupComponent implements OnInit {
 
   charactersPattern: any = /A-Za-z0-9\-\_]+/;
 
+  error: boolean;
+
   constructor(private fb: FormBuilder, private auth: AuthService) {
 
   }
@@ -32,7 +34,11 @@ export class SignupComponent implements OnInit {
   }
 
   submit(form) {
-    this.auth.signup(form.value).subscribe();
+    this.auth.signup(form.value).subscribe((response) => {
+
+    },(error) => {
+      this.error = error.error.message[0].messages[0].message;
+    });
   }
 
   firstNameHasError(form) {
@@ -65,6 +71,8 @@ export class SignupComponent implements OnInit {
     }
   }
 
-
+  errorClose() {
+    this.error= false;
+  }
 
 }
