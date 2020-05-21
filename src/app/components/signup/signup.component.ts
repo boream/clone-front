@@ -37,7 +37,6 @@ export class SignupComponent implements OnInit {
     this.auth.signup(form.value).subscribe((response) => {
 
     },(error) => {
-      debugger
       this.error = error.error.message[0].messages[0].message;
     });
   }
@@ -75,6 +74,5 @@ export class SignupComponent implements OnInit {
   errorClose() {
     this.error= false;
   }
-
 
 }
