@@ -9,6 +9,7 @@
 
   &__primary {
     width: 100%;
+    flex-grow: 1;
     height: rem(40px);
     background-color: $success;
     font-weight: 500;
@@ -17,7 +18,6 @@
     margin: 15px 0px;
     border-radius: 5px;
     text-transform: uppercase;
-    transition: ease-in-out 0.2s;
   }
 
   &__primary:disabled  {
@@ -47,3 +47,8 @@
 
 
 
+@media screen and (min-width: 767px) {
+  .btn__primary {
+    width: 13%;
+  }
+}

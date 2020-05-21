@@ -70,6 +70,20 @@
 
 //tablet styles
 @media screen and (min-width: 767px) {
+  .form {
+
+    &__actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        flex-grow: 1;
+        padding-left: rem(20px);
+      }
+    }
+  }
 }
 
 //desktop styles
