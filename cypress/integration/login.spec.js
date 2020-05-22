@@ -11,10 +11,6 @@ describe('The Login Page', () => {
     cy.visit('/login')
   })
 
-  it('should load', () => {
-    cy.visit('/login')
-  })
-
   it('should type correct email', () => {
     cy.get('input[formcontrolname=identifier]')
       .type('email@hotmail.com')
@@ -55,18 +51,29 @@ describe('The Login Page', () => {
   })
 
   it('should log in', () => {
+    cy.server()
+    cy.route('POST', 'http://localhost:1337/auth/local').as('login')
     cy.get('input[formcontrolname=identifier]')
       .type(Cypress.config('user').identifier)
     cy.get('input[formcontrolname=password]')
       .type(`${Cypress.config('user').password}{enter}`)
+    cy.wait('@login').its('status').should('eq', 200)
     cy.url().should('include', '/home')
   })
 
   it('should not log in', () => {
+    cy.server()
+    cy.route('POST', 'http://localhost:1337/auth/local').as('login')
     cy.get('input[formcontrolname=identifier]')
       .type('hola@hotmail.com')
     cy.get('input[formcontrolname=password]')
       .type('hola1234{enter}')
+    cy.wait('@login').its('response.body.message').should('deep.eq', [{
+      messages: [{
+        id: "Auth.form.error.invalid",
+        message: "Identifier or password invalid."
+      }]
+    }])
     cy.url().should('include', '/login')
   })
 
