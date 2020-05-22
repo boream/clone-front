@@ -1,0 +1,29 @@
+
+
+.background {
+  height: 100vw;
+  background-image: url(../../../assets/img/background_mobile.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+//tablet styles
+@media screen and (min-width: 767px) {
+  .background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../../assets/img/background_tablet.png);
+  }
+}
+
+//desktop styles
+@media screen and (min-width: 1024px) {
+
+  .background {
+    width: 50%;
+    height: 100vh;
+    background-image: url(../../../assets/img/backgroun_desktop.png);
+    background-size: contain;
+  }
+}
