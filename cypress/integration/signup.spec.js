@@ -11,10 +11,6 @@ describe('The Signup Page', () => {
     cy.visit('/signup')
   })
 
-  it('should load', () => {
-    cy.visit('/signup')
-  })
-
   it('should type correct email', () => {
     cy.get('input[formcontrolname=email]')
       .type('email@hotmail.com')
