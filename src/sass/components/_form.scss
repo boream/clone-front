@@ -1,9 +1,6 @@
 @import "global/variables";
 @import "mixins/mixins";
 
-/*----------------------------*/
-/*FORM*/
-
 .form {
   margin: 23px 15px 50px 15px;
 
@@ -61,7 +58,7 @@
   color: $error;
 }
 
-//tablet styles
+
 @media screen and (min-width: 767px) {
   .form {
 
@@ -84,8 +81,5 @@
   .form {
     margin: 97px 50px 0px 50px;
     width: 50%;
-
-
-
   }
 }
