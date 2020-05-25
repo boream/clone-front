@@ -3,7 +3,7 @@
 .background {
   height: 100vw;
   width: 100vw;
-  background: url(../../../assets/img/background_mobile.png) no-repeat center;
+  background: url(/assets/img/background_mobile.png) no-repeat center;
   background-size: cover;
 }
 
@@ -13,7 +13,7 @@
   .background {
     height: 100vh;
     width: 100vw;
-    background: url(../../../assets/img/background_tablet.png) no-repeat  center;
+    background: url(/assets/img/background_tablet.png) no-repeat  center;
     background-size: cover;
   }
 }
@@ -22,7 +22,7 @@
 @media screen and (min-width: 1024px) {
 
   .background {
-    background: url(../../../assets/img/backgroun_desktop.png) no-repeat  center;
+    background: url(/assets/img/background_desktop.png) no-repeat  center;
     background-size: cover;
   }
 }

@@ -7,17 +7,22 @@
   display: flex;
   flex-direction: column;
 }
+
 .container-error {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: rem(16px);
+  position: relative;
   font-family: $font-primary;
+  font-size: rem(16px);
   font-weight: 500;
   background-color: $error;
   color: #fff;
   padding: 20px;
   transition: all 0.8s;
+
+  &__message {
+    display: inline-block;
+  }
+
 }
 
 
@@ -33,7 +38,6 @@
 
 /*para desktop*/
 @media screen and (min-width: 1024px) {
-
   .container {
     display: flex;
     flex-direction: row-reverse;

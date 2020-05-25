@@ -1,9 +1,6 @@
 @import "global/variables";
 @import "mixins/mixins";
 
-/*----------------------------*/
-/*FORM*/
-
 .form {
   margin: 23px 15px 50px 15px;
 
@@ -63,7 +60,7 @@
   color: $error;
 }
 
-//tablet styles
+
 @media screen and (min-width: 767px) {
 
   .form {
@@ -73,10 +70,15 @@
     &__actions {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       align-items: center;
+
+      span {
+        flex-grow: 1;
+        padding-left: rem(20px);
+      }
     }
   }
-
 }
 
 //desktop styles

@@ -1,3 +1,7 @@
+<div *ngIf="showErrorMessage" class="container-error">
+  <p>{{showErrorMessage}}</p>
+  <button type="button" class="btn btn__close" (click)="errorClose()">&times;</button>
+</div>
 <div class="container">
   <form [formGroup]="formLogin" class="form" (ngSubmit)="submit(formLogin)">
     <h1 class="form__title">/clone</h1>
@@ -17,16 +21,17 @@
           <input type="identifier" id="password" class="form__control" type="password"
           [ngClass]="{'input-error': passwordHasError(formLogin) }" minlength="6"
           formControlName="password">
+          <a href="#" class="password-forgoten">¿Forgot your password?</a>
       </div>
     </div>
     <div class="form__actions">
         <button type="submit" class="btn btn__primary" [disabled]="!formLogin.valid">LOG IN</button>
-        <span class="">or
+        <span class="link-container">or
           <a class="link-singup" [routerLink]="['/signup']">signup</a>
         </span>
     </div>
   </form>
-    <img class="background"   src="assets/img/login_img.png" alt="login imagen">
+  <div class="img"></div>
 </div>
 
 

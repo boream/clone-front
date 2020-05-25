@@ -1,1 +1,50 @@
+@import 'global/variables';
+
+
+.password-forgoten {
+  display: hidden;
+  font-family: $font-primary;
+  display: inline-block;
+  margin-top: 8px;
+  color: $primary;
+  text-decoration: underline;
+}
+
+.img {
+  background-image: url(/assets/img/login_mobile.png);
+  background-repeat: no-repeat;
+  height: 40vh;
+  background-size: cover;
+}
+
+@media screen and (min-width: 767px) {
+  .password-forgoten {
+    font-family: $font-primary;
+    display: inline-block;
+    margin-top: 8px;
+    text-decoration: underline;
+  }
+
+  .img {
+    background-image: url(/assets/img/login_tablet.png);
+    height: 60vh;
+    width: 100vw;
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .password-forgoten {
+    font-family: $font-primary;
+    display: inline-block;
+    margin-top: 8px;
+    text-decoration: underline;
+  }
+
+  .img {
+    background-image: url(/assets/img/login_desktop.png);
+    width: 50%;
+    height: 100vh;
+  }
+}
 
