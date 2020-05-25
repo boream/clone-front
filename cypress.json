@@ -1,0 +1,12 @@
+{
+  "baseUrl": "http://localhost:4200",
+  "user": {
+    "firstname": "test name",
+    "lastname": "test last name",
+    "username": "test",
+    "identifier": "test@hotmail.com",
+    "email": "test@hotmail.com",
+    "password": "test1234"
+  },
+  "projectId": "6sgfj8"
+}
