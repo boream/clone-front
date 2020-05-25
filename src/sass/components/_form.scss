@@ -45,27 +45,15 @@
   &__actions {
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     span {
       font-family: $font-primary;
+      text-align: center;
     }
   }
 }
 
-.btn {
-  min-width: rem(290px);
-  height: rem(40px);
-  border-radius: rem(5px);
-  border: none;
-}
 
-.background {
-  width: 100%;
-  img {
-    width: 100%;
-  }
-}
 
 .input-error {
   border: 1px solid $error;
@@ -77,11 +65,26 @@
 
 //tablet styles
 @media screen and (min-width: 767px) {
+
+  .form {
+    flex-grow: 1;
+    // margin: 23px 74px 50px 74px;
+
+    &__actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
 }
 
 //desktop styles
 @media screen and (min-width: 1024px) {
-  .form__control {
-    width: 23rem;
+
+  .form {
+    width: 50%;
+    flex-grow: 1;
+    margin: 97px 50px 0px 50px;
   }
 }

@@ -7,6 +7,18 @@
   display: flex;
   flex-direction: column;
 }
+.container-error {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: rem(16px);
+  font-family: $font-primary;
+  font-weight: 500;
+  background-color: $error;
+  color: #fff;
+  padding: 20px;
+  transition: all 0.8s;
+}
 
 
 /*para tablet*/
@@ -15,21 +27,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    //align-items: center;
-
   }
-
- }
+}
 
 
 /*para desktop*/
 @media screen and (min-width: 1024px) {
- .container {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
 
- }
-
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 }
