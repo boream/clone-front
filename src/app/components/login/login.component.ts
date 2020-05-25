@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
   submit(form) {
     this.auth.login(form).subscribe(
       (res) => {
+        this.router.navigate(['/home'])
       }, (error) => {
         this.showErrorMessage = error.error.message[0].messages[0].message;
       }

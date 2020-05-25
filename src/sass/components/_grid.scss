@@ -33,14 +33,13 @@
     flex-direction: column;
     justify-content: space-between;
   }
- }
+}
 
 
 /*para desktop*/
 @media screen and (min-width: 1024px) {
- .container {
-  display: flex;
-  flex-direction: row-reverse;
- }
-
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 }

@@ -1,6 +1,6 @@
 
 .btn {
-  padding: 5px 8px;
+  padding: 7px 8px;
   background-color: transparent;
   border: 0;
   color: $base;
@@ -8,8 +8,7 @@
   outline: none;
 
   &__primary {
-    width: 100%;
-    flex-grow: 1;
+    min-width: rem(278px);
     height: rem(40px);
     background-color: $success;
     font-weight: 500;
@@ -44,8 +43,21 @@
   text-decoration: underline;
 }
 
+
+
+//tablet styles
 @media screen and (min-width: 767px) {
-  .btn__primary {
-    width: 13%;
+
+  .btn {
+
+    &__primary {
+      margin-right: 20px;
+    }
   }
+}
+
+//desktop styles
+@media screen and (min-width: 1024px) {
+
+
 }
