@@ -6,12 +6,12 @@ import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
-    path: ':username',
+    path: '',
     component: UserComponent,
     children: [
       { path: 'settings', component: SettingsComponent },
     ]
-  }
+  },
 ];
 
 @NgModule({
