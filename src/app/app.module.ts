@@ -12,6 +12,7 @@ import { SearchComponent } from './components/search/search.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
+import { PageUserComponent } from './components/page-user/page-user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginComponent } from './components/login/login.component';
     LoginComponent,
     SignupComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    PageUserComponent
   ],
   imports: [
     BrowserModule,
