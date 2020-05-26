@@ -29,6 +29,11 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'user',
+    loadChildren: () => import('./features/user/user.module').then(m => m.UserModule),
+    canActivate: [AuthGuard]
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

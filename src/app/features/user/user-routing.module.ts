@@ -5,8 +5,13 @@ import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
-  {path: '/@:username', component: UserComponent},
-  {path: '/settings', component: SettingsComponent},
+  {
+    path: '',
+    component: UserComponent,
+    children: [
+      { path: 'settings', component: SettingsComponent },
+    ]
+  }
 ];
 
 @NgModule({
