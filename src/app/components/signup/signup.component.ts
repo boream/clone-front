@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,7 @@ export class SignupComponent implements OnInit {
   charactersPattern: any = /A-Za-z0-9\-\_]+/;
 
   error: boolean;
+  showSuccessMessage: string;
 
   constructor(private fb: FormBuilder, private auth: AuthService) {
 
@@ -35,7 +37,7 @@ export class SignupComponent implements OnInit {
 
   submit(form) {
     this.auth.signup(form.value).subscribe((response) => {
-
+      this.showSuccessMessage = response
     },(error) => {
       this.error = error.error.message[0].messages[0].message;
     });
@@ -73,6 +75,10 @@ export class SignupComponent implements OnInit {
 
   errorClose() {
     this.error= false;
+  }
+
+  successClose() {
+    this.showSuccessMessage= null;
   }
 
 }
