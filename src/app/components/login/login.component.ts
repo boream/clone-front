@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
   emailPattern: any =
     /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
   showErrorMessage: string;
-  showSuccessMessage: string;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
   }
@@ -41,8 +40,7 @@ export class LoginComponent implements OnInit {
   submit(form) {
     this.auth.login(form).subscribe(
       (res) => {
-        this.showSuccessMessage = 'Welcome'
-        //this.router.navigate(['/home'])
+        this.router.navigate(['/home'])
       }, (error) => {
         this.showErrorMessage = error.error.message[0].messages[0].message;
       }
@@ -53,7 +51,5 @@ export class LoginComponent implements OnInit {
     this.showErrorMessage= null;
   }
 
-  successClose() {
-    this.showSuccessMessage= null;
-  }
+
 }
