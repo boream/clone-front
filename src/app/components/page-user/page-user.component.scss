@@ -1,0 +1,37 @@
+@import '../../../sass/global/variables';
+@import '../../../sass/mixins/rem';
+
+.container__user {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0px;
+  background-color: $bg-color;
+}
+
+.container__info {
+  display: flex;
+  flex-direction: column;
+
+}
+.container__title {
+  padding-right: 36px;
+}
+
+.container__controls {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.img {
+  width: rem(150px);
+  height: rem(150px);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  margin-right: 50px;
+}
+
+
+.btn__icon {
+  background-image: url(../../../assets/svg/svg.svg) center;
+}

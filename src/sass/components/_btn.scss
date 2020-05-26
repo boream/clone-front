@@ -7,7 +7,7 @@
   cursor: pointer;
   outline: none;
 
-  &__primary {
+  &__success {
     min-width: rem(278px);
     height: rem(40px);
     background-color: $success;
@@ -19,8 +19,18 @@
     text-transform: uppercase;
   }
 
-  &__primary:disabled  {
+  &__success:disabled  {
     background-color: $success-invalid;
+  }
+
+  &__primary {
+    background-color: $success;
+    font-weight: 500;
+    font-size: rem(15px);
+    font-family: $font-primary;
+    padding: 7px 16px;
+    margin: 15px 0px;
+    text-transform: uppercase;
   }
 
   &__close {
@@ -32,6 +42,8 @@
   &__primary--invalid {
     background-color: green;
   }
+
+
 
 }
 
