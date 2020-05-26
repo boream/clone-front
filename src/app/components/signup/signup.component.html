@@ -1,9 +1,10 @@
 
+
+<div *ngIf="error" class="container-error">
+  <p>{{error}}</p>
+  <button class="btn btn__close" (click)="errorClose()" type="button">&times;</button>
+</div>
 <div class="container">
-  <div *ngIf="error" class="container-error">
-    <p>{{error}}</p>
-    <button class="btn btn__close" (click)="errorClose()" type="button">&times;</button>
-  </div>
   <form [formGroup]="formSignUp" class="form" (ngSubmit)="submit(formSignUp)">
     <h1 class="form__title">Sign up for /Clone</h1>
     <div  class="form__group">
