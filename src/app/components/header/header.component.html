@@ -1,1 +1,50 @@
-<p>header works!</p>
+<header class="main-header">
+
+  <!-- LOGO -->
+  <div class="main-header__logo">
+    <a class="main-header__link" [routerLink]="['/home']">/clone</a>
+  </div>
+  <!-- //LOGO -->
+
+  <!-- SEARCH BAR (only visible in user page)-->
+  <div class="main-header__search">
+    <label class="main-header__search-bar">
+      <svg class="main-header__icon main-header__icon--search">
+        <use xlink:href="/assets/icons/sprite.svg#search" />
+      </svg>
+      <input type="search" placeholder="Search..." class="main-header__search-control">
+    </label>
+  </div>
+  <!-- // SEARCH BAR -->
+
+  <button class="main-header__btn" (click)="toggleMenu()">
+    <svg class="main-header__icon main-header__icon--lines">
+      <use xlink:href="/assets/icons/sprite.svg#menu-lines" />
+    </svg>
+  </button>
+
+  <!-- POPUP -->
+  <nav class="main-header__popup" [class.main-header__popup--show]="isMenuOpen">
+    <button (click)="toggleMenu()">x</button>
+    <div class="main-header__popup-navbar">
+      <a class="main-header__link main-header__link--dark" [routerLink]="['/upload']">Upload</a>
+      <a class="main-header__link main-header__link--dark" (click)="toggleNotifications()">Notifications</a>
+      <a class="main-header__link main-header__link--dark" [routerLink]="['/user']">User</a>
+    </div>
+  </nav>
+  <!-- // POPUP -->
+
+  <!-- NAVBAR -->
+  <nav class="main-header__navbar">
+    <svg class="main-header__icon" [routerLink]="['/upload']">
+      <use xlink:href="/assets/icons/sprite.svg#upload" />
+    </svg>
+    <svg class="main-header__icon" (click)=toggleNotifications()>
+      <use xlink:href="/assets/icons/sprite.svg#bell" />
+    </svg>
+    <img class="main-header__avatar" src="/assets/img/profile-avatar.png" alt="User profile avatar"
+      [routerLink]="['/user']">
+  </nav>
+  <!-- //NAVBAR -->
+
+</header>
