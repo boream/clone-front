@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { LoginComponent } from './components/login/login.component';
 import { PageUserComponent } from './components/page-user/page-user.component';
 import { UserModule } from './features/user/user.module';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,11 @@ import { UserModule } from './features/user/user.module';
     SignupComponent,
     PageNotFoundComponent,
     LoginComponent,
+<<<<<<< HEAD
     PageUserComponent
+=======
+    HeaderComponent
+>>>>>>> 63_main_header
   ],
   imports: [
     BrowserModule,
