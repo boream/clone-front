@@ -1,3 +1,24 @@
-ul {
+@import 'global/variables';
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+
   border: 1px solid red;
+  margin-top: 70px;
+  margin-left: 37px;
+
+  font-family: $font-secundary;
+  font-weight: $font-weight-bold;
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__link {
+    font-family: $font-primary;
+    font-weight: $font-weight-normal;
+  }
 }
+
