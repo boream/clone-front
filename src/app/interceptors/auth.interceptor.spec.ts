@@ -50,7 +50,7 @@ describe('AuthInterceptor', () => {
 
 
   it('should not have an Authorization header if url starts with /local', fakeAsync(() => {
-    const publicEndpoint = `${environment.apiUrl}local`;
+    const publicEndpoint = `${environment.apiUrl}auth`;
 
     http.get(publicEndpoint).subscribe();
 
@@ -58,7 +58,7 @@ describe('AuthInterceptor', () => {
     expect(req.request.headers.has('Authorization')).toEqual(false);
   }))
 
-  it('should have an Authorization header if url does not start with /local', fakeAsync(() => {
+  it('should have an Authorization header if url does not start with /auth', fakeAsync(() => {
     const privateEndpoint = `${environment.apiUrl}categories`;
 
     http.get(privateEndpoint).subscribe();
