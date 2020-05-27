@@ -1,26 +1,32 @@
 @import 'global/variables';
 @import 'mixins/mixins';
 
-.main-header {
-  @include flex(center, space-between);
-  @include size(100vw, rem(57px));
-  color: #fff;
+.header {
 
-  padding: 15px;
-  background-color: $grey-400;
-
-  @media screen and (min-width: 767px) {
+  &__main {
     @include flex(center, space-between);
-    height: rem(90px);
-    padding: 25px 35px;
+    @include size(100vw, rem(57px));
+    color: #fff;
+
+    padding: 15px;
+    background-color: $grey-400;
+
+    @media screen and (min-width: 767px) {
+      @include flex(center, space-between);
+      height: rem(90px);
+      padding: 25px 35px;
+    }
   }
 
   // LOGO
   // -----------------
   &__logo {
     font-family: $font-secundary;
-    font-size: rem(34px);
+    font-size: rem(21px);
     line-height: 0;
+    @media screen and (min-width: 767px) {
+      font-size: rem(34px);
+    }
   }
 
   // LINK
@@ -118,7 +124,7 @@
     font-size: rem(30px);
     text-align: right;
     border: 0;
-    background-color: none;
+    background-color: transparent;
   }
 
   // POPUP NOTIF
@@ -186,6 +192,7 @@
 
 
     &--search {
+      margin-left: 0;
       height: 1rem;
     }
 
@@ -211,5 +218,41 @@
       cursor: pointer;
     }
   }
+
+
+  // CATEGORIES BAR
+  // -----------------
+  &__categories {
+    @include flex(center, flex-start);
+    @include size(100vw, rem(50px));
+    padding: 14px 16px;
+    background-color: #fff;
+    font-size: rem(12px);
+    font-family: $font-primary;
+    font-weight: $font-weight-regular;
+    @media screen and (min-width: 767px) {
+      font-size: rem(14px);
+    }
+
+    &-item {
+      padding: 0 37px;
+      color: $grey-200;
+      &:first-child {
+        padding-left: 0 ;
+        border-right: 1px solid $border-control;
+        font-weight: $font-weight-normal;
+        color: $grey-300;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+
+    }
+
+    &-list {
+      @include flex(center, flex-start);
+    }
+  }
+
 
 }

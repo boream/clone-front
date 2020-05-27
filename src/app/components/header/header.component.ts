@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   userAvatar: Observable<string>;
   username: Observable<string>;
   notifications: [] = [];
+  categories: string[] = ['Example'];
 
   constructor(
     private http: HttpClient,
