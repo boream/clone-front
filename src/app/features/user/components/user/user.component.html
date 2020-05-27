@@ -1,22 +1,3 @@
-<div class="container__user">
-  <img class="img" src="../../../assets/img/login_mobile.png" alt="">
-  <div class="container__info">
-    <div class="container__controls">
-      <h2 class="container__title">UserName</h2>
-      <button class="btn btn__primary" type="button">Edit Profile</button>
-      <button (click)="showOptions()" class="btn btn__primary" type="button">
-        <svg class="user__icon" >
-          <use xlink:href="/assets/icons/sprite.svg#dots"></use>
-        </svg>
-      </button>
-      <div *ngIf="optionsActived"  class="container-pop">
-        <a class="container-pop__link" [routerLink]="['/@username']">Accounts settings</a>
-        <a class="container-pop__link" [routerLink]="['/upload']">Submit a Photo</a>
-        <a class="container-pop__link" [routerLink]="['/logout']">Logout</a>
-      </div>
-    </div>
-    <p>Download free, beautiful high-quality photos curated.</p>
-  </div>
-</div>
+<app-header></app-header>
 
 <router-outlet></router-outlet>
