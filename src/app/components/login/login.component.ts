@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
     /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
   showErrorMessage: string;
 
+  showSuccessMessage: string;
+
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
   }
 
@@ -49,6 +51,11 @@ export class LoginComponent implements OnInit {
 
   errorClose() {
     this.showErrorMessage= null;
+  }
+
+
+  successClose() {
+    this.showSuccessMessage= null;
   }
 
 

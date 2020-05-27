@@ -1,7 +1,3 @@
-<div *ngIf="showSuccessMessage" class="container-success">
-  <p>{{showSuccessMessage}}</p>
-  <button type="button" class="btn btn__close" (click)="successClose()">&times;</button>
-</div>
 <div *ngIf="error" class="container-error">
   <p>{{error}}</p>
   <button class="btn btn__close" (click)="errorClose()" type="button">&times;</button>
