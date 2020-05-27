@@ -17,4 +17,13 @@
 .form {
   margin-top: 70px;
 
+  &__control {
+    max-width: rem(680px);
+  }
+
+  &__details--img {
+    display: flex;
+    flex-direction: row;
+  }
+
 }
