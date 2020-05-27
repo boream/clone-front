@@ -6,6 +6,10 @@
   <p>{{showErrorMessage}}</p>
   <button type="button" class="btn btn__close" (click)="errorClose()">&times;</button>
 </div>
+<div *ngIf="showSignupSuccess" class="container-success">
+  El signup se realizó con éxito.
+  <button type="button" class="btn btn__close" (click)="successClose()">&times;</button>
+</div>
 <div class="container">
   <form [formGroup]="formLogin" class="form" (ngSubmit)="submit(formLogin)">
     <h1 class="form__title">/clone</h1>
