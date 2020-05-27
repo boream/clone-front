@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
   }
 
   errorClose() {
-    this.error= false;
+    this.error= null;
   }
 
 
