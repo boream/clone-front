@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { PopupService } from 'src/app/services/popup.service';
 
 @Component({
   selector: 'app-signup',
