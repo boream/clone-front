@@ -12,13 +12,9 @@ import { SearchComponent } from './components/search/search.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
-import { PageUserComponent } from './components/page-user/page-user.component';
 import { UserModule } from './features/user/user.module';
-<<<<<<< HEAD
 import { HeaderComponent } from './components/header/header.component';
-=======
 import { AuthInterceptor } from './interceptors/auth.interceptor';
->>>>>>> febda454817d987b3842c4ea08bee44ecfe1c670
 
 @NgModule({
   declarations: [
@@ -31,7 +27,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     SignupComponent,
     PageNotFoundComponent,
     LoginComponent,
-    PageUserComponent,
     HeaderComponent
   ],
   imports: [

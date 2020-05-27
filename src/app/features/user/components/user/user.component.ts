@@ -10,6 +10,8 @@ import { of } from 'rxjs/internal/observable/of';
 })
 export class UserComponent implements OnInit {
 
+  optionsActived:boolean = false;
+
   constructor(
     // private route: ActivatedRouteSnapshot,
     // private router: Router
@@ -21,4 +23,7 @@ export class UserComponent implements OnInit {
 
   }
 
+  showOptions() {
+    this.optionsActived = true;
+  }
 }
