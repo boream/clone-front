@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-close-account',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CloseAccountComponent implements OnInit {
 
-  constructor() { }
+  formDeleteAccount: FormGroup;
+  error: boolean;
+
+  constructor(private fb: FormBuilder, private auth: AuthService) {
+
+  }
 
   ngOnInit(): void {
+    this.formDeleteAccount = this.fb.group({
+      currentPassword: ['', [Validators.required, Validators.minLength(6)]],
+    })
+  }
+
+  submit(form) {
+
+  }
+
+  passwordHasError(password) {
+    if (password.touched || password.dirty) {
+      return password.errors?.minlength || password.errors?.required;
+    }
+  }
+
+  errorClose() {
+    this.error = null;
   }
 
 }
+

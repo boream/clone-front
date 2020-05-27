@@ -1,1 +1,21 @@
-<p>close-account works!</p>
+<form [formGroup]="formDeleteAccount" class="form" (ngSubmit)="submit(formDeleteAccount)">
+  <h2 class="form__title">Close account</h2>
+
+  <p class="form__msg"><span class="form__warning">Warning:</span> closing your account is irreversible. It deletes all of your data.</p>
+
+  <!-- Current Password -->
+  <div class="form__group">
+    <label class="form__label" for="current-password"
+      [ngClass]="{'error': passwordHasError(formDeleteAccount.controls.currentPassword) }">
+      Current Password
+    </label>
+    <input class="form__control" type="password" id="current-password"
+      [ngClass]="{'input-error': passwordHasError(formDeleteAccount.controls.currentPassword) }"
+      formControlName="currentPassword" minlength="6" autocomplete="current-password">
+  </div>
+  <!-- //Current Password -->
+
+  <div class="form__actions">
+    <button class="btn btn__alert" type="submit" [disabled]="formDeleteAccount.invalid">Change password</button>
+  </div>
+</form>

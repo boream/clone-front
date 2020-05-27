@@ -33,6 +33,10 @@
     background-color: green;
   }
 
+  &__alert {
+    background-color: $error;
+  }
+
 }
 
 .link-singup {
