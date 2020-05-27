@@ -27,11 +27,8 @@ import { HeaderComponent } from './components/header/header.component';
     SignupComponent,
     PageNotFoundComponent,
     LoginComponent,
-<<<<<<< HEAD
-    PageUserComponent
-=======
+    PageUserComponent,
     HeaderComponent
->>>>>>> 63_main_header
   ],
   imports: [
     BrowserModule,
