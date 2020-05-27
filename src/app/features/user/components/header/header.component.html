@@ -3,7 +3,7 @@
   <div class="container__info">
     <div class="container__controls">
       <h2 class="container__title">UserName</h2>
-      <button class="btn btn__primary" type="button">Edit Profile</button>
+      <a [routerLink]="['/editProfile']" class="btn btn__primary" type="button">Edit Profile</a>
       <button (click)="showOptions($event)" class="btn btn__primary" type="button">
         <svg class="user__icon" >
           <use xlink:href="/assets/icons/sprite.svg#dots"></use>
