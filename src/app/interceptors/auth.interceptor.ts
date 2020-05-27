@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const authUrl = `${environment.apiUrl}local`;
+    const authUrl = `${environment.apiUrl}auth`;
 
     if (!request.url.startsWith(authUrl)) {
       const token = this.storage.get('token');

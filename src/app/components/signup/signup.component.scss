@@ -1,9 +1,12 @@
 
+.container-error {
+  position: absolute;
+  width: 100%;
+}
 
 .background {
-  height: 100vw;
-  width: 100vw;
-  background: url(/assets/img/background_mobile.png) no-repeat center;
+  height: 40vh;
+  background: url(/assets/img/background_mobile.png) no-repeat;
   background-size: cover;
 }
 
@@ -11,7 +14,7 @@
 //tablet styles
 @media screen and (min-width: 767px) {
   .background {
-    height: 100vh;
+    height: 60vh;
     width: 100vw;
     background: url(/assets/img/background_tablet.png) no-repeat  center;
     background-size: cover;
@@ -22,7 +25,9 @@
 @media screen and (min-width: 1024px) {
 
   .background {
-    background: url(/assets/img/background_desktop.png) no-repeat  center;
+    width: 50%;
+    height: 100vh;
+    background: url(/assets/img/login_desktop.png) no-repeat;
     background-size: cover;
   }
 }
