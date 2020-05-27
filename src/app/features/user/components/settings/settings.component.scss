@@ -1,24 +1,39 @@
 @import 'global/variables';
 
-.navbar {
+.settings {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  position: absolute;
+  flex-direction: row;
 
-  border: 1px solid red;
-  margin-top: 70px;
-  margin-left: 37px;
+  &__navbar {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    padding-top: 70px;
+    padding-right:  147px;
+    padding-left: 34px;
 
-  font-family: $font-secundary;
-  font-weight: $font-weight-bold;
-
-  &__title {
-    margin-bottom: 20px;
+    font-family: $font-secundary;
+    font-weight: $font-weight-bold;
+    &-title {
+      margin-bottom: 34px;
+    }
+    &-link {
+      font-family: $font-primary;
+      font-weight: $font-weight-normal;
+      padding-bottom: 15px;
+    }
   }
 
-  &__link {
-    font-family: $font-primary;
-    font-weight: $font-weight-normal;
+  &__child {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 }
+
+
 

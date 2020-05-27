@@ -1,7 +1,10 @@
-<nav class="navbar">
-  <h1 class="navbar__title">Account settings</h1>
-  <a [routerLink]="['./']" class="navbar__link">Edit profile</a>
-  <a [routerLink]="['change-password']" class="navbar__link">Change password</a>
-  <a [routerLink]="['close-account']" class="navbar__link">Close account</a>
-</nav>
-<router-outlet></router-outlet>
+<div class="settings">
+  <nav class="settings__navbar">
+    <h1 class="settings__navbar-title">Account settings</h1>
+    <a [routerLink]="['./']" class="settings__navbar-link">Edit profile</a>
+    <a [routerLink]="['change-password']" class="settings__navbar-link">Change password</a>
+    <a [routerLink]="['close-account']" class="settings__navbar-link">Close account</a>
+  </nav>
+  <router-outlet class="settings__child"></router-outlet>
+</div>
+
