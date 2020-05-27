@@ -27,13 +27,6 @@
   // -----------------
   &__link {
     color: #fff;
-
-    &--dark {
-      display: block;
-      color: $grey-400;
-      font-family: $font-primary;
-      font-weight: $font-weight-normal;
-    }
   }
 
   // SEARCH
@@ -65,7 +58,6 @@
   // POPUP MENU
   // -----------------
 
-
   &__btn {
     background: none;
     border: none;
@@ -77,23 +69,41 @@
 
   &__popup {
     @include fixed(0, 0, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    border: 1px solid $border-control;
-    color: $grey-400;
-    background-color: #fff;
-    transition: transform 0.35s ease-out;
-    z-index: 1000;
-
-
-    &-navbar {
-      @include flex(flex-start, center);
-      flex-direction: column;
-      padding: 14px;
-      font-size: rem(13px);
-    }
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease-out;
 
     &--show {
-      transform: translate3d(50%, 0, 0);
+      opacity: 1;
+      visibility: visible;
+      background-color: rgba($color: #000000, $alpha: 0.8);
+    }
+
+    &-navbar {
+      @include fixed(0, 0, 0, 0);
+      @include flex(flex-start, flex-start);
+      flex-direction: column;
+      width: 50%;
+      border: 1px solid $border-control;
+      padding: 0 14px 14px;
+      color: $grey-400;
+      background-color: #fff;
+      font-size: rem(13px);
+      transform: translate3d(200%, 0, 0);
+      transition: transform 0.25s ease-out;
+      z-index: 1000;
+
+      &--show {
+        transform: translate3d(100%, 0, 0);
+      }
+    }
+
+    &-link {
+      display: block;
+      margin-top: 20px;
+      color: $grey-400;
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
     }
 
     @media screen and (min-width: 767px) {
@@ -101,6 +111,58 @@
     }
 
   }
+
+  &__close {
+    width: 100%;
+    color: $grey-400;
+    font-size: rem(30px);
+    text-align: right;
+    border: 0;
+    background-color: none;
+  }
+
+  // POPUP NOTIF
+  // -----------------
+
+  &__notifications {
+    @include flex(center, center);
+    position: relative;
+
+    &-popup {
+      @include size(rem(269px), rem(90px));
+      @include absolute(38px, 11px, auto, auto);
+      border: 1px solid $border-control;
+      color: $grey-400;
+      background-color: #fff;
+      font-size: rem(13px);
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
+      display: none;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &--show {
+        display: block;
+      }
+    }
+
+    &-title {
+      padding: 14px 13px;
+    }
+
+    &-container {
+      border-top: 1px solid $border-control;
+      padding: 14px 13px;
+    }
+
+    &-empty {
+      text-align: center;
+    }
+  }
+
+
 
   // NAVBAR
   // -----------------
@@ -117,12 +179,11 @@
   // -----------------
   &__icon {
     @include size(rem(36px), rem(25px));
+
+    margin-left: 24px;
     fill: #fff;
     opacity: 0.6;
 
-    &+& {
-      margin-left: 24px;
-    }
 
     &--search {
       height: 1rem;
