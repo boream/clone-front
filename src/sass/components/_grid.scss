@@ -10,6 +10,7 @@
 
 .container-error {
   display: flex;
+  align-items: center;
   position: relative;
   font-family: $font-primary;
   font-size: rem(16px);
@@ -19,9 +20,20 @@
   padding: 20px;
   transition: all 0.8s;
 
-  &__message {
-    display: inline-block;
-  }
+
+}
+.container-success {
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-family: $font-primary;
+  font-size: rem(16px);
+  font-weight: 500;
+  background-color: #5bb55d;
+  color: #fff;
+  padding: 20px;
+  transition: all 0.8s;
+
 
 }
 

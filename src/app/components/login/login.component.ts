@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   emailPattern: any =
     /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
-  showErrorMessage: boolean;
+  showErrorMessage: string;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
   }
@@ -48,6 +48,8 @@ export class LoginComponent implements OnInit {
   }
 
   errorClose() {
-    this.showErrorMessage= false;
+    this.showErrorMessage= null;
   }
+
+
 }
