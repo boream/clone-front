@@ -14,22 +14,25 @@ import { PageUserComponent } from './components/page-user/page-user.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'username', component: PageUserComponent },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        canActivateChild: [AuthGuard],
-        children: [
-          { path: 'profile', component: ProfileComponent },
-          { path: 'upload', component: UploadComponent },
-          { path: 'search', component: SearchComponent },
-        ]
-      }
-    ]
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'upload',
+    component: UploadComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: ':username',
+    loadChildren: () => import('./features/user/user.module').then(m => m.UserModule),
+    canActivate: [AuthGuard]
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }

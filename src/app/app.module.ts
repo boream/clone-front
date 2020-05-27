@@ -13,6 +13,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageUserComponent } from './components/page-user/page-user.component';
+import { UserModule } from './features/user/user.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PageUserComponent } from './components/page-user/page-user.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
