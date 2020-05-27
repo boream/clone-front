@@ -16,18 +16,17 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        canActivateChild: [AuthGuard],
-        children: [
-          { path: 'profile', component: ProfileComponent },
-          { path: 'upload', component: UploadComponent },
-          { path: 'search', component: SearchComponent },
-        ]
-      }
-    ]
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'upload', 
+    component: UploadComponent,
+    canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'search', 
+    component: SearchComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: ':username',

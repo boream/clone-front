@@ -1,17 +1,32 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user.component';
-import { SettingsComponent } from './settings/settings.component';
+import { UserComponent } from './components/user/user.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: UserComponent,
-    children: [
-      { path: 'settings', component: SettingsComponent },
-    ]
   },
+  {
+    path: 'settings', 
+    component: SettingsComponent/*,
+    children: [
+      { 
+        path: '', 
+        component: EditComponent
+      },
+      { 
+        path: 'change-password', 
+        component: ChangePasswordComponent
+      },
+      { 
+        path: 'close-account', 
+        component: CloseAccountComponent
+      },
+    ]*/
+  }
 ];
 
 @NgModule({

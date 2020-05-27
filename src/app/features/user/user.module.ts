@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
-import { UserComponent } from './user.component';
-import { SettingsComponent } from './settings/settings.component';
+import { UserComponent } from './components/user/user.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 @NgModule({
