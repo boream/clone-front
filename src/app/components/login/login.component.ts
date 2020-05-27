@@ -1,23 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   formLogin: FormGroup;
   emailPattern: any =
     /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
   showErrorMessage: string;
 
-  showSuccessMessage: string;
+  subscriptions: Subscription[] = [];
+  showSignupSuccess = false;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute) {
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   ngOnInit(): void {
@@ -25,6 +35,12 @@ export class LoginComponent implements OnInit {
       identifier: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+    this.subscriptions.push(
+      this.route.queryParams.pipe(
+        map(query => !!query.signupSuccess)
+      ).subscribe(res => this.showSignupSuccess = res)
+    );
   }
 
   emailHasError(form) {
@@ -50,13 +66,10 @@ export class LoginComponent implements OnInit {
   }
 
   errorClose() {
-    this.showErrorMessage= null;
+    this.showErrorMessage = null;
   }
-
 
   successClose() {
-    this.showSuccessMessage= null;
+    this.showSignupSuccess = false;
   }
-
-
 }
