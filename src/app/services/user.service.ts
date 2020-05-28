@@ -35,16 +35,17 @@ export class UserService {
       )
   }
 
-  getImage(query: string): Observable<any> {
-    return this.http.get(`${this.imagesUrl}?${query}`);
-  }
-
-  getUserAvatar(): Observable<string> {
-    return this.http.get<User>(this.userUrl)
+  getLoggedUserAvatar(): Observable<string> {
+    return this.getLoggedUser()
       .pipe(
         map( res => `${environment.apiUrl}${res['profile'].url}`)
       );
   }
+
+  getImage(query: string): Observable<any> {
+    return this.http.get(`${this.imagesUrl}?${query}`);
+  }
+
 
   closeAccount() {
     this.getLoggedUser().pipe(
@@ -54,4 +55,5 @@ export class UserService {
       tap(() => this.router.navigate(['/login']))
     )
   }
+
 }
