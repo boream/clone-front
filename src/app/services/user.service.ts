@@ -4,7 +4,8 @@ import { Observable, pipe } from 'rxjs';
 import { User } from '../types/user';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class UserService {
   imagesUrl = `${environment.apiUrl}images`;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
   ) { }
 
   getUser(): Observable<User> {
@@ -24,6 +26,9 @@ export class UserService {
 
   getUserImages(): Observable<User['images']> {
     return this.http.get<User>(this.userUrl)
+      .pipe(
+        map((user: User) => )
+      )
   }
 
   getUserAvatar(): Observable<string> {
@@ -37,7 +42,8 @@ export class UserService {
     this.getUser().pipe(
       switchMap((user: User) => {
         return this.http.delete(`${this.userUrl}${user.id}`)
-      })
+      }),
+      tap(() => this.router.navigate(['/login']))
     )
   }
 
