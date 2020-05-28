@@ -47,13 +47,13 @@ export class UserService {
   }
 
   updateUser(userId: string, user: User) {
-    return this.http.put<User>(`${this.userUrl}${userId}`, user);
+    return this.http.put<User>(`${this.userUrl}/${userId}`, user);
   }
 
   closeAccount() {
     this.getLoggedUser().pipe(
       switchMap((user: User) => {
-        return this.http.delete(`${this.userUrl}${user.id}`)
+        return this.http.delete(`${this.userUrl}/${user.id}`)
       }),
       tap(() => this.router.navigate(['/login']))
     )
