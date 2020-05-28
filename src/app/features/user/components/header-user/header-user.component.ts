@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../../../../types/user';
 
 
 
@@ -18,19 +20,22 @@ export class HeaderUserComponent implements OnInit {
   showControls:boolean = false;
   optionsActived:boolean = false;
 
-  user:Observable<any>;
+  user: User;
   userProfile = 'http://localhost:1337/users/me'
 
   constructor(  @Inject(LOCAL_STORAGE)
               private storage: StorageService,
               private http: HttpClient,
               private router: Router,
-              private activedRouter: ActivatedRoute) { }
+              private activedRouter: ActivatedRoute,
+              private userService: UserService) { }
 
   ngOnInit(): void {
-    this.http.get<any>('http://localhost:1337/users/me').subscribe((res) => {
+    this.userService.getLoggedUser().subscribe((res: User) => {
       this.user = res;
-      if(this.user.username == this.activedRouter.params.value.username) {
+      console.log(this.user);
+      debugger
+      if(`@${this.activedRouter.snapshot.params.username}` === `@${this.user.username}`) {
         this.showControls = true;
       }
     });
