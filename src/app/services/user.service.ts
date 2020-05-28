@@ -79,12 +79,7 @@ export class UserService {
   getUserImages(username: string): Observable<User['images']> {
     return this.getUserByUsername(username)
       .pipe(
-        map((user: User) => {debugger; return user.images.map(img => `id_in=${img}`)}),
-        switchMap((images: string[]) => {
-          debugger
-          const query = images.join('&');
-          return this.getImage(query);
-        }),
+        map((user: User) => user.images),
       )
   }
 
