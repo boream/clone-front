@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -35,7 +35,6 @@ export class SignupComponent implements OnInit {
 
   submit(form) {
     this.auth.signup(form.value).subscribe((response) => {
-
     },(error) => {
       this.error = error.error.message[0].messages[0].message;
     });
@@ -74,5 +73,6 @@ export class SignupComponent implements OnInit {
   errorClose() {
     this.error= null;
   }
+
 
 }

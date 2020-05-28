@@ -112,7 +112,7 @@ describe('AuthService', () => {
     expect(req.request.method).toEqual('POST');
     req.flush(mockRespone);
     tick();
-    expect(location.path()).toBe('/login');
+    expect(location.path()).toBe('/login?signupSuccess=true');
   }));
 
   it('should remove token from local storage', fakeAsync(() => {
