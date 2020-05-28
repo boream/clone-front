@@ -20,6 +20,5 @@ export class UserComponent implements OnInit {
   userName: string = '';
 
   ngOnInit(): void {
-
   }
 }
