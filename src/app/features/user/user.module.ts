@@ -7,13 +7,14 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CloseAccountComponent } from './components/close-account/close-account.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [UserComponent, SettingsComponent, EditComponent, ChangePasswordComponent, CloseAccountComponent],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     UserComponent

@@ -5,6 +5,7 @@
   height: 100vh;
   display: flex;
   flex-direction: row;
+  background-color: $bg-color;
 
   &__navbar {
     display: flex;
@@ -34,5 +35,8 @@
   }
 }
 
+.active {
+  text-decoration: underline;
+}
 
 

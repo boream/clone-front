@@ -1,5 +1,9 @@
+<div *ngIf="error" class="container-error">
+  <p>{{error}}</p>
+  <button class="btn btn__close" (click)="errorClose()" type="button">&times;</button>
+</div>
 <div class="container">
-  <form class="form">
+  <form class="form" [formGroup]="formEditProfile" (ngSubmit)="submit(formEditProfile)">
     <h1 class="form__title">Edit profile</h1>
     <div class="form__box">
       <div class="form__img">
@@ -9,33 +13,43 @@
       <div class="form__asideimg">
         <div  class="form__group">
           <label  class="form__label" for="name"
+          [ngClass]="{'error': firstNameHasError(formEditProfile) }"
           >First name</label>
           <input  class="form__control" type="text" name="name"
-            id="name">
+          [ngClass]="{'input-error': firstNameHasError(formEditProfile) }"
+            id="name" formControlName="firstname" minlength="4">
         </div>
         <div class="form__group">
           <label class="form__label" for="lastname"
+          [ngClass]="{'error': lastNameHasError(formEditProfile) }"
           >Last name</label>
-          <input class="form__control" type="text" name="lastname" id="lastname">
+          <input class="form__control" type="text" name="lastname" id="lastname"
+          [ngClass]="{'input-error': lastNameHasError(formEditProfile) }"
+          formControlName="lastname" minlength="4">
         </div>
         <div class="form__group">
           <label class="form__label" for="email"
+          [ngClass]="{'error': emailHasError(formEditProfile) }"
           >Email address</label>
           <input class="form__control" type="email" name="email"
-            id="email">
+          [ngClass]="{'input-error': emailHasError(formEditProfile) }"
+          id="email" formControlName="email">
         </div>
       </div>
     </div>
     <div class="form__details">
       <div class="form__group">
-        <label class="form__label" for="username">Username <span class="form__label--info">
+        <label class="form__label" for="username"
+        [ngClass]="{'error': userNameHasError(formEditProfile) }">Username <span class="form__label--info">
           (only letters, numbers and underscores)</span>
         </label>
-        <input class="form__control form__control-xl" type="text" name="username" id="username">
+        <input class="form__control form__control-xl" type="text" name="username" id="username"
+        [ngClass]="{'input-error': userNameHasError(formEditProfile) }"
+        formControlName="username" minlength="4">
       </div>
     </div>
     <div class="form__actions">
-        <button type="submit" class="btn btn__success">update account</button>
+        <button type="submit" class="btn btn__success" [disabled]="formEditProfile.invalid">update account</button>
     </div>
   </form>
   <div class="img"></div>

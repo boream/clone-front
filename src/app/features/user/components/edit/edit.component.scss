@@ -54,6 +54,8 @@
 
   &__control {
     width: rem(400px);
+    border: none;
+    background-color: $base;
   }
   &__control-xl {
     width: 100%;
