@@ -14,6 +14,7 @@ export class UserService {
 
   userUrl = `${environment.apiUrl}users`;
   imagesUrl = `${environment.apiUrl}images`;
+  defaultImg = '/assets/icons/user.svg';
 
   constructor(
     private http: HttpClient,
