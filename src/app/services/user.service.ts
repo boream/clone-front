@@ -24,7 +24,7 @@ export class UserService {
     return this.http.get<User>(`${this.userUrl}/me`);
   }
 
-  getLoggedUserImages(): Observable<any> {
+  getLoggedUserImages(): Observable<User['images']> {
     return this.getLoggedUser()
       .pipe(
         map((user: User) => user.images.map(img => `id_in=${img}`)),
@@ -50,6 +50,16 @@ export class UserService {
     return this.http.put<User>(`${this.userUrl}/${userId}`, user);
   }
 
+  changePassword(password: string) {
+    return this.getLoggedUser()
+      .pipe(
+        switchMap((user: User) => {
+          user['password'] = password;
+          return this.updateUser(user.id, user);
+        })
+      )
+  }
+
   closeAccount() {
     this.getLoggedUser().pipe(
       switchMap((user: User) => {
@@ -63,6 +73,18 @@ export class UserService {
     return this.http.get(`${this.userUrl}/?username=${username}`)
       .pipe(
         map(res => res[0])
+      )
+  }
+
+  getUserImages(username: string): Observable<User['images']> {
+    return this.getUserByUsername(username)
+      .pipe(
+        map((user: User) => {debugger; return user.images.map(img => `id_in=${img}`)}),
+        switchMap((images: string[]) => {
+          debugger
+          const query = images.join('&');
+          return this.getImage(query);
+        }),
       )
   }
 
