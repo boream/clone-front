@@ -27,7 +27,12 @@ export class UserService {
   getLoggedUserImages(): Observable<any> {
     return this.getLoggedUser()
       .pipe(
-        map((user: User) => user.images.map(img => `id_in=${img}`)),
+        map((user: User) => {
+          if (user && Array.isArray(user.images)) {
+            return user.images.map(img => `id_in=${img}`)
+          }
+          return [];
+        }),
         switchMap((images: string[]) => {
           const query = images.join('&');
           return this.getImage(query);

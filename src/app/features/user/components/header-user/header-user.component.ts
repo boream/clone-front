@@ -34,7 +34,6 @@ export class HeaderUserComponent implements OnInit {
     this.userService.getLoggedUser().subscribe((res: User) => {
       this.user = res;
       console.log(this.user);
-      debugger
       if(`@${this.activedRouter.snapshot.params.username}` === `@${this.user.username}`) {
         this.showControls = true;
       }
