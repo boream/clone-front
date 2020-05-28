@@ -41,7 +41,7 @@ export class UserService {
   getLoggedUserAvatar(): Observable<string> {
     return this.getLoggedUser()
       .pipe(
-        map(res => `${environment.apiUrl}${res['profile'].url}`)
+        map((user: User) => user.profile ? `${environment.apiUrl}${user.profile.url.slice(1)}` : this.defaultImg)
       );
   }
 
