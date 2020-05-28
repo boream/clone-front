@@ -25,6 +25,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative
 }
 
 .img {
@@ -35,14 +36,18 @@
   margin-right: 50px;
 }
 
+.popupButton {
+  position: relative;
+}
+
 .container-pop {
   display: flex;
   flex-direction: column;
   position: absolute;
   width: 182px;
   height: 99px;
-  left: 1092px;
-  top: 192px;
+  left: 0;
+  top: 35px;
 
   background: #ffffff;
   border: 1px solid #cad3df;
@@ -61,6 +66,7 @@
   height: 99px;
   left: 120%;
   top: 110%;
+  text-transform: lowercase;
 }
 
 .container-pop__link {
