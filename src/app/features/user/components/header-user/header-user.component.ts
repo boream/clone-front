@@ -18,7 +18,7 @@ export class HeaderUserComponent implements OnInit {
   showControls:boolean = false;
   optionsActived:boolean = false;
 
-  user:Observable<any>;
+  user: any;
   userProfile = 'http://localhost:1337/users/me'
 
   constructor(  @Inject(LOCAL_STORAGE)
@@ -28,12 +28,10 @@ export class HeaderUserComponent implements OnInit {
               private activedRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.http.get<any>('http://localhost:1337/users/me').subscribe((res) => {
-      debugger
+    this.http.get<any>('http://localhost:1337/users/me').subscribe((res: any) => {
       this.user = res;
       console.log(this.user);
-      if(this.user.username == this.activedRouter.params.value.username) {
-        debugger
+      if(this.activedRouter.snapshot.params.username === `@${this.user.username}`) {
         this.showControls = true;
       }
 
