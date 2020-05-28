@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/types/user';
 
 
 @Component({
@@ -21,22 +21,15 @@ export class HeaderComponent implements OnInit {
   username: Observable<string>;
   notifications: [] = [];
   categories: string[] = ['Example'];
-  defaultImg: string = '/assets/icons/user.svg';
+
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.userAvatar = this.http.get('http://localhost:1337/users/me')
-      .pipe(
-        map(res => res['profile'] ? `http://localhost:1337${res['profile'].url}` : this.defaultImg)
-      );
-    this.username = this.http.get('http://localhost:1337/users/me')
-      .pipe(
-        map(res => res['username'])
-      );
+    this.userAvatar = this.userService.getLoggedUserAvatar()
+    this.username = this.userService.getLoggedUser().pipe( map((user: User) => user.username));
   }
 
   toggleNotifications() {

@@ -94,7 +94,7 @@
       padding: 0 14px 14px;
       color: $grey-400;
       background-color: #fff;
-      font-size: rem(13px);
+      font-size: 1rem;
       transform: translate3d(200%, 0, 0);
       transition: transform 0.25s ease-out;
       z-index: 1000;
@@ -230,6 +230,8 @@
     font-size: rem(12px);
     font-family: $font-primary;
     font-weight: $font-weight-regular;
+    overflow-x: auto;
+
     @media screen and (min-width: 767px) {
       font-size: rem(14px);
     }
