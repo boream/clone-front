@@ -26,7 +26,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: relative
+  position: relative;
 }
 
 .img {
@@ -49,7 +49,7 @@
   height: 99px;
   left: 0;
   top: 35px;
-
+  text-align: left;
   background: #ffffff;
   border: 1px solid #cad3df;
   box-sizing: border-box;
@@ -71,7 +71,17 @@
 }
 
 .container-pop__link {
+  font-family: $font-primary;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: $grey-300;
   padding: 0px 0px 10px 0px;
+}
+
+.container-pop__link:hover {
+  color: $grey-200;
 }
 
 .btn__icon {

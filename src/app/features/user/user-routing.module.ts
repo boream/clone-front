@@ -14,7 +14,7 @@ const routes: Routes = [
     component: SettingsComponent/*,
     children: [
       {
-        path: '',
+        path: 'editProfile',
         component: EditComponent
       },
       {

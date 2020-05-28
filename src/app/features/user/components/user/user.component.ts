@@ -53,4 +53,5 @@ export class UserComponent implements OnInit {
       .concat(this.featuredImages)
   }
 
+
 }
