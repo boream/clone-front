@@ -31,9 +31,7 @@ export class AuthService {
 
   login(form: FormGroup): Observable<any> {
     return this.http.post<any>(`${this.url}/local`, form.value, this.httpOptions).pipe(
-      tap(response => {
-        this.storage.set('token', response.jwt);
-        this.storage.set('user', response.user);
+      tap(response => {this.storage.set('token', response.jwt)
     }));
   }
 
