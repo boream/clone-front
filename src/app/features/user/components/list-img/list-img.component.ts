@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ListImgComponent implements OnInit {
 
 
-  @Input() listImages: any;
+  @Input() listImages: Array<any>;
 
   constructor() { }
 

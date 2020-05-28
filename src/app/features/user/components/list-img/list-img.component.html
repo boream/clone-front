@@ -1,3 +1,5 @@
-<div  class="grid">
-  <img src="../../../../../assets/img/RectangleCopy4.png" alt="">
+<div class="grid">
+  <div *ngFor="let image of listImages" class="grid__item">
+    <img [src]="image.src" alt="uno">
+  </div>
 </div>
