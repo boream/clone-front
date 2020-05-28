@@ -37,7 +37,7 @@ export class AuthService {
 
   signup(user: Register): Observable<any> {
     return this.http.post<any>(`${this.url}/local/register`, user, this.httpOptions).pipe(
-      tap(() => this.router.navigate(['/login']))
+      tap(() => this.router.navigateByUrl('/login?signupSuccess=true'))
     )
   }
 
