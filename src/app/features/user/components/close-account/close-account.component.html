@@ -9,7 +9,7 @@
       [ngClass]="{'error': passwordHasError(formDeleteAccount.controls.currentPassword) }">
       Current Password
     </label>
-    <input class="form__control" type="password" id="current-password"
+    <input class="form__control form__control--whitebg" type="password" id="current-password"
       [ngClass]="{'input-error': passwordHasError(formDeleteAccount.controls.currentPassword) }"
       formControlName="currentPassword" minlength="6" autocomplete="current-password">
   </div>

@@ -15,7 +15,7 @@
           <label  class="form__label" for="name"
           [ngClass]="{'error': firstNameHasError(formEditProfile) }"
           >First name</label>
-          <input  class="form__control" type="text" name="name"
+          <input  class="form__control form__control--whitebg" type="text" name="name"
           [ngClass]="{'input-error': firstNameHasError(formEditProfile) }"
             id="name" formControlName="firstname" minlength="4">
         </div>
@@ -23,7 +23,7 @@
           <label class="form__label" for="lastname"
           [ngClass]="{'error': lastNameHasError(formEditProfile) }"
           >Last name</label>
-          <input class="form__control" type="text" name="lastname" id="lastname"
+          <input class="form__control form__control--whitebg" type="text" name="lastname" id="lastname"
           [ngClass]="{'input-error': lastNameHasError(formEditProfile) }"
           formControlName="lastname" minlength="4">
         </div>
@@ -31,7 +31,7 @@
           <label class="form__label" for="email"
           [ngClass]="{'error': emailHasError(formEditProfile) }"
           >Email address</label>
-          <input class="form__control" type="email" name="email"
+          <input class="form__control form__control--whitebg" type="email" name="email"
           [ngClass]="{'input-error': emailHasError(formEditProfile) }"
           id="email" formControlName="email">
         </div>
@@ -43,7 +43,7 @@
         [ngClass]="{'error': userNameHasError(formEditProfile) }">Username <span class="form__label--info">
           (only letters, numbers and underscores)</span>
         </label>
-        <input class="form__control form__control-xl" type="text" name="username" id="username"
+        <input class="form__control form__control--whitebg form__control-xl" type="text" name="username" id="username"
         [ngClass]="{'input-error': userNameHasError(formEditProfile) }"
         formControlName="username" minlength="4">
       </div>

@@ -48,14 +48,8 @@
     font-weight: 400;
   }
 
-  &__group {
-    position: relative;
-  }
-
   &__control {
     width: rem(400px);
-    border: transparent;
-    background-color: $base;
   }
   &__control-xl {
     width: 100%;
