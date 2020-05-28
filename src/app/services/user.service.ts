@@ -42,8 +42,8 @@ export class UserService {
       );
   }
 
-  getImage(query: string): Observable<any> {
-    return this.http.get(`${this.imagesUrl}?${query}`);
+  getImage(query: string): Observable<User['images']> {
+    return this.http.get<User['images']>(`${this.imagesUrl}?${query}`);
   }
 
   updateUser(userId: string, user: User) {
@@ -60,8 +60,8 @@ export class UserService {
       )
   }
 
-  closeAccount() {
-    this.getLoggedUser().pipe(
+  closeAccount(): Observable<Object> {
+    return this.getLoggedUser().pipe(
       switchMap((user: User) => {
         return this.http.delete(`${this.userUrl}/${user.id}`)
       }),
@@ -69,7 +69,7 @@ export class UserService {
     )
   }
 
-  getUserByUsername(username: string) {
+  getUserByUsername(username: string): Observable<User> {
     return this.http.get(`${this.userUrl}/?username=${username}`)
       .pipe(
         map(res => res[0])
