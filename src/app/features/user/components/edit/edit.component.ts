@@ -35,7 +35,7 @@ export class EditComponent implements OnInit {
   }
 
   firstNameHasError(form) {
-    if (form.controls.firstname?.touched)  {
+    if (form.controls.firstname?.touched ||  form.controls.firstname?.dirty)  {
       return form.controls.firstname.errors?.minlength || form.controls.firstname.errors?.required;
     }
   }
