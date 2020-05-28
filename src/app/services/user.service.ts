@@ -47,7 +47,7 @@ export class UserService {
   }
 
   updateUser(userId: string, user: User) {
-    return this.http.put<User>(`${this.userUrl}${userId}`, user);
+    return this.http.put<User>(`${this.userUrl}/${userId}`, user);
   }
 
   closeAccount() {

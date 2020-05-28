@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/types/user';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -19,13 +20,21 @@ export class EditComponent implements OnInit {
 
   error: boolean;
 
+  user: User;
+
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router
+    private userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
+    this.userService.getLoggedUser().subscribe(response => {
+      this.user = response;
+    })
+
+
     this.formEditProfile = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(4)]],
       lastname: ['', [Validators.required, Validators.minLength(4)]],
@@ -59,12 +68,13 @@ export class EditComponent implements OnInit {
   }
 
   submit(form) {
-    this.auth.login(form).subscribe(
-      (res) => {
-        this.router.navigate(['/home'])
-      }, (error) => {
-        this.error = error.error.message[0].messages[0].message;
-      }
+    this.userService.updateUser(this.user.id, this.user).subscribe(
+        (res) => {
+          this.router.navigate(['/'])
+        }, (error) => {
+          console.log(error)
+          this.error = error.error.message[0].messages[0].message;
+        }
     )
   }
 
