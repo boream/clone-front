@@ -29,14 +29,10 @@ export class HeaderUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<any>('http://localhost:1337/users/me').subscribe((res) => {
-      debugger
       this.user = res;
-      console.log(this.user);
       if(this.user.username == this.activedRouter.params.value.username) {
-        debugger
         this.showControls = true;
       }
-
     });
   }
 
