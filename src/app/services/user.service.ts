@@ -33,4 +33,12 @@ export class UserService {
       );
   }
 
+  closeAccount() {
+    this.getUser().pipe(
+      switchMap((user: User) => {
+        return this.http.delete(`${this.userUrl}${user.id}`)
+      })
+    )
+  }
+
 }
