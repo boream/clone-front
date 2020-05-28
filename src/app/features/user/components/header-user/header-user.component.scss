@@ -1,0 +1,95 @@
+@import "../../../../../sass/global/variables";
+@import "../../../../../sass/mixins/rem";
+
+.container__user {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0px;
+  background-color: $bg-color;
+}
+
+.container__info {
+  display: flex;
+  flex-direction: column;
+}
+.container__title {
+  padding-right: 36px;
+  font-family: $font-secundary;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 53px;
+  color: #4a4a4a;
+}
+
+.container__controls {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.img {
+  width: rem(150px);
+  height: rem(150px);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  margin-right: 50px;
+}
+
+.popupButton {
+  position: relative;
+}
+
+.container-pop {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 182px;
+  height: 99px;
+  left: 0;
+  top: 35px;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid #cad3df;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.09);
+  border-radius: 5px;
+
+  padding: 14px 13px;
+}
+
+.container-pop__close {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  width: 182px;
+  height: 99px;
+  left: 120%;
+  top: 110%;
+  text-transform: lowercase;
+}
+
+.container-pop__link {
+  font-family: $font-primary;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  color: $grey-300;
+  padding: 0px 0px 10px 0px;
+}
+
+.container-pop__link:hover {
+  color: $grey-200;
+}
+
+.btn__icon {
+  padding: 13px 8px;
+}
+
+.user__icon {
+  width: rem(18px);
+  height: rem(5px);
+  fill: #fff;
+}
