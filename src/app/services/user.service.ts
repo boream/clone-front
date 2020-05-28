@@ -20,12 +20,12 @@ export class UserService {
     private router: Router,
   ) { }
 
-  getUser(): Observable<User> {
-    return this.http.get<User>(this.userUrl);
+  getLoggedUser(): Observable<User> {
+    return this.http.get<User>(`${this.userUrl}/me`);
   }
 
   getLoggedUserImages(): Observable<any> {
-    return this.http.get<User>(`${this.userUrl}/me`)
+    return this.getLoggedUser()
       .pipe(
         map((user: User) => user.images.map(img => `id_in=${img}`)),
         switchMap((images: string[])=> {
@@ -47,7 +47,7 @@ export class UserService {
   }
 
   closeAccount() {
-    this.getUser().pipe(
+    this.getLoggedUser().pipe(
       switchMap((user: User) => {
         return this.http.delete(`${this.userUrl}${user.id}`)
       }),
