@@ -186,7 +186,7 @@
   &__icon {
     @include size(rem(36px), rem(25px));
 
-    margin-left: 24px;
+    margin-left: 35px;
     fill: #fff;
     opacity: 0.6;
 
@@ -246,11 +246,10 @@
       &:hover {
         cursor: pointer;
       }
-
     }
-
     &-list {
       @include flex(center, flex-start);
+      text-transform: uppercase;
     }
   }
 
