@@ -9,6 +9,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { CloseAccountComponent } from './components/close-account/close-account.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [UserComponent, SettingsComponent, EditComponent, ChangePasswordComponent, CloseAccountComponent],
   imports: [

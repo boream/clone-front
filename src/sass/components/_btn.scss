@@ -33,6 +33,18 @@
     background-color: green;
   }
 
+  &__alert {
+    min-width: rem(278px);
+    height: rem(40px);
+    background-color: $error;
+    font-weight: 500;
+    font-size: rem(15px);
+    font-family: $font-primary;
+    margin: 15px 0px;
+    border-radius: 5px;
+    text-transform: uppercase;
+  }
+
 }
 
 .link-singup {
