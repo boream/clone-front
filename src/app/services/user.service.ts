@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, pipe } from 'rxjs';
+import { Observable, pipe, forkJoin } from 'rxjs';
 import { User } from '../types/user';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, scan } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -24,11 +24,19 @@ export class UserService {
     return this.http.get<User>(this.userUrl);
   }
 
-  getUserImages(): Observable<User['images']> {
-    return this.http.get<User>(this.userUrl)
+  getLoggedUserImages(): Observable<any> {
+    return this.http.get<User>(`${this.userUrl}/me`)
       .pipe(
-        map((user: User) => )
+        map((user: User) => user.images.map(img => `id_in=${img}`)),
+        switchMap((images: string[])=> {
+          const query = images.join('&');
+          return this.getImage(query);
+        }),
       )
+  }
+
+  getImage(query: string): Observable<any> {
+    return this.http.get(`${this.imagesUrl}?${query}`);
   }
 
   getUserAvatar(): Observable<string> {
@@ -46,5 +54,4 @@ export class UserService {
       tap(() => this.router.navigate(['/login']))
     )
   }
-
 }
