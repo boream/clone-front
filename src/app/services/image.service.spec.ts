@@ -32,6 +32,7 @@ fdescribe('ImageService', () => {
 
   it('should save an image', () => {
     const newImage: Image = {
+      published: false,
       title: 'un titulo',
       file: new File(["asdfasfdasdfasdfasdfasdfasd"], "filename")
     };
