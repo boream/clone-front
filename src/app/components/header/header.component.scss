@@ -212,6 +212,7 @@
   &__avatar {
     @include size(rem(40px));
     margin-left: 32px;
+    border-radius: 50px;
     display: inline-flex;
 
     &:hover {

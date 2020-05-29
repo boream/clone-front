@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.userAvatar = this.userService.getLoggedUserAvatar()
-    this.username = this.userService.getLoggedUser().pipe( map((user: User) => user.username));
+    this.username = this.userService.getLoggedUser().pipe( map((user: User) => `@${user.username}`));
   }
 
   toggleNotifications() {
