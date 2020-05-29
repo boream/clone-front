@@ -1,5 +1,5 @@
-@import "../../../../../sass/global/variables";
-@import "../../../../../sass/mixins/rem";
+@import "global/variables";
+@import "mixins/rem";
 
 .container__user {
   display: flex;
@@ -27,6 +27,11 @@
   justify-content: flex-start;
   align-items: center;
   position: relative;
+}
+
+.container__txt {
+  font-family: $font-primary;
+  font-weight: $font-weight-ligth;
 }
 
 .img {
