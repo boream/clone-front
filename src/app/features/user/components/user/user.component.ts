@@ -4,6 +4,9 @@ import { Image } from 'src/app/types/image';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { User } from 'src/app/types/user';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { map } from 'rxjs/internal/operators/map';
+import { filter, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -17,18 +20,20 @@ export class UserComponent implements OnInit {
   public user: User;
 
   constructor(
-    private activedRouter: ActivatedRoute,
+    private route: ActivatedRoute,
     private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    const username = this.activedRouter.snapshot.params.username;
-    this.userService.getUserByUsername(username).subscribe((user: User) => {
-      if(user) {
-        this.featuredImgs = user.images;
-        this.user = user;
-      }
-    });
+    this.route.paramMap.pipe(
+      map((res) => res['params']),
+      switchMap(params => this.userService.getUserByUsername(params['username'])
+      )
+    ).subscribe((user: User) => {
+      this.featuredImgs = user.images;
+      this.user = user;
+    }
+    );
   }
 
 
