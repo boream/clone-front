@@ -21,6 +21,7 @@ export class UserService {
   ) { }
 
   getLoggedUser(): Observable<User> {
+    debugger
     return this.http.get<User>(`${this.userUrl}/me`);
   }
 
@@ -47,6 +48,7 @@ export class UserService {
   }
 
   updateUser(userId: string, user: User) {
+    debugger
     return this.http.put<User>(`${this.userUrl}/${userId}`, user);
   }
 

@@ -30,10 +30,10 @@ export class EditComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    debugger
     this.userService.getLoggedUser().subscribe(response => {
       this.user = response;
     })
-
 
     this.formEditProfile = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(4)]],
