@@ -2,8 +2,10 @@ import { Category } from './category';
 import { Tag } from './tag';
 
 export interface Image {
-    title: String;
     file: File;
+    published: Boolean;
+    title?: String;    
     category?: Category;
     tags?: Tag[];
+    publishedDate?: Date;
 }

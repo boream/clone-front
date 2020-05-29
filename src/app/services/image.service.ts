@@ -24,7 +24,7 @@ export class ImageService {
     }
     const formData = new FormData();
     formData.append('files.file', image.file, image.file.name);
-    formData.append('data', JSON.stringify(data))
+    formData.append('data', JSON.stringify(data));
     return this.http.post(this.imagesUrl, formData);
   }
 }
