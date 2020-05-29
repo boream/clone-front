@@ -35,6 +35,7 @@ export class HeaderUserComponent implements OnInit {
       this.user = res;
       console.log(this.user);
       if(`@${this.activedRouter.snapshot.params.username}` === `@${this.user.username}`) {
+        debugger
         this.showControls = true;
       }
     });
