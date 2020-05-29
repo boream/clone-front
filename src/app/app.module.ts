@@ -12,8 +12,8 @@ import { SearchComponent } from './components/search/search.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
-import { UserModule } from './features/user/user.module';
 import { HeaderComponent } from './components/header/header.component';
+import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({

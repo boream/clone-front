@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
-import { HttpClient } from '@angular/common/http';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/types/user';
+
 
 @Component({
   selector: 'app-header',
@@ -13,19 +15,25 @@ export class HeaderComponent implements OnInit {
   // @Input() isSearchVisible: boolean = false;
   isNavVisible: boolean = false;
   isMenuOpen: boolean = false;
-
+  isNotificationOpen: boolean = false;
+  notificationsEmpty: boolean = true;
   userAvatar: Observable<string>;
+  username: Observable<string>;
+  notifications: [] = [];
+  categories: string[] = ['Example'];
+
 
   constructor(
-    private http: HttpClient
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    // this.userAvatar = this.http.get('http://localhost:1337/users/me').pipe(map(res => { debugger; return res['profile'].url }))
+    this.userAvatar = this.userService.getLoggedUserAvatar()
+    this.username = this.userService.getLoggedUser().pipe( map((user: User) => `@${user.username}`));
   }
 
   toggleNotifications() {
-
+    this.isNotificationOpen = !this.isNotificationOpen;
   }
 
   toggleMenu() {
