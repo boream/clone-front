@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRouteSnapshot, Router } from '@angular/router';
-import { switchMap } from 'rxjs/internal/operators/switchMap';
-import { of } from 'rxjs/internal/observable/of';
+import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-user',
@@ -10,15 +10,30 @@ import { of } from 'rxjs/internal/observable/of';
 })
 export class UserComponent implements OnInit {
 
+  public featuredImages:String[]
+
+  private imagesUrl = environment.apiUrl;
+
   constructor(
-    // private route: ActivatedRouteSnapshot,
-    // private router: Router
+    private userService: UserService
   ) { }
 
   userName: string = '';
 
   ngOnInit(): void {
+    this.userService.getLoggedUserImages().subscribe((res) => {
 
+      this.featuredImages = res.map(rawImage => {
+        const result: any = {};
+        if (rawImage && Array.isArray(rawImage.file) && rawImage.file[0]) {
+          result.src = `${this.imagesUrl}${rawImage.file[0].slice(1)}`;
+        } else {
+          result.src = '';
+        }
+        return result;
+      });
+    })
   }
+
 
 }

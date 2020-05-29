@@ -23,6 +23,16 @@
     background-color: $success-invalid;
   }
 
+  &__primary {
+    background-color: $success;
+    font-weight: 500;
+    font-size: rem(15px);
+    font-family: $font-primary;
+    padding: 7px 16px;
+    margin: 15px 0px;
+    text-transform: uppercase;
+  }
+
   &__close {
     position: absolute;
     right: 0;
@@ -32,6 +42,8 @@
   &__primary--invalid {
     background-color: green;
   }
+
+
 
 }
 

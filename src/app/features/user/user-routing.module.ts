@@ -10,19 +10,19 @@ const routes: Routes = [
     component: UserComponent,
   },
   {
-    path: 'settings', 
+    path: 'settings',
     component: SettingsComponent/*,
     children: [
-      { 
-        path: '', 
+      {
+        path: 'editProfile',
         component: EditComponent
       },
-      { 
-        path: 'change-password', 
+      {
+        path: 'change-password',
         component: ChangePasswordComponent
       },
-      { 
-        path: 'close-account', 
+      {
+        path: 'close-account',
         component: CloseAccountComponent
       },
     ]*/
