@@ -17,9 +17,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'upload',
+    path: 'upload/home',
     loadChildren: () => import('./features/upload/upload.module').then(m => m.UploadModule),
-    canActivate: [AuthGuard]
   },
   {
     path: 'search',
