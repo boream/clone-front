@@ -47,9 +47,15 @@
   position: absolute;
   width: 182px;
   height: 99px;
+<<<<<<< Updated upstream:src/app/features/user/components/header-user/header-user.component.scss
   left: 0;
   top: 35px;
   text-align: left;
+=======
+  left: 1092px;
+  top: 192px;
+
+>>>>>>> Stashed changes:src/app/features/user/components/header/header.component.scss
   background: #ffffff;
   border: 1px solid #cad3df;
   box-sizing: border-box;
@@ -80,10 +86,13 @@
   padding: 0px 0px 10px 0px;
 }
 
+<<<<<<< Updated upstream:src/app/features/user/components/header-user/header-user.component.scss
 .container-pop__link:hover {
   color: $grey-200;
 }
 
+=======
+>>>>>>> Stashed changes:src/app/features/user/components/header/header.component.scss
 .btn__icon {
   padding: 13px 8px;
 }

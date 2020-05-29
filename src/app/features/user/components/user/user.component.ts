@@ -22,9 +22,6 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getLoggedUserImages().subscribe((res) => {
-      debugger
-      this.featuredImages = [res[0].file[0].url];
-      console.log([res[0].file[0].url]);
 
       this.featuredImages = res.map(rawImage => {
         const result: any = {};
