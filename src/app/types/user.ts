@@ -1,3 +1,5 @@
+import { Image } from './image';
+
 export interface User {
   id: string,
   username: string,
@@ -37,21 +39,6 @@ export interface User {
     provider_metadata: {},
     related: string
   },
-  images: [
-    {
-      id: string,
-      published: true,
-      file: [
-        string
-      ],
-      name: string,
-      published_date: string,
-      tags: [
-        string
-      ],
-      category: string,
-      user: string
-    }
-  ],
+  images: Image[],
   active: true
 }

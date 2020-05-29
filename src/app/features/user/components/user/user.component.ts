@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { environment } from 'src/environments/environment';
+import { Image } from 'src/app/types/image';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/internal/Observable';
+import { User } from 'src/app/types/user';
 
 
 @Component({
@@ -10,32 +13,22 @@ import { environment } from 'src/environments/environment';
 })
 export class UserComponent implements OnInit {
 
-  public featuredImages:String[]
-
-  private imagesUrl = environment.apiUrl;
+  public featuredImgs: Image[];
+  public user: User;
 
   constructor(
+    private activedRouter: ActivatedRoute,
     private userService: UserService
   ) { }
 
-  userName: string = '';
-
   ngOnInit(): void {
-    this.userService.getLoggedUserImages().subscribe((res) => {
-      debugger
-      this.featuredImages = [res[0].file[0].url];
-      console.log([res[0].file[0].url]);
-
-      this.featuredImages = res.map(rawImage => {
-        const result: any = {};
-        if (rawImage && Array.isArray(rawImage.file) && rawImage.file[0]) {
-          result.src = `${this.imagesUrl}${rawImage.file[0].url.slice(1)}`; 
-        } else {
-          result.src = '';
-        }
-        return result;
-      });
-    })
+    const username = this.activedRouter.snapshot.params.username;
+    this.userService.getUserByUsername(username).subscribe((user: User) => {
+      if(user) {
+        this.featuredImgs = user.images;
+        this.user = user;
+      }
+    });
   }
 
 

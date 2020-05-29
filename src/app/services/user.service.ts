@@ -6,6 +6,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
 import { switchMap, tap, scan, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Image } from '../types/image';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class UserService {
 
   userUrl = `${environment.apiUrl}users`;
   imagesUrl = `${environment.apiUrl}images`;
-  defaultImg = '/assets/icons/user.svg';
+  // defaultImg = '/assets/icons/user.svg';
+  defaultImg = '/assets/img/profile-example.png';
 
   constructor(
     private http: HttpClient,
@@ -25,12 +27,12 @@ export class UserService {
     return this.http.get<User>(`${this.userUrl}/me`);
   }
 
-  getLoggedUserImages(): Observable<User['images']> | Observable<any[]> {
+  getLoggedUserImages(): Observable<Image[]> | Observable<any[]> {
     return this.getLoggedUser()
       .pipe(
         map((user: User) => user.images.map(img => `id_in=${img}`)),
         switchMap((images) => {
-          if(images.length > 0) {
+          if (images.length > 0) {
             const query = images.join('&');
             return this.getImage(query);
           }
@@ -46,8 +48,14 @@ export class UserService {
       );
   }
 
-  getImage(query: string): Observable<User['images']> {
-    return this.http.get<User['images']>(`${this.imagesUrl}?${query}`);
+  getImage(query: string): Observable<Image[]> {
+    return this.http.get<User['images']>(`${this.imagesUrl}?${query}`)
+      .pipe(
+        map((images: User['images']) => {
+          images.map((img: Image) => img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`)
+          return images;
+        })
+      );
   }
 
   updateUser(user: User) {
@@ -67,16 +75,25 @@ export class UserService {
   }
 
   getUserByUsername(username: string): Observable<User> {
-    return this.http.get(`${this.userUrl}/?username=${username}`)
+    return this.http.get(`${this.userUrl}/?username=${username.slice(1)}`)
       .pipe(
-        map(res => res[0])
-      )
-  }
-
-  getUserImages(username: string): Observable<User['images']> {
-    return this.http.get(`${this.userUrl}/?username=${username}`)
-      .pipe(
-        map((user: User) => user[0].images),
+        map(res => {
+          const user = res[0];
+          if(user) {
+            if (!user.firstname && !user.lastname) {
+              user.firstname = 'Name';
+              user.lastname ='Last';
+            }
+            if (!user.profile) {
+              user.profile = { url: this.defaultImg };
+            } else {
+              user.profile.url = `${environment.apiUrl}${user.profile.url.slice(1)}`;
+            }
+            user.images.map((img: Image) => img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`);
+            return user;
+          }
+          return null;
+        })
       )
   }
 
