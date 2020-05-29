@@ -213,6 +213,7 @@
     @include size(rem(40px));
     margin-left: 32px;
     border-radius: 50px;
+    object-fit: cover;
     display: inline-flex;
 
     &:hover {
