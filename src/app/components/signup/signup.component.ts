@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class SignupComponent implements OnInit {
 
   charactersPattern: any = /A-Za-z0-9\-\_]+/;
 
+
+  subscriptions: Subscription[] = [];
   error: boolean;
 
   constructor(private fb: FormBuilder, private auth: AuthService) {
@@ -32,6 +35,10 @@ export class SignupComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   submit(form) {
