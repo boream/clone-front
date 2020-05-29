@@ -17,12 +17,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'upload',
-    loadChildren: () => import('./features/upload/upload.module').then(m => m.UploadModule),
-  },
-  {
     path: 'search',
     component: SearchComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'upload',
+    loadChildren: () => import('./features/upload/upload.module').then(m => m.UploadModule),
     canActivate: [AuthGuard]
   },
   {
