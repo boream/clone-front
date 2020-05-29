@@ -26,34 +26,10 @@ export class UserService {
     return this.http.get<User>(`${this.userUrl}/me`);
   }
 
-  getLoggedUserImages(): Observable<Image[]> | Observable<any[]> {
-    return this.getLoggedUser()
-      .pipe(
-        map((user: User) => user.images.map(img => `id_in=${img}`)),
-        switchMap((images) => {
-          if (images.length > 0) {
-            const query = images.join('&');
-            return this.getImage(query);
-          }
-          return of([]);
-        }),
-      )
-  }
-
   getLoggedUserAvatar(): Observable<string> {
     return this.getLoggedUser()
       .pipe(
         map((user: User) => user.profile ? `${environment.apiUrl}${user.profile.url.slice(1)}` : this.defaultImg)
-      );
-  }
-
-  getImage(query: string): Observable<Image[]> {
-    return this.http.get<User['images']>(`${this.imagesUrl}?${query}`)
-      .pipe(
-        map((images: User['images']) => {
-          images.map((img: Image) => img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`)
-          return images;
-        })
       );
   }
 
@@ -78,21 +54,33 @@ export class UserService {
       .pipe(
         map(res => {
           const user = res[0];
-          if(user) {
+          if (user) {
             if (!user.firstname && !user.lastname) {
               user.firstname = 'Name';
-              user.lastname ='Last';
+              user.lastname = 'Last';
             }
             if (!user.profile) {
               user.profile = { url: this.defaultImg };
             } else {
               user.profile.url = `${environment.apiUrl}${user.profile.url.slice(1)}`;
             }
-            user.images.map((img: Image) => img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`);
             return user;
           }
+          this.router.navigate(['/page-not-found']);
           return null;
         })
+      )
+  }
+
+  getUserImagesByUsername(username: string): Observable<Image[]> {
+    return this.http.get(this.imagesUrl)
+      .pipe(
+        map((images: Image[]) => images.filter((img: Image) => {
+          if (img.user && img.user.username === username.slice(1)) {
+            img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
+            return img;
+          }
+        }))
       )
   }
 

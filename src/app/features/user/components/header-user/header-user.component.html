@@ -11,7 +11,7 @@
           </svg>
           <div *ngIf="optionsActived" [ngClass]="optionsActived ? 'container-pop' : 'container-pop__close'"  class="container-pop">
             <a class="container-pop__link" [routerLink]="['./settings']">Accounts settings</a>
-            <a class="container-pop__link" [routerLink]="['/upload']">Submit a Photo</a>
+            <a class="container-pop__link" [routerLink]="['/upload']">Submit a photo</a>
             <a class="container-pop__link" (click)="logOut()">Logout</a>
           </div>
         </button>

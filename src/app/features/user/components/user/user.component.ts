@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Image } from 'src/app/types/image';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/internal/Observable';
 import { User } from 'src/app/types/user';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { map } from 'rxjs/internal/operators/map';
-import { filter, tap } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -27,13 +26,13 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.pipe(
       map((res) => res['params']),
-      switchMap(params => this.userService.getUserByUsername(params['username'])
-      )
-    ).subscribe((user: User) => {
-      this.featuredImgs = user.images;
-      this.user = user;
-    }
-    );
+      switchMap(params => {
+        return forkJoin(this.userService.getUserByUsername(params['username']), this.userService.getUserImagesByUsername(params['username']))
+      })
+    )
+    .subscribe(res => {
+      [this.user, this.featuredImgs] = res;
+    })
   }
 
 
