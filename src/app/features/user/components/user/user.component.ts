@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { map } from 'rxjs/internal/operators/map';
 import { environment } from 'src/environments/environment';
 
 
@@ -17,9 +15,7 @@ export class UserComponent implements OnInit {
   private imagesUrl = environment.apiUrl;
 
   constructor(
-    private userService: UserService,
-    // private route: ActivatedRouteSnapshot,
-    // private router: Router
+    private userService: UserService
   ) { }
 
   userName: string = '';
