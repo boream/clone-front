@@ -1,13 +1,14 @@
+import { Category } from './category';
+import { Tag } from './tag';
+
 export interface Image {
-  id: string,
-  published: true,
-  file: Object
-  name: string,
-  published_date: string,
-  tags: [
-    string
-  ],
-  category: string,
-  user: string,
-  url: string
+    id: string,
+    file: File;
+    published: Boolean;
+    title?: String;    
+    category?: Category;
+    tags?: Tag[];
+    publishedDate?: Date;
+    url: string;
+    user?: string;
 }
