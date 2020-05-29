@@ -5,7 +5,7 @@
       <h2 class="container__title">UserName</h2>
       <div *ngIf="showControls">
         <a [routerLink]="['/editProfile']" class="btn btn__primary" type="button">Edit Profile</a>
-        <button (click)="showOptions($event)" class="btn btn__primary popupButton" type="button">
+        <button (click)="showOptions()" class="btn btn__primary popupButton" type="button">
           <svg class="user__icon" >
             <use xlink:href="/assets/icons/sprite.svg#dots"></use>
           </svg>

@@ -40,10 +40,7 @@ export class HeaderUserComponent implements OnInit {
     });
   }
 
-
-
-
-  showOptions(event) {
+  showOptions() {
     this.optionsActived = !this.optionsActived;
   }
 
