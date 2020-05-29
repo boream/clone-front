@@ -23,15 +23,15 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getLoggedUserImages().subscribe((res) => {
 
-      // this.featuredImages = res.map(rawImage => {
-      //   const result: any = {};
-      //   if (rawImage && Array.isArray(rawImage.file) && rawImage.file[0]) {
-      //     result.src = `${this.imagesUrl}${rawImage.file[0].url.slice(1)}`;
-      //   } else {
-      //     result.src = '';
-      //   }
-      //   return result;
-      // });
+      this.featuredImages = res.map(rawImage => {
+        const result: any = {};
+        if (rawImage && Array.isArray(rawImage.file) && rawImage.file[0]) {
+          result.src = `${this.imagesUrl}${rawImage.file[0].slice(1)}`;
+        } else {
+          result.src = '';
+        }
+        return result;
+      });
     })
   }
 
