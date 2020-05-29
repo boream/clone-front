@@ -29,7 +29,7 @@ export class UserComponent implements OnInit {
       this.featuredImages = res.map(rawImage => {
         const result: any = {};
         if (rawImage && Array.isArray(rawImage.file) && rawImage.file[0]) {
-          result.src = `${this.imagesUrl}${rawImage.file[0].url.slice(1)}`; 
+          result.src = `${this.imagesUrl}${rawImage.file[0].url.slice(1)}`;
         } else {
           result.src = '';
         }
