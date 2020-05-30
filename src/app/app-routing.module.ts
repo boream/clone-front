@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { UploadComponent } from './components/upload/upload.component';
 import { SearchComponent } from './components/search/search.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
@@ -18,15 +16,15 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard]
   },
-  { 
-    path: 'upload', 
-    component: UploadComponent,
-    canActivate: [AuthGuard] 
-  },
-  { 
-    path: 'search', 
+  {
+    path: 'search',
     component: SearchComponent,
-    canActivate: [AuthGuard] 
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'upload',
+    loadChildren: () => import('./features/upload/upload.module').then(m => m.UploadModule),
+    canActivate: [AuthGuard]
   },
   {
     path: ':username',

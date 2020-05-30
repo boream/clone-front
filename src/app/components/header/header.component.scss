@@ -1,0 +1,154 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+.main-header {
+  @include flex(center, space-between);
+  @include size(100vw, rem(57px));
+  color: #fff;
+
+  padding: 15px;
+  background-color: $grey-400;
+
+  @media screen and (min-width: 767px) {
+    @include flex(center, space-between);
+    height: rem(90px);
+    padding: 25px 35px;
+  }
+
+  // LOGO
+  // -----------------
+  &__logo {
+    font-family: $font-secundary;
+    font-size: rem(34px);
+    line-height: 0;
+  }
+
+  // LINK
+  // -----------------
+  &__link {
+    color: #fff;
+
+    &--dark {
+      display: block;
+      color: $grey-400;
+      font-family: $font-primary;
+      font-weight: $font-weight-normal;
+    }
+  }
+
+  // SEARCH
+  // -----------------
+  &__search {
+    position: relative;
+    width: 68%;
+    min-width: 100px;
+    margin-left: 10%;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+
+    &-bar {
+      @include flex(center, flex-start)
+    }
+
+    &-control {
+      width: 100%;
+      border: none;
+      font-family: $font-primary;
+      font-weight: $font-weight-ligth;
+      font-size: 1rem;
+    }
+
+  }
+
+  // POPUP MENU
+  // -----------------
+
+
+  &__btn {
+    background: none;
+    border: none;
+
+    @media screen and (min-width: 767px) {
+      display: none;
+    }
+  }
+
+  &__popup {
+    @include fixed(0, 0, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    border: 1px solid $border-control;
+    color: $grey-400;
+    background-color: #fff;
+    transition: transform 0.35s ease-out;
+    z-index: 1000;
+
+
+    &-navbar {
+      @include flex(flex-start, center);
+      flex-direction: column;
+      padding: 14px;
+      font-size: rem(13px);
+    }
+
+    &--show {
+      transform: translate3d(50%, 0, 0);
+    }
+
+    @media screen and (min-width: 767px) {
+      display: none;
+    }
+
+  }
+
+  // NAVBAR
+  // -----------------
+  &__navbar {
+    display: none;
+
+    @media screen and (min-width: 767px) {
+      @include flex(center, flex-end);
+      width: 100%;
+    }
+  }
+
+  // ICONS
+  // -----------------
+  &__icon {
+    @include size(rem(36px), rem(25px));
+    fill: #fff;
+    opacity: 0.6;
+
+    &+& {
+      margin-left: 24px;
+    }
+
+    &--search {
+      height: 1rem;
+    }
+
+    &--lines {
+      opacity: 1;
+      fill: #fff;
+    }
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+  // AVATAR
+  // -----------------
+  &__avatar {
+    @include size(rem(40px));
+    margin-left: 32px;
+    display: inline-flex;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}
