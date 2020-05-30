@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUserByUsername('claudiabdm').subscribe(res =>  {debugger})
+    this.userService.getUserByUsername('claudiabdm').subscribe(res =>  {})
   }
 
 }

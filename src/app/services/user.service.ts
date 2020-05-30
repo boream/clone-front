@@ -21,7 +21,6 @@ export class UserService {
   ) { }
 
   getLoggedUser(): Observable<User> {
-    debugger
     return this.http.get<User>(`${this.userUrl}/me`);
   }
 

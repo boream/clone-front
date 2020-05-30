@@ -2,8 +2,12 @@
   <p>{{error}}</p>
   <button class="btn btn__close" (click)="errorClose()" type="button">&times;</button>
 </div>
+<div *ngIf="success" class="container-success">
+  <p>Changes submitted</p>
+  <button class="btn btn__close" (click)="successClose()" type="button">&times;</button>
+</div>
 <div class="container">
-  <form class="form" [formGroup]="formEditProfile" (ngSubmit)="submit(formEditProfile)">
+  <form class="form" [formGroup]="formEditProfile" (ngSubmit)="submit(formEditProfile)" [hidden]="success">
     <h1 class="form__title">Edit profile</h1>
     <div class="form__box">
       <div class="form__img">

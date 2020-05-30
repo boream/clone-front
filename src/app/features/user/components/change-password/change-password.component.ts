@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/types/user';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -17,11 +18,23 @@ export class ChangePasswordComponent implements OnInit {
 
   error: boolean;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  user: User;
 
-  }
+  loading = false;
+  success = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
+    this.userService.getLoggedUser().subscribe((res) => {
+      debugger
+      this.user = res;
+      console.log(res)
+    })
 
     this.formChangePswd = this.fb.group({
       currentPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -35,7 +48,17 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   submit(form) {
-
+    debugger
+    this.loading = true;
+    const formValue = this.formChangePswd.value;
+    debugger
+    this.userService.updateUser(this.user.id, formValue).subscribe(
+      (res) => {
+        this.success = true;
+      }, (error) => {
+        console.log(error)
+      }
+    )
   }
 
   passwordHasError(password) {
@@ -73,5 +96,9 @@ export class ChangePasswordComponent implements OnInit {
 
   errorClose() {
     this.error = null;
+  }
+
+  successClose() {
+    this.success = false;
   }
 }
