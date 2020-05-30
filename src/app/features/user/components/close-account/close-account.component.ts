@@ -37,7 +37,9 @@ export class CloseAccountComponent implements OnInit {
   }
 
   submit(form) {
-    this.userService.closeAccount()
+    this.userService.closeAccount(this.user).subscribe((res) => {
+      console.log('Delete successfully')
+    })
   }
 
   passwordHasError(password) {

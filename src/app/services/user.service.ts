@@ -50,9 +50,9 @@ export class UserService {
     return this.http.get<User['images']>(`${this.imagesUrl}?${query}`);
   }
 
-  updateUser(userId: string, user: User) {
+  updateUser(user: User) {
     debugger
-    return this.http.put<User>(`${this.userUrl}/${userId}`, user);
+    return this.http.put<User>(`${this.userUrl}/${user.id}`, user);
   }
 
   changePassword(user: User, password: string) {

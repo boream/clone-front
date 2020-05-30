@@ -56,7 +56,7 @@ export class EditComponent implements OnInit {
   submit(form) {
     this.loading = true;
     const formValue = this.formEditProfile.value;
-    this.userService.updateUser(this.user.id, formValue).subscribe(
+    this.userService.updateUser(formValue).subscribe(
       (res) => {
         this.success = true;
       }, (error) => {
