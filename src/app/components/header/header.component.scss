@@ -1,39 +1,38 @@
 @import 'global/variables';
 @import 'mixins/mixins';
 
-.main-header {
-  @include flex(center, space-between);
-  @include size(100vw, rem(57px));
-  color: #fff;
+.header {
 
-  padding: 15px;
-  background-color: $grey-400;
-
-  @media screen and (min-width: 767px) {
+  &__main {
     @include flex(center, space-between);
-    height: rem(90px);
-    padding: 25px 35px;
+    @include size(100vw, rem(57px));
+    color: #fff;
+
+    padding: 15px;
+    background-color: $grey-400;
+
+    @media screen and (min-width: 767px) {
+      @include flex(center, space-between);
+      height: rem(90px);
+      padding: 25px 35px;
+    }
   }
 
   // LOGO
   // -----------------
   &__logo {
     font-family: $font-secundary;
-    font-size: rem(34px);
+    font-size: rem(21px);
     line-height: 0;
+    @media screen and (min-width: 767px) {
+      font-size: rem(34px);
+    }
   }
 
   // LINK
   // -----------------
   &__link {
     color: #fff;
-
-    &--dark {
-      display: block;
-      color: $grey-400;
-      font-family: $font-primary;
-      font-weight: $font-weight-normal;
-    }
   }
 
   // SEARCH
@@ -65,7 +64,6 @@
   // POPUP MENU
   // -----------------
 
-
   &__btn {
     background: none;
     border: none;
@@ -77,23 +75,42 @@
 
   &__popup {
     @include fixed(0, 0, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    border: 1px solid $border-control;
-    color: $grey-400;
-    background-color: #fff;
-    transition: transform 0.35s ease-out;
-    z-index: 1000;
-
-
-    &-navbar {
-      @include flex(flex-start, center);
-      flex-direction: column;
-      padding: 14px;
-      font-size: rem(13px);
-    }
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+    transition: all 0.25s ease-out;
 
     &--show {
-      transform: translate3d(50%, 0, 0);
+      opacity: 1;
+      visibility: visible;
+      background-color: rgba($color: #000000, $alpha: 0.8);
+    }
+
+    &-navbar {
+      @include fixed(0, 0, 0, 0);
+      @include flex(flex-start, flex-start);
+      flex-direction: column;
+      width: 50%;
+      border: 1px solid $border-control;
+      padding: 0 14px 14px;
+      color: $grey-400;
+      background-color: #fff;
+      font-size: 1rem;
+      transform: translate3d(200%, 0, 0);
+      transition: transform 0.25s ease-out;
+      z-index: 1000;
+
+      &--show {
+        transform: translate3d(100%, 0, 0);
+      }
+    }
+
+    &-link {
+      display: block;
+      margin-top: 20px;
+      color: $grey-400;
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
     }
 
     @media screen and (min-width: 767px) {
@@ -101,6 +118,58 @@
     }
 
   }
+
+  &__close {
+    width: 100%;
+    color: $grey-400;
+    font-size: rem(30px);
+    text-align: right;
+    border: 0;
+    background-color: transparent;
+  }
+
+  // POPUP NOTIF
+  // -----------------
+
+  &__notifications {
+    @include flex(center, center);
+    position: relative;
+
+    &-popup {
+      @include size(rem(269px), rem(90px));
+      @include absolute(38px, 11px, auto, auto);
+      border: 1px solid $border-control;
+      color: $grey-400;
+      background-color: #fff;
+      font-size: rem(13px);
+      font-family: $font-primary;
+      font-weight: $font-weight-regular;
+      display: none;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &--show {
+        display: block;
+      }
+    }
+
+    &-title {
+      padding: 14px 13px;
+    }
+
+    &-container {
+      border-top: 1px solid $border-control;
+      padding: 14px 13px;
+    }
+
+    &-empty {
+      text-align: center;
+    }
+  }
+
+
 
   // NAVBAR
   // -----------------
@@ -117,14 +186,14 @@
   // -----------------
   &__icon {
     @include size(rem(36px), rem(25px));
+
+    margin-left: 35px;
     fill: #fff;
     opacity: 0.6;
 
-    &+& {
-      margin-left: 24px;
-    }
 
     &--search {
+      margin-left: 0;
       height: 1rem;
     }
 
@@ -144,11 +213,50 @@
   &__avatar {
     @include size(rem(40px));
     margin-left: 32px;
+    border-radius: 50px;
+    object-fit: cover;
     display: inline-flex;
 
     &:hover {
       cursor: pointer;
     }
   }
+
+
+  // CATEGORIES BAR
+  // -----------------
+  &__categories {
+    @include flex(center, flex-start);
+    @include size(100vw, rem(50px));
+    padding: 14px 16px;
+    background-color: #fff;
+    font-size: rem(12px);
+    font-family: $font-primary;
+    font-weight: $font-weight-regular;
+    overflow-x: auto;
+
+    @media screen and (min-width: 767px) {
+      font-size: rem(14px);
+    }
+
+    &-item {
+      padding: 0 37px;
+      color: $grey-200;
+      &:first-child {
+        padding-left: 0 ;
+        border-right: 1px solid $border-control;
+        font-weight: $font-weight-normal;
+        color: $grey-300;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &-list {
+      @include flex(center, flex-start);
+      text-transform: uppercase;
+    }
+  }
+
 
 }

@@ -1,22 +1,22 @@
 <div class="container__user">
-  <img class="img" src="../../../assets/img/login_mobile.png" alt="">
+  <img class="img" [src]="user?.profile.url" alt="">
   <div class="container__info">
     <div class="container__controls">
-      <h2 class="container__title">UserName</h2>
+      <h2 class="container__title">{{ user?.firstname }} {{ user?.lastname }}</h2>
       <div *ngIf="showControls">
-        <a [routerLink]="['/editProfile']" class="btn btn__primary" type="button">Edit Profile</a>
+        <a [routerLink]="['./settings']" class="btn btn__primary" type="button">Edit Profile</a>
         <button (click)="showOptions()" class="btn btn__primary popupButton" type="button">
           <svg class="user__icon" >
             <use xlink:href="/assets/icons/sprite.svg#dots"></use>
           </svg>
           <div *ngIf="optionsActived" [ngClass]="optionsActived ? 'container-pop' : 'container-pop__close'"  class="container-pop">
-            <a class="container-pop__link" [routerLink]="['/@username']">Accounts settings</a>
-            <a class="container-pop__link" [routerLink]="['/upload']">Submit a Photo</a>
-            <a class="container-pop__link" [routerLink]="['/login']">Logout</a>
+            <a class="container-pop__link" [routerLink]="['./settings']">Accounts settings</a>
+            <a class="container-pop__link" [routerLink]="['/upload']">Submit a photo</a>
+            <a class="container-pop__link" (click)="logOut()">Logout</a>
           </div>
         </button>
       </div>
     </div>
-    <p>Download free, beautiful high-quality photos curated.</p>
+    <p class="container__txt">Download free, beautiful high-quality photos curated.</p>
   </div>
 </div>

@@ -1,0 +1,7 @@
+@import "global/variables";
+@import "mixins/mixins";
+
+.user {
+  @include size(100%, 100%);
+  background-color: $bg-color;
+}
