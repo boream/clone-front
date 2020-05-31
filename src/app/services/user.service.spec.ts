@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('UserService', () => {
+describe('UserService', () => {
   let service: UserService;
 
   beforeEach(() => {
