@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 const testUrl = environment.apiUrl;
 
-fdescribe('ImageService', () => {
+describe('ImageService', () => {
   let service: ImageService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
