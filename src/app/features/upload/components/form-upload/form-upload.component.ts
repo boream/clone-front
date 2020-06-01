@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FileHandle } from 'src/app/directives/drag-drop.directive';
 import { Image } from 'src/app/types/image';
 
@@ -8,6 +8,8 @@ import { Image } from 'src/app/types/image';
   styleUrls: ['./form-upload.component.scss']
 })
 export class FormUploadComponent implements OnInit {
+
+  @Output() imageFile;
 
   image: File;
   imageSelected: string | ArrayBuffer;
@@ -25,7 +27,8 @@ export class FormUploadComponent implements OnInit {
       this.image = <File>event.target.files[0];
       const reader = new FileReader();
       reader.onload = e => this.imageSelected = reader.result;
-      console.log(this.image);
+      this.imageFile = this.image
+      console.log(this.imageFile);
     }
   }
 
@@ -34,7 +37,8 @@ export class FormUploadComponent implements OnInit {
   filesDropped(files): void {
     debugger
     this.files = files;
-    console.log(this.files);
+    this.imageFile = this.files;
+    console.log(this.imageFile);
 
   }
 
