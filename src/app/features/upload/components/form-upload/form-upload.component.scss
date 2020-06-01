@@ -1,0 +1,61 @@
+@import "global/variables";
+@import "mixins/rem";
+
+.upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: rem(240px);
+  background: #ffffff;
+  border: 1px dashed $border-control;
+  box-sizing: border-box;
+  padding: 0px 35px;
+
+  &__control {
+    height: 100%;
+    padding: 51px 55px 70px 0px;
+  }
+
+  &__img {
+    width: rem(145px);
+    height: rem(125px);
+  }
+
+  &__icon {
+    width: rem(18px);
+    height: rem(18px);
+    fill: #fff;
+  }
+
+  &__info {
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
+    font-size: 20px;
+    padding-right: 5px;
+    color: $grey-200;
+  }
+
+  &__link {
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
+    font-size: 20px;
+    padding-right: 5px;
+    color: $grey-200;
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+}
+
+.btn__primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  z-index: 10;
+  top: -128px;
+  right: -120px;
+  position: relative;
+  margin: 0;
+  padding: 5px;
+}

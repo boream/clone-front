@@ -16,6 +16,7 @@ import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { UploadModule } from './features/upload/upload.module';
     SignupComponent,
     PageNotFoundComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,7 @@ import { UploadModule } from './features/upload/upload.module';
     ReactiveFormsModule,
     HttpClientModule,
     UserModule,
-    UploadModule
+    UploadModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -6,11 +6,14 @@ import { UploadRoutingModule } from './upload-routing.module';
 import { ImagesListComponent } from './components/images-list/images-list.component';
 import { FormsModule } from '@angular/forms';
 import { ImageCardComponent } from './components/image-card/image-card.component';
+import { SmartComponent } from './components/smart/smart.component';
 
+import { DragDropDirective } from '../../directives/drag-drop.directive';
+import { FormUploadComponent } from './components/form-upload/form-upload.component';
 
 
 @NgModule({
-  declarations: [UploadComponent, ImagesListComponent, ImageCardComponent],
+  declarations: [UploadComponent, ImagesListComponent, ImageCardComponent, SmartComponent, DragDropDirective, FormUploadComponent,],
   imports: [
     CommonModule,
     UploadRoutingModule,
@@ -18,6 +21,7 @@ import { ImageCardComponent } from './components/image-card/image-card.component
   ],
   exports: [
     UploadComponent,
+    DragDropDirective,
   ]
 })
 export class UploadModule { }

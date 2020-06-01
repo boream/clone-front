@@ -12,9 +12,6 @@ export class ImageCardComponent implements OnInit {
 
   @Input() image;
 
-  categoriesTest = ['Categories...', 'Nature', 'Landscape']
-  tags = ['nature', 'green']
-
   categories$: Observable<[]>;
   tags$: Observable<[]>;
 

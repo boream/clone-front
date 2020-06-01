@@ -1,0 +1,17 @@
+@import "global/variables";
+@import "mixins/rem";
+
+.container-upload {
+  width: 100%;
+  padding: 60px 35px;
+
+  &__title {
+    font-family: $font-secundary;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 53px;
+    padding-bottom: 30px;
+    color: $grey-300;
+  }
+}
