@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Image } from 'src/app/types/image';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-images-list',
@@ -8,14 +7,18 @@ import { Image } from 'src/app/types/image';
 })
 export class ImagesListComponent implements OnInit {
 
-  @Input() imagesList: Image[];
+  @Input() imagesList: [];
   @Input() categories: [];
 
-  imagesListTest = [{ title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }, { title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }, { title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }, { title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }, { title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }]
+  @Output() updateImagesList = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  update() {
+    this.updateImagesList.emit(this.imagesList);
   }
 
 }
