@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { UploadComponent } from './components/upload/upload.component';
 import { UploadRoutingModule } from './upload-routing.module';
+import { ImagesListComponent } from './components/images-list/images-list.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [UploadComponent],
+  declarations: [UploadComponent, ImagesListComponent],
   imports: [
     CommonModule,
-    UploadRoutingModule
+    UploadRoutingModule,
+    FormsModule
   ],
   exports: [
     UploadComponent,
