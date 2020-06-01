@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/types/user';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent implements OnInit, OnDestroy {
   formChangePswd: FormGroup;
 
   emailPattern: any =
@@ -23,18 +24,21 @@ export class ChangePasswordComponent implements OnInit {
   loading = false;
   success = false;
 
+  private subscriptions: Subscription[] = [];
+
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
-    private router: Router
+    private userService: UserService
     ) { }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
   ngOnInit(): void {
-    this.userService.getLoggedUser().subscribe((res) => {
-      debugger
+    this.subscriptions.push(this.userService.getLoggedUser().subscribe((res) => {
       this.user = res;
-      console.log(res)
-    })
+    }));
 
     this.formChangePswd = this.fb.group({
       currentPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -49,13 +53,13 @@ export class ChangePasswordComponent implements OnInit {
 
   submit(form) {
     debugger
-    this.userService.changePassword(this.user, form.value.newPassword).subscribe(
+    this.subscriptions.push(this.userService.changePassword(this.user, form.value.newPassword).subscribe(
       () => {
         this.success = true;
       }, (error) => {
         console.log(error)
       }
-    )
+    ));
   }
 
   passwordHasError(password) {
