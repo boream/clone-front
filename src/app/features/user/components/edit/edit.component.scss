@@ -1,0 +1,65 @@
+@import 'mixins/rem';
+@import 'global/variables';
+
+.form__img-img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin-right: 80px;
+  background-size: cover;
+}
+
+.form__img-link {
+  label {
+    cursor: pointer;
+  }
+}
+.container {
+  height: 100vh;
+}
+
+.form {
+  margin-top: 70px;
+  width: 680px;
+
+  &__img {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &-link {
+      display: inline-block;
+      margin-left: 25px;
+      margin-top: 10px;
+      font-family: $font-primary;
+      font-size: 1rem;
+      font-weight: $font-weight-ligth;
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__asideimg {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  &__control {
+    width: rem(400px);
+  }
+  &__control-xl {
+    width: 100%;
+  }
+
+  &__details {
+    margin-top: 50px;
+  }
+}

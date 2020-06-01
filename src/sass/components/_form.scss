@@ -37,6 +37,11 @@
     border-radius: 5px;
     background-color: transparent;
     padding: 5px;
+
+    &--whitebg {
+      border: transparent;
+      background-color: $base;
+    }
   }
 
   &__actions {

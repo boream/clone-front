@@ -1,0 +1,40 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+.form {
+  font-family: $font-primary;
+  width: 680px;
+
+  &__title {
+    color: #4a4a4a;
+    font-size: rem(24px);
+  }
+
+  &__label {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  &__group {
+    position: relative;
+  }
+
+  &__msg {
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  &__msg-error {
+    position: absolute;
+    bottom: -20px;
+    font-size: rem(12px);
+    font-weight: 300;
+    color: $error;
+  }
+
+  &__warning {
+    color: $error;
+    font-weight: $font-weight-bold;
+  }
+}
+

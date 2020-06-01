@@ -34,7 +34,17 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    return this.http.put<User>(`${this.userUrl}/${user.id}`, user)
+    debugger
+    return this.http.put<User>(`${this.userUrl}/${user.id}`, user);
+  }
+
+  updateUserAvatar(user: User, file: File) {
+    const formData = new FormData();
+    formData.append('files', file, file.name);
+    formData.append('ref', 'User');
+    formData.append('refId', user.id);
+    formData.append('field', 'profile');
+    return this.http.post(`${environment.apiUrl}upload`, formData);
   }
 
   changePassword(user: User, password: string) {
