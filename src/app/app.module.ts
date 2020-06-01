@@ -15,7 +15,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
-import { DragDropDirective } from './directives/drag-drop.directive';
+import { FormUploadComponent } from './components/form-upload/form-upload.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { DragDropDirective } from './directives/drag-drop.directive';
     PageNotFoundComponent,
     LoginComponent,
     HeaderComponent,
-    DragDropDirective
+    FormUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,7 @@ import { DragDropDirective } from './directives/drag-drop.directive';
     ReactiveFormsModule,
     HttpClientModule,
     UserModule,
-    UploadModule
+    UploadModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

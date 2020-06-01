@@ -15,7 +15,7 @@ export interface FileHandle {
 @Directive({
   selector: "[appDrag]"
 })
-export class DragDirective {
+export class DragDropDirective {
   @Output() files: EventEmitter<FileHandle[]> = new EventEmitter();
 
   @HostBinding("style.background") private background = "#eee";
