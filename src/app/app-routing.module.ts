@@ -17,6 +17,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'page-not-found',
+    component: PageNotFoundComponent,
+  },
+  {
     path: 'search',
     component: SearchComponent,
     canActivate: [AuthGuard]

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Image } from 'src/app/types/image';
 
 @Component({
   selector: 'app-list-img',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ListImgComponent implements OnInit {
 
 
-  @Input() listImages: Array<any>;
+  @Input() listImages: Image[];
 
   constructor() { }
 

@@ -1,11 +1,13 @@
+import { Image } from './image';
+
 export interface User {
   id: string,
   username: string,
   email: string,
-  provider: string,
-  confirmed: false,
-  blocked: false,
-  role: {
+  provider?: string,
+  confirmed?: false,
+  blocked?: false,
+  role?: {
     id: string,
     name: string,
     description: string,
@@ -17,9 +19,9 @@ export interface User {
       string
     ]
   },
-  firstname: string,
-  lastname: string,
-  profile: {
+  firstname?: string,
+  lastname?: string,
+  profile?: {
     id: string,
     name: string,
     alternativeText: string,
@@ -37,21 +39,6 @@ export interface User {
     provider_metadata: {},
     related: string
   },
-  images: [
-    {
-      id: string,
-      published: true,
-      file: [
-        string
-      ],
-      name: string,
-      published_date: string,
-      tags: [
-        string
-      ],
-      category: string,
-      user: string
-    }
-  ],
-  active: true
+  images?: Image[],
+  active?: true
 }

@@ -1,3 +1,9 @@
+@import "global/variables";
+@import "mixins/mixins";
+
+body {
+  @include size(100vw, 100vh);
+}
 a {
   text-decoration: none;
 }

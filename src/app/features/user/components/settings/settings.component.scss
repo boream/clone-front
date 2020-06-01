@@ -1,0 +1,42 @@
+@import 'global/variables';
+
+.settings {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-color: $bg-color;
+
+  &__navbar {
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px;
+    padding-right:  147px;
+    padding-left: 34px;
+
+    font-family: $font-secundary;
+    font-weight: $font-weight-bold;
+    &-title {
+      margin-bottom: 34px;
+    }
+    &-link {
+      font-family: $font-primary;
+      font-weight: $font-weight-normal;
+      padding-bottom: 15px;
+    }
+  }
+
+  &__child {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.active {
+  text-decoration: underline;
+}
+
+

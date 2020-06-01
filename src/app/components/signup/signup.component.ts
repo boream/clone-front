@@ -43,7 +43,6 @@ export class SignupComponent implements OnInit {
 
   submit(form) {
     this.auth.signup(form.value).subscribe((response) => {
-      debugger
     },(error) => {
       this.error = error.error.message[0].messages[0].message;
     });

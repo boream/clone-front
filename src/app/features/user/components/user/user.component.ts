@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { environment } from 'src/environments/environment';
+import { Image } from 'src/app/types/image';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/types/user';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { map } from 'rxjs/internal/operators/map';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -10,28 +15,23 @@ import { environment } from 'src/environments/environment';
 })
 export class UserComponent implements OnInit {
 
-  public featuredImages:String[]
-
-  private imagesUrl = environment.apiUrl;
+  public featuredImgs: Image[];
+  public user: User;
 
   constructor(
+    private route: ActivatedRoute,
     private userService: UserService
   ) { }
 
-  userName: string = '';
-
   ngOnInit(): void {
-    this.userService.getLoggedUserImages().subscribe((res) => {
-
-      this.featuredImages = res.map(rawImage => {
-        const result: any = {};
-        if (rawImage && Array.isArray(rawImage.file) && rawImage.file[0]) {
-          result.src = `${this.imagesUrl}${rawImage.file[0].slice(1)}`;
-        } else {
-          result.src = '';
-        }
-        return result;
-      });
+    this.route.paramMap.pipe(
+      map((res) => res['params']),
+      switchMap(params => {
+        return forkJoin(this.userService.getUserByUsername(params['username']), this.userService.getUserImagesByUsername(params['username']))
+      })
+    )
+    .subscribe(res => {
+      [this.user, this.featuredImgs] = res;
     })
   }
 

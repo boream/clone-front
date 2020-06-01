@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './components/user/user.component';
 import { SettingsComponent } from './components/settings/settings.component';
-
+import { EditComponent } from './components/edit/edit.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { CloseAccountComponent } from './components/close-account/close-account.component';
 
 const routes: Routes = [
   {
@@ -11,10 +13,10 @@ const routes: Routes = [
   },
   {
     path: 'settings',
-    component: SettingsComponent/*,
+    component: SettingsComponent,
     children: [
       {
-        path: 'editProfile',
+        path: '',
         component: EditComponent
       },
       {
@@ -25,7 +27,7 @@ const routes: Routes = [
         path: 'close-account',
         component: CloseAccountComponent
       },
-    ]*/
+    ]
   }
 ];
 
