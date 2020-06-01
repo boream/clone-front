@@ -33,22 +33,31 @@ export class UserService {
       );
   }
 
-  updateUser(user: User) {
-    return this.http.put<User>(`${this.userUrl}/${user.id}`, user);
+  updateUser(user: User, file: File) {
+    let updateProfile;
+    if (file) {
+      updateProfile = this.updateUserAvatar(user, file);
+    } else {
+      updateProfile = of({});
+    }
+    return updateProfile.pipe(
+      switchMap(_ => this.http.put<User>(`${this.userUrl}/${user.id}`, user))
+    )
   }
 
   updateUserAvatar(user: User, file: File) {
     const formData = new FormData();
     formData.append('files', file, file.name);
-    formData.append('ref', 'User');
+    formData.append('ref', 'user');
     formData.append('refId', user.id);
     formData.append('field', 'profile');
+    formData.append('source', 'users-permissions');
     return this.http.post(`${environment.apiUrl}upload`, formData);
   }
 
   changePassword(user: User, password: string) {
     user['password'] = password;
-    return this.updateUser(user);
+    return this.updateUser(user, null);
   }
 
   closeAccount(user: User): Observable<Object> {

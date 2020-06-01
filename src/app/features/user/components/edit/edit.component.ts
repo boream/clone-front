@@ -67,15 +67,8 @@ export class EditComponent implements OnInit {
   }
 
   submit(form) {
-    debugger
-    const updated = Object.assign({}, this.user, form.value);
-    let s = null;
-    if (this.newAvatar) {
-      s = this.userService.updateUserAvatar(updated, this.newAvatar);
-    } else {
-      s = this.userService.updateUser(updated)
-    }
-    s.subscribe(
+    const updatedUser = Object.assign({}, this.user, form.value);
+    this.userService.updateUser(updatedUser, this.newAvatar).subscribe(
       () => {
         this.success = true;
       }, () => {
