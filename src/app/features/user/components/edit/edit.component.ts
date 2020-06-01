@@ -1,9 +1,9 @@
-import { Component, OnInit, TemplateRef, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/types/user';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription} from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-edit',
@@ -15,13 +15,17 @@ export class EditComponent implements OnInit {
   formEditProfile: FormGroup;
 
   emailPattern: any =
-  /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
+    /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/;
 
   charactersPattern: any = /A-Za-z0-9\-\_]+/;
 
-  error: boolean;
+  error: String;
 
   user: User;
+
+  userAvatar: String | ArrayBuffer;
+
+  newAvatar: any;
 
   loading = false;
   success = false;
@@ -30,11 +34,12 @@ export class EditComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
-    private router: Router
-    ) { }
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    this.userAvatar = '/assets/icons/user.svg';
+    this.error = null;
     this.formEditProfile = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(4)]],
       lastname: ['', [Validators.required, Validators.minLength(4)]],
@@ -42,56 +47,69 @@ export class EditComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(4)]]
     });
     this.userService.getLoggedUser().subscribe((res) => {
-      this.user = res;
-      console.log(res)
+      this.user = Object.assign({}, {
+        id: res.id,
+        username: res.username,
+        email: res.email,
+        firstname: res.firstname,
+        lastname: res.lastname
+      });
+      if (res.profile) {
+        this.userAvatar = `${environment.apiUrl}${res.profile.url.slice(1)}`;
+      }
       this.formEditProfile.setValue({
-        firstname: this.user.firstname,
-        lastname: this.user.lastname,
-        email: this.user.email,
-        username: this.user.username
+        firstname: this.user.firstname || '',
+        lastname: this.user.lastname || '',
+        email: this.user.email || '',
+        username: this.user.username || ''
       });
     })
   }
 
   submit(form) {
-    this.loading = true;
-    const formValue = this.formEditProfile.value;
-    this.userService.updateUser(formValue).subscribe(
-      (res) => {
+    debugger
+    const updated = Object.assign({}, this.user, form.value);
+    let s = null;
+    if (this.newAvatar) {
+      s = this.userService.updateUserAvatar(updated, this.newAvatar);
+    } else {
+      s = this.userService.updateUser(updated)
+    }
+    s.subscribe(
+      () => {
         this.success = true;
-      }, (error) => {
-        console.log(error)
+      }, () => {
+        this.error = "Error al guardar usuario";
       }
     )
-    this.loading = false;
   }
 
   firstNameHasError(form) {
-    if (form.controls.firstname?.touched ||  form.controls.firstname?.dirty)  {
+    if (form.controls.firstname?.touched || form.controls.firstname?.dirty) {
       return form.controls.firstname.errors?.minlength || form.controls.firstname.errors?.required;
     }
   }
 
   lastNameHasError(form) {
-    if (form.controls.lastname?.touched ||  form.controls.lastname?.dirty)  {
+    if (form.controls.lastname?.touched || form.controls.lastname?.dirty) {
       return form.controls.lastname.errors?.minlength || form.controls.lastname.errors?.required;
     }
   }
 
   emailHasError(form) {
-    if (form.controls.email?.touched  || form.controls.email?.dirty)  {
+    if (form.controls.email?.touched || form.controls.email?.dirty) {
       return form.controls.email.errors?.pattern || form.controls.email?.errors?.required;
     }
   }
 
   userNameHasError(form) {
-    if (form.controls.username.touched  || form.controls.username.dirty)  {
+    if (form.controls.username.touched || form.controls.username.dirty) {
       return form.controls.username.errors?.pattern || form.controls.username.errors?.required || form.controls.username.errors?.minlength;
     }
   }
 
   errorClose() {
-    this.error= false;
+    this.error = null;
   }
 
   successClose() {
@@ -100,6 +118,15 @@ export class EditComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  changeAvatar(file: File): void {
+    const reader = new FileReader();
+    this.newAvatar = file;
+    reader.onload = e => {
+      this.userAvatar = reader.result
+    };
+    reader.readAsDataURL(file);
   }
 
 }

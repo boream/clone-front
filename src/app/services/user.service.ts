@@ -38,6 +38,15 @@ export class UserService {
     return this.http.put<User>(`${this.userUrl}/${user.id}`, user);
   }
 
+  updateUserAvatar(user: User, file: File) {
+    const formData = new FormData();
+    formData.append('files', file, file.name);
+    formData.append('ref', 'User');
+    formData.append('refId', user.id);
+    formData.append('field', 'profile');
+    return this.http.post(`${environment.apiUrl}upload`, formData);
+  }
+
   changePassword(user: User, password: string) {
     user['password'] = password;
     return this.updateUser(user);
