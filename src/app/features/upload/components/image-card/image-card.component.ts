@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TagsService } from 'src/app/services/tags.service';
@@ -11,6 +11,8 @@ import { TagsService } from 'src/app/services/tags.service';
 export class ImageCardComponent implements OnInit {
 
   @Input() image;
+
+  @Output() update = new EventEmitter();
 
   categories$: Observable<[]>;
   tags$: Observable<[]>;
@@ -43,6 +45,7 @@ export class ImageCardComponent implements OnInit {
 
   selectCategory(image, category) {
     image.categorySelected = category.Title ? category.Title : category;
+    this.update.emit(image);
   }
 
 

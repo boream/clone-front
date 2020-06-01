@@ -5,13 +5,11 @@
   font-size: rem(13px);
   font-family: $font-primary;
 
-  &__title {
-    width: 100%;
-    font-weight: $font-weight-ligth;
-  }
-
   &__input {
     @include size(100%, rem(34px));
+    font-size: rem(13px);
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
     padding: 9px;
     border: none;
   }
