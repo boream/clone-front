@@ -1,5 +1,5 @@
 <ul class="images-list">
-  <li clas="images-list__elem" *ngFor="let image of imagesListTest">
-    <app-image-card [image]="image"></app-image-card>
+  <li clas="images-list__elem" *ngFor="let img of imagesListTest; let i = index;">
+    <app-image-card [(image)]="imagesListTest[i]" (change)="printImagesList()"></app-image-card>
   </li>
 </ul>
