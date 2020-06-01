@@ -52,7 +52,6 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   }
 
   submit(form) {
-    debugger
     this.subscriptions.push(this.userService.changePassword(this.user, form.value.newPassword).subscribe(
       () => {
         this.success = true;
