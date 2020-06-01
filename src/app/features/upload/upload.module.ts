@@ -5,11 +5,12 @@ import { UploadComponent } from './components/upload/upload.component';
 import { UploadRoutingModule } from './upload-routing.module';
 import { ImagesListComponent } from './components/images-list/images-list.component';
 import { FormsModule } from '@angular/forms';
+import { ImageCardComponent } from './components/image-card/image-card.component';
 
 
 
 @NgModule({
-  declarations: [UploadComponent, ImagesListComponent],
+  declarations: [UploadComponent, ImagesListComponent, ImageCardComponent],
   imports: [
     CommonModule,
     UploadRoutingModule,

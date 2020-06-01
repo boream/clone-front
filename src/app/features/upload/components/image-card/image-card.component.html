@@ -1,0 +1,26 @@
+<div class="card">
+  <img [src]="image.url" class="card__img">
+  <h3 class="card__title"><input type="text" placeholder="Title..." class="card__input" [(ngModel)]="image.title"></h3>
+  <div class="card__select" (click)="toggleSelectCategories(image)">
+    <ul class="card__select-control">
+      <li class="card__select-default" [class.card__select-default--selected]="image.isSelected.categories">{{ image.categorySelected }}</li>
+      <div *ngIf="image.isSelected.categories" class="card__select-dropdown">
+        <li *ngFor="let category of categoriesTest" class="card__select-item" (click)="selectCategory(image, category)"> {{ category }} </li>
+      </div>
+    </ul>
+    <svg class="card__select-icon" [class.card__select-icon--selected]="image.isSelected.categories">
+      <use xlink:href="/assets/icons/sprite.svg#arrow"></use>
+    </svg>
+  </div>
+  <div class="card__select" (click)="toggleSelectTags(image)">
+    <ul class="card__select-control">
+      <li class="card__select-default">Tags...</li>
+      <div *ngIf="image.isSelected.tags" class="card__select-dropdown">
+        <li *ngFor="let tag of tags" class="card__select-item" (click)="selectTag(image, tag)"> {{ tag }} </li>
+      </div>
+    </ul>
+    <svg class="card__select-icon" [class.card__select-icon--selected]="image.isSelected.tags">
+      <use xlink:href="/assets/icons/sprite.svg#arrow"></use>
+    </svg>
+  </div>
+</div>
