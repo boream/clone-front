@@ -45,9 +45,6 @@ export class ImageCardComponent implements OnInit {
     image.categorySelected = category.Title ? category.Title : category;
   }
 
-  selectTag(image, tag) {
-    image.categorySelected = tag.name ? tag.name : tag;
-  }
 
 
 }
