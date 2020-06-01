@@ -11,7 +11,7 @@ import { SmartComponent } from './components/smart/smart.component';
   declarations: [UploadComponent, SmartComponent],
   imports: [
     CommonModule,
-    UploadRoutingModule
+    UploadRoutingModule,
   ],
   exports: [
     UploadComponent,

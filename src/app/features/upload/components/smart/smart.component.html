@@ -1,1 +1,13 @@
-
+  <form class="upload">
+    <div class="upload__control">
+      <input class="upload__input" (change)="changeFile($event)"  name="image"  type="file" hidden   #photoInput>
+      <img class="upload__img" [src]="imageSelected || '/assets/img/Group.png'"(click)="photoInput.click()">
+      <label class="btn btn__primary" for="file" (click)="photoInput.click()">
+        <svg class="upload__icon" >
+          <use xlink:href="/assets/icons/sprite.svg#plus"></use>
+        </svg>
+      </label>
+    </div>
+    <h1 class="upload__info">Drop your images heres or</h1>
+    <a class="upload__link">Browse</a>
+  </form>
