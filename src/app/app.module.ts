@@ -15,7 +15,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
-import { FormUploadComponent } from './components/form-upload/form-upload.component';
 
 
 @NgModule({
@@ -29,7 +28,6 @@ import { FormUploadComponent } from './components/form-upload/form-upload.compon
     PageNotFoundComponent,
     LoginComponent,
     HeaderComponent,
-    FormUploadComponent,
   ],
   imports: [
     BrowserModule,

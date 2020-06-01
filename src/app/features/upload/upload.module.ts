@@ -10,7 +10,10 @@ import { FormUploadComponent } from './components/form-upload/form-upload.compon
 
 
 @NgModule({
-  declarations: [UploadComponent, SmartComponent, DragDropDirective, FormUploadComponent],
+  declarations: [UploadComponent,
+    SmartComponent,
+    DragDropDirective,
+    FormUploadComponent,],
   imports: [
     CommonModule,
     UploadRoutingModule,
