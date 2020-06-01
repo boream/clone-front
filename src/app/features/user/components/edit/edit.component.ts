@@ -32,7 +32,7 @@ export class EditComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.formEditProfile = this.fb.group({
