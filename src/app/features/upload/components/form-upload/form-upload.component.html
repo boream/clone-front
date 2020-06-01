@@ -9,5 +9,6 @@
     </label>
   </div>
   <h1 class="upload__info">Drop your images heres or</h1>
-  <a class="upload__link">Browse</a>
+  <label class="upload__link" for="file" (click)="photoInput.click()">Browser</label>
+  <input class="upload__input" (change)="changeFile($event)"  name="image"  type="file" hidden   #photoInput>
 </form>

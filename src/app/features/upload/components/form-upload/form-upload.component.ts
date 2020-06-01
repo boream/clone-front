@@ -20,6 +20,7 @@ export class FormUploadComponent implements OnInit {
   }
 
   changeFile(event) {
+    debugger
     if (event.target.files.length > 0) {
       this.image = <File>event.target.files[0];
       const reader = new FileReader();
@@ -33,6 +34,8 @@ export class FormUploadComponent implements OnInit {
   filesDropped(files): void {
     debugger
     this.files = files;
+    console.log(this.files);
+
   }
 
 }
