@@ -1,11 +1,9 @@
-@import "../../../../../sass/global/variables";
-@import "../../../../../sass/mixins/rem";
+@import "global/variables";
+@import "mixins/rem";
 
 .container-upload {
   width: 100%;
-  height: rem(1300px);
-  padding: 150px 35px;
-  background-color: $bg-color;
+  padding: 60px 35px;
 
   &__title {
     font-family: $font-secundary;
