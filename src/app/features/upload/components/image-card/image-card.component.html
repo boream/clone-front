@@ -5,7 +5,8 @@
     <ul class="card__select-control">
       <li class="card__select-default" [class.card__select-default--selected]="image.isSelected.categories">{{ image.categorySelected }}</li>
       <div *ngIf="image.isSelected.categories" class="card__select-dropdown">
-        <li *ngFor="let category of categoriesTest" class="card__select-item" (click)="selectCategory(image, category)"> {{ category }} </li>
+        <li class="card__select-item" (click)="selectCategory(image, 'Categories...')">Categories...</li>
+        <li *ngFor="let category of categories$ | async" class="card__select-item" (click)="selectCategory(image, category)"> {{ category.Title }} </li>
       </div>
     </ul>
     <svg class="card__select-icon" [class.card__select-icon--selected]="image.isSelected.categories">
@@ -14,9 +15,12 @@
   </div>
   <div class="card__select" (click)="toggleSelectTags(image)">
     <ul class="card__select-control">
-      <li class="card__select-default">Tags...</li>
+      <li class="card__select-default" [class.card__select-default--selected]="image.isSelected.tags">Tags...</li>
       <div *ngIf="image.isSelected.tags" class="card__select-dropdown">
-        <li *ngFor="let tag of tags" class="card__select-item" (click)="selectTag(image, tag)"> {{ tag }} </li>
+        <!-- Sustituir por component -->
+        <li class="card__select-item" (click)="selectTag(image, 'Tags...')">Tags...</li>
+        <li *ngFor="let tag of tags$  | async" class="card__select-item" (click)="selectTag(image, tag)"> {{ tag.name }} </li>
+         <!-- // Sustituir por component -->
       </div>
     </ul>
     <svg class="card__select-icon" [class.card__select-icon--selected]="image.isSelected.tags">

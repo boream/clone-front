@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CategoriesService } from 'src/app/services/categories.service';
+import { TagsService } from 'src/app/services/tags.service';
 
 @Component({
   selector: 'app-image-card',
@@ -12,7 +15,13 @@ export class ImageCardComponent implements OnInit {
   categoriesTest = ['Categories...', 'Nature', 'Landscape']
   tags = ['nature', 'green']
 
-  constructor() { }
+  categories$: Observable<[]>;
+  tags$: Observable<[]>;
+
+  constructor(
+    private categoriesService: CategoriesService,
+    private tagsService: TagsService
+  ) { }
 
   ngOnInit(): void {
     this.image['isSelected'] = {
@@ -20,7 +29,9 @@ export class ImageCardComponent implements OnInit {
       categories: false,
       tags: false,
     }
-    this.image['categorySelected'] = 'Categories...'
+    this.image['categorySelected'] = 'Categories...';
+    this.categories$ = this.categoriesService.getCategories();
+    this.tags$ = this.tagsService.getTags();
   }
 
   toggleSelectCategories(image) {
@@ -34,11 +45,11 @@ export class ImageCardComponent implements OnInit {
   }
 
   selectCategory(image, category) {
-    image.categorySelected = category;
+    image.categorySelected = category.Title ? category.Title : category;
   }
 
   selectTag(image, tag) {
-
+    image.categorySelected = tag.name ? tag.name : tag;
   }
 
 
