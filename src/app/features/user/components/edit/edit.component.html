@@ -7,12 +7,15 @@
   <button class="btn btn__close" (click)="successClose()" type="button">&times;</button>
 </div>
 <div class="container">
-  <form class="form" [formGroup]="formEditProfile" (ngSubmit)="submit(formEditProfile)" [hidden]="success">
+  <form class="form" [formGroup]="formEditProfile" (ngSubmit)="submit(formEditProfile)">
     <h1 class="form__title">Edit profile</h1>
     <div class="form__box">
       <div class="form__img">
-        <div class="form__img-img"></div>
-        <a href="#" class="form__img-link">Change profile image</a>
+        <img class="form__img-img" [src]="userAvatar">
+        <div class="form__img-link">
+          <input #avatarImg type="file" id="avatar-file" (change)=changeAvatar(avatarImg.files[0]) hidden>
+          <label for="avatar-file">Change profile image</label>
+        </div>
       </div>
       <div class="form__asideimg">
         <div  class="form__group">

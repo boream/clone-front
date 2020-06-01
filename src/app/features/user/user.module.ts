@@ -13,7 +13,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [UserComponent, SettingsComponent, HeaderUserComponent, ListImgComponent, EditComponent, ChangePasswordComponent, CloseAccountComponent],
+  declarations: [
+    UserComponent,
+    SettingsComponent,
+    HeaderUserComponent,
+    ListImgComponent,
+    EditComponent,
+    ChangePasswordComponent,
+    CloseAccountComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

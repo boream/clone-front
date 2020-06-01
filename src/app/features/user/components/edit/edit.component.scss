@@ -2,7 +2,6 @@
 @import 'global/variables';
 
 .form__img-img {
-  background-image: url(/../../../../../assets/img/chinaguy.png);
   border-radius: 50%;
   height: 200px;
   width: 200px;
@@ -10,6 +9,11 @@
   background-size: cover;
 }
 
+.form__img-link {
+  label {
+    cursor: pointer;
+  }
+}
 .container {
   height: 100vh;
 }
