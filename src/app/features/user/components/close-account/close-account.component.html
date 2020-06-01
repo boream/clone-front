@@ -1,8 +1,14 @@
+<div *ngIf="error" class="container-error">
+  <p>{{error}}</p>
+  <button class="btn btn__close" (click)="errorClose()" type="button">&times;</button>
+</div>
+<div *ngIf="success" class="container-success">
+  <p>Changes submitted</p>
+  <button class="btn btn__close" (click)="successClose()" type="button">&times;</button>
+</div>
 <form [formGroup]="formDeleteAccount" class="form" (ngSubmit)="submit(formDeleteAccount)">
   <h2 class="form__title">Close account</h2>
-
   <p class="form__msg"><span class="form__warning">Warning:</span> closing your account is irreversible. It deletes all of your data.</p>
-
   <!-- Current Password -->
   <div class="form__group">
     <label class="form__label" for="current-password"

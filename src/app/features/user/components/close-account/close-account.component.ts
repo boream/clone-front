@@ -12,7 +12,7 @@ import { User } from 'src/app/types/user';
 export class CloseAccountComponent implements OnInit {
 
   formDeleteAccount: FormGroup;
-  error: boolean;
+  error: String;
   user: User;
 
   loading = false;
@@ -37,7 +37,8 @@ export class CloseAccountComponent implements OnInit {
   }
 
   submit(form) {
-    this.userService.closeAccount(this.user).subscribe((res) => {
+    debugger
+    this.userService.closeAccount(this.user).subscribe(() => {
       console.log('Delete successfully')
     })
   }
@@ -50,6 +51,10 @@ export class CloseAccountComponent implements OnInit {
 
   errorClose() {
     this.error = null;
+  }
+
+  successClose() {
+    this.success = false;
   }
 
 }

@@ -49,10 +49,8 @@ export class ChangePasswordComponent implements OnInit {
 
   submit(form) {
     debugger
-    this.loading = true;
-    debugger
-    this.userService.changePassword(this.user, this.formChangePswd.value).subscribe(
-      (res) => {
+    this.userService.changePassword(this.user, form.value.newPassword).subscribe(
+      () => {
         this.success = true;
       }, (error) => {
         console.log(error)

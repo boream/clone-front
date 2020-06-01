@@ -34,7 +34,6 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    debugger
     return this.http.put<User>(`${this.userUrl}/${user.id}`, user);
   }
 
@@ -53,6 +52,7 @@ export class UserService {
   }
 
   closeAccount(user: User): Observable<Object> {
+    debugger
     return this.http.delete(`${this.userUrl}/${user.id}`)
       .pipe(
         tap(() => this.router.navigate(['/login']))
