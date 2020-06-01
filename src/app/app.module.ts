@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
+import { DragDropDirective } from './directives/drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UploadModule } from './features/upload/upload.module';
     SignupComponent,
     PageNotFoundComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    DragDropDirective
   ],
   imports: [
     BrowserModule,
