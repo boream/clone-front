@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { UserService } from 'src/app/services/user.service';
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   userAvatar: Observable<string>;
   username: string;
   notifications: [] = [];
-  categories: string[] = ['Example'];
+  @Input() categories: string[] = ['Example'];
 
 
   constructor(

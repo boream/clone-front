@@ -1,0 +1,54 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+.subheader {
+  @include flex(center, space-between);
+  @include size(100vw, rem(57px));
+
+  color: #fff;
+  background-color: $grey-400;
+
+  @media screen and (min-width: 767px) {
+    @include flex(center, space-between);
+    height: rem(90px);
+  }
+
+
+    // CATEGORIES BAR
+  // -----------------
+  &__categories {
+    @include flex(center, flex-start);
+    @include size(100vw, rem(50px));
+    padding: 14px 16px;
+    background-color: #fff;
+    font-size: rem(12px);
+    font-family: $font-primary;
+    font-weight: $font-weight-regular;
+    overflow-x: auto;
+
+    @media screen and (min-width: 767px) {
+      font-size: rem(14px);
+    }
+
+    &-item {
+      padding: 0 37px;
+      color: $grey-200;
+      &:first-child {
+        padding-left: 0 ;
+        border-right: 1px solid $border-control;
+        font-weight: $font-weight-normal;
+        color: $grey-300;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &-list {
+      @include flex(center, flex-start);
+      text-transform: uppercase;
+    }
+  }
+
+
+}
+
