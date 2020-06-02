@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
 import { User } from 'src/app/types/user';
+import { Image } from 'src/app/types/image';
 
 @Component({
   selector: 'app-upload',
@@ -14,7 +15,8 @@ export class UploadComponent implements OnInit {
   success: boolean = true;
 
   user: User
-  image: any;
+  image: Image;
+  imageFiles: Array<Image> = []
 
 
   constructor(private userService: UserService,
@@ -25,10 +27,6 @@ export class UploadComponent implements OnInit {
       debugger
       this.user = res;
     });
-    // this.imageService.saveImage().subscribe((res) => {
-
-    // })
-
   }
 
   errorClose() {
@@ -40,9 +38,16 @@ export class UploadComponent implements OnInit {
   }
 
   imageFileSubmit(imagefile):void {
-    debugger
-    this.image = imagefile;
+    this.image = {
+      file: imagefile,
+      user: this.user,
+      published: false
+    };
     console.log(this.image);
+    this.imageService.saveImage(this.image).subscribe((res) => {
+      this.imageFiles.push(res)
+      console.log(this.imageFiles);
+    })
   }
 
 }
