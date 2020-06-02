@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  imagesListTest = [{ title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }, { title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }, { title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }, { title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }, { title: '', url: '/assets/img/background_desktop.png', tags: [], categories: [] }]
+  imagesListTest = [{ title: '', url: '/assets/img/background_desktop.png', tags: [], category: {} }, { title: '', url: '/assets/img/background_desktop.png', tags: [], category: '' }, { title: '', url: '/assets/img/background_desktop.png', tags: [], category: '' }, { title: '', url: '/assets/img/background_desktop.png', tags: [], category: '' }, { title: '', url: '/assets/img/background_desktop.png', tags: [], category: '' }]
 
   constructor() { }
 

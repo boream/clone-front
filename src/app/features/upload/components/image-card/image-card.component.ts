@@ -29,7 +29,7 @@ export class ImageCardComponent implements OnInit {
       categories: false,
       tags: false,
     }
-    this.image['categorySelected'] = 'Categories...';
+    this.image.category = {Title: 'Categories...'};
     this.categories$ = this.categoriesService.getCategories();
     this.tagsService.getTags().subscribe(tags => this.tags = tags);
   }
@@ -45,8 +45,12 @@ export class ImageCardComponent implements OnInit {
   }
 
   selectCategory(image, category) {
-    image.categorySelected = category.Title ? category.Title : category;
-    image.categories.push(category);
+    if (category.Title) {
+      image.category.Title = category.Title;
+      image.category = category;
+    } else {
+      image.category = {};
+    }
     this.update.emit(image);
   }
 

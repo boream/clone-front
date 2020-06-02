@@ -42,9 +42,12 @@ export class TagComponent implements OnInit {
     }
   }
 
-  addTag(tag) {
+  addTag(tag: string) {
     if (tag) {
-      this.tagAdded.emit(tag);
+      const newTag = {
+        name: tag
+      }
+      this.tagAdded.emit(newTag);
     }
   }
 
