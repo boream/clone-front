@@ -1,6 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FileHandle } from 'src/app/directives/drag-drop.directive';
-import { Image } from 'src/app/types/image';
+
 
 @Component({
   selector: 'app-form-upload',
@@ -9,7 +9,7 @@ import { Image } from 'src/app/types/image';
 })
 export class FormUploadComponent implements OnInit {
 
-  @Output() imageFile;
+  @Output() imageFile = new EventEmitter();;
 
   image: File;
   imageSelected: string | ArrayBuffer;
@@ -27,14 +27,16 @@ export class FormUploadComponent implements OnInit {
       this.image = <File>event.target.files[0];
       const reader = new FileReader();
       reader.onload = e => this.imageSelected = reader.result;
-      this.imageFile = this.image
+      this.imageFile.emit(this.image)
       console.log(this.imageFile);
+      debugger
     }
   }
 
   filesDropped(files): void {
+    debugger
     // TODO use service
-    this.files = files;
+    this.imageFile.emit(files);
     console.log(this.files);
   }
 
