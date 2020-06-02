@@ -10,14 +10,14 @@ import { Category } from '../../types/category';
 export class HeadersubComponent implements OnInit {
 
   //@Input() categories: string[] = ['Example'];
-  public categories = [];
+  public categories: Category[] = [];
 
   constructor(
     private categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe((res: any[]) => {
+    this.categoriesService.getCategories().subscribe((res: Category[]) => {
       this.categories = res;
     })
   }
