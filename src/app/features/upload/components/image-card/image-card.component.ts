@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TagsService } from 'src/app/services/tags.service';
+import { Tag } from 'src/app/types/tag';
 
 @Component({
   selector: 'app-image-card',
@@ -15,7 +16,7 @@ export class ImageCardComponent implements OnInit {
   @Output() update = new EventEmitter();
 
   categories$: Observable<[]>;
-  tags$: Observable<[]>;
+  tags: [];
 
   constructor(
     private categoriesService: CategoriesService,
@@ -30,7 +31,7 @@ export class ImageCardComponent implements OnInit {
     }
     this.image['categorySelected'] = 'Categories...';
     this.categories$ = this.categoriesService.getCategories();
-    this.tags$ = this.tagsService.getTags();
+    this.tagsService.getTags().subscribe(tags => this.tags = tags);
   }
 
   toggleSelectCategories(image) {
@@ -45,9 +46,20 @@ export class ImageCardComponent implements OnInit {
 
   selectCategory(image, category) {
     image.categorySelected = category.Title ? category.Title : category;
+    image.categories.push(category);
     this.update.emit(image);
   }
 
+  selectTag(tag: Tag, image){
+    this.image.tags.push(tag);
+    this.update.emit(image);
+  }
+
+  unSelectTag(tag: Tag, image) {
+    const imageList = this.image.tags.filter((t: Tag) => t.id !== tag.id);
+    image.tags = imageList;
+    this.update.emit(image);
+  }
 
 
 }

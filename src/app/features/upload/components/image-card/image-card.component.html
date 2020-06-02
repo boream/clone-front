@@ -13,17 +13,16 @@
       <use xlink:href="/assets/icons/sprite.svg#arrow"></use>
     </svg>
   </div>
-  <div class="card__select" (click)="toggleSelectTags(image)">
+  <div class="card__select">
     <ul class="card__select-control">
-      <li class="card__select-default" [class.card__select-default--selected]="image.isSelected.tags">Tags...</li>
+      <li class="card__select-default" [class.card__select-default--selected]="image.isSelected.tags" (click)="toggleSelectTags(image)">Tags...</li>
       <div *ngIf="image.isSelected.tags" class="card__select-dropdown">
         <!-- Sustituir por component -->
-        <li class="card__select-item">Tags...</li>
-        <li *ngFor="let tag of tags$  | async" class="card__select-item"> {{ tag.name }} </li>
+        <app-tag [tags]="tags" (tagChecked)="selectTag($event, image)" (tagUnChecked)="unSelectTag($event, image)"></app-tag>
          <!-- // Sustituir por component -->
       </div>
     </ul>
-    <svg class="card__select-icon" [class.card__select-icon--selected]="image.isSelected.tags">
+    <svg class="card__select-icon" [class.card__select-icon--selected]="image.isSelected.tags" (click)="toggleSelectTags(image)">
       <use xlink:href="/assets/icons/sprite.svg#arrow"></use>
     </svg>
   </div>

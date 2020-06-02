@@ -10,10 +10,11 @@ import { SmartComponent } from './components/smart/smart.component';
 
 import { DragDropDirective } from '../../directives/drag-drop.directive';
 import { FormUploadComponent } from './components/form-upload/form-upload.component';
+import { TagComponent } from './components/tag/tag.component';
 
 
 @NgModule({
-  declarations: [UploadComponent, ImagesListComponent, ImageCardComponent, SmartComponent, DragDropDirective, FormUploadComponent,],
+  declarations: [UploadComponent, ImagesListComponent, ImageCardComponent, SmartComponent, DragDropDirective, FormUploadComponent, TagComponent,],
   imports: [
     CommonModule,
     UploadRoutingModule,
