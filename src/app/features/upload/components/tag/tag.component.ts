@@ -23,10 +23,12 @@ export class TagComponent implements OnInit {
     this.filteredList = this.tags;
   }
 
-  onChecked(e, tag) {
-    if (e.target.checked === true) {
+  onChecked(tag) {
+    if (!tag.checked) {
+      tag['checked'] = true;
       this.tagChecked.emit(tag);
     } else {
+      tag['checked'] = false;
       this.tagUnChecked.emit(tag);
     }
   }

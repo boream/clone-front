@@ -10,9 +10,9 @@
   </div>
 
   <ul class="tags__list">
-    <li *ngFor="let tag of filteredList" class="tags__elem">
+    <li *ngFor="let tag of filteredList" class="tags__elem" (click)="onChecked(tag)">
       <div class="checkbox">
-        <input type="checkbox" [id]="tag.id" class="checkbox__box" (change)="onChecked($event, tag)">
+        <input type="checkbox" [id]="tag.id" class="checkbox__box" [checked]="tag.checked" (click)="onChecked(tag)">
         <span class="checkbox__checkmark"></span>
       </div>
       <label [for]="tag.id" class="tags__name">
