@@ -21,7 +21,9 @@
   }
 
   &__search-bar {
-    @include flex(center, flex-start)
+    @include flex(center, flex-start);
+    width: 100%;
+    padding-right: 13px;
   }
 
   &__control {
