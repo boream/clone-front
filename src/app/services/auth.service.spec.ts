@@ -1,7 +1,7 @@
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { WebStorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgZone } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { FormGroup } from '@angular/forms';
@@ -43,6 +43,8 @@ describe('AuthService', () => {
     }
   }
 
+  let ngZone;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -56,6 +58,9 @@ describe('AuthService', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
+    // https://stackoverflow.com/questions/51455545/when-to-use-ngzone-run
+    // https://stackoverflow.com/questions/47503064/running-jasmine-tests-for-a-component-with-ngzone-dependency
+    ngZone = TestBed.get(NgZone);
     authService = TestBed.inject(AuthService);
     httpTestingController = TestBed.inject(HttpTestingController);
     storage = TestBed.inject(WebStorageService);
@@ -79,18 +84,19 @@ describe('AuthService', () => {
       }
     } as FormGroup;
 
-    authService.login(loginForm).subscribe(
-      (res: any) => {
-        expect(res.jwt).toEqual(token, 'expected token');
-        expect(storage.get('token')).toEqual(token);
-      },
-      fail
-    );
+    ngZone.run(() => {
+      authService.login(loginForm).subscribe(
+        (res: any) => {
+          expect(res.jwt).toEqual(token, 'expected token');
+          expect(storage.get('token')).toEqual(token);
+        },
+        fail
+      );
 
-    const req = httpTestingController.expectOne(`${environment.apiUrl}auth/local`);
-    expect(req.request.method).toEqual('POST');
-    req.flush(mockRespone);
-
+      const req = httpTestingController.expectOne(`${environment.apiUrl}auth/local`);
+      expect(req.request.method).toEqual('POST');
+      req.flush(mockRespone);
+    });
   });
 
   it('should perform a post to /auth/local/register with username, email and password from a FormGroup', fakeAsync(() => {
@@ -103,24 +109,28 @@ describe('AuthService', () => {
       lastname: 'capullin'
     }
 
-    authService.signup(user).subscribe(
-      (res: any) => expect(res.jwt).toEqual(token, 'expected token'),
-      fail
-    );
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}auth/local/register`);
-    expect(req.request.method).toEqual('POST');
-    req.flush(mockRespone);
-    tick();
-    expect(location.path()).toBe('/login?signupSuccess=true');
+    ngZone.run(() => {
+      authService.signup(user).subscribe(
+        (res: any) => expect(res.jwt).toEqual(token, 'expected token'),
+        fail
+      );
+  
+      const req = httpTestingController.expectOne(`${environment.apiUrl}auth/local/register`);
+      expect(req.request.method).toEqual('POST');
+      req.flush(mockRespone);
+      tick();
+      expect(location.path()).toBe('/login?signupSuccess=true');
+    });
   }));
 
   it('should remove token from local storage', fakeAsync(() => {
     storage.set('token', token);
-    authService.logout();
-    expect(storage.get('token')).toEqual(undefined);
-    tick();
-    expect(location.path()).toBe('/login');
+    ngZone.run(() => {
+      authService.logout();
+      expect(storage.get('token')).toEqual(undefined);
+      tick();
+      expect(location.path()).toBe('/login');
+    });
   }))
 
 });

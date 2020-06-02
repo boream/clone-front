@@ -1,14 +1,8 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import { StorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/internal/operators/map';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../../../../types/user';
 import { AuthService } from 'src/app/services/auth.service';
-
 
 
 @Component({
@@ -42,9 +36,7 @@ export class HeaderUserComponent implements OnInit {
     this.optionsActived = !this.optionsActived;
   }
 
-  logOut(){
+  logOut() {
     this.authService.logout();
   }
-
-
 }
