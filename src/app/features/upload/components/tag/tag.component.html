@@ -19,6 +19,7 @@
         {{ tag.name }}
       </label>
     </li>
+    <li class="tags__elem" *ngIf="filteredList.length === 0">Not tags found</li>
   </ul>
   <label>
     <div class="tags__input tags__input--add">
