@@ -1,10 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HomeComponent } from '../home/home.component';
 
 describe('LoginComponent', () => {
   let loginResponse = {
@@ -21,7 +22,10 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([{
+          path: 'home',
+          component: HomeComponent
+        }]),
         ReactiveFormsModule
       ],
       providers: [
@@ -45,7 +49,7 @@ describe('LoginComponent', () => {
     expect(component['submit']).toBeTruthy();
   });
 
-  it('should call login when submit', () => {
+  it('should call login when submit', fakeAsync(() => {
     const form = {
       value: {
         identifier: 'hola@hola.com',
@@ -53,7 +57,11 @@ describe('LoginComponent', () => {
       },
       valid: false
     }
-    component.submit(form);
+    // https://stackoverflow.com/questions/51455545/when-to-use-ngzone-run
+    fixture.ngZone.run(() => {
+      component.submit(form);
+    });
+    tick();
     expect(loginSpy.calls.any()).toBe(true, 'login called');
-  });
+  }));
 });

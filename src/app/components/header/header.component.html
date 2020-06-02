@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-    <img class="header__avatar" [src]="userAvatar | async" alt="User profile avatar"
+    <img class="header__avatar" [src]="userAvatar$ | async" alt="User profile avatar"
       [routerLink]="['/', username]">
   </nav>
   <!-- //NAVBAR -->

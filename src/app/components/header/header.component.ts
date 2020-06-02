@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   isMenuOpen: boolean = false;
   isNotificationOpen: boolean = false;
   notificationsEmpty: boolean = true;
-  userAvatar: Observable<string>;
+  userAvatar$: Observable<string>;
   username: string;
   notifications: [] = [];
   @Input() categories: string[] = ['Example'];
@@ -31,8 +31,7 @@ export class HeaderComponent implements OnInit {
     this.userService.getLoggedUser().subscribe((user: User) => {
       this.username = `@${user.username}`;
     })
-    this.userAvatar = this.userService.getLoggedUserAvatar();
-    // this.username = this.userService.getLoggedUser().pipe( map((user: User) => `@${user.username}`));
+    this.userAvatar$ = this.userService.getLoggedUserAvatar();
   }
 
   toggleNotifications() {
