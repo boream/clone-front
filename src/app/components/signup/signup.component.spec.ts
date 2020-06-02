@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { Register } from 'src/app/types/register';
 import { AuthService } from 'src/app/services/auth.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SignupComponent', () => {
   let signUpResponse = {
@@ -21,7 +22,8 @@ describe('SignupComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SignupComponent ],
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterTestingModule
       ],
       providers: [
         { provide: AuthService, useValue: authService }
