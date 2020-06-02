@@ -3,14 +3,12 @@
 
 .subheader {
   @include flex(center, space-between);
-  @include size(100vw, rem(57px));
-
+  width: 100vw;
   color: #fff;
   background-color: $grey-400;
 
   @media screen and (min-width: 767px) {
     @include flex(center, space-between);
-    height: rem(90px);
   }
 
 

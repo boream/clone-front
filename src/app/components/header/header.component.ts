@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   userAvatar$: Observable<string>;
   username: string;
   notifications: [] = [];
-  @Input() categories: string[] = ['Example'];
+  //@Input() categories: string[] = ['Example'];
 
 
   constructor(
