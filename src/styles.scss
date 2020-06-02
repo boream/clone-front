@@ -1,24 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;700&family=Roboto:wght@300;400;500;700&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;700&family=Roboto:wght@300;400;500;700&display=swap");
 
 // ------------------------------------
 // GLOBAL
 // ------------------------------------
 
-@import './sass/global/variables';
-@import './sass/global/reset';
-@import './sass/global/base';
+@import "./sass/global/variables";
+@import "./sass/global/reset";
+@import "./sass/global/base";
 
-@import './sass/mixins/mixins';
+@import "./sass/mixins/mixins";
 
-@import './sass/components/form';
-@import './sass/components/grid';
-@import './sass/components/btn';
-
+@import "./sass/components/form";
+@import "./sass/components/grid";
+@import "./sass/components/btn";
 
 // ------------------------------------
 // COMPONENTS
 // ------------------------------------
 
+body {
+    background-color: $bg-color;
+}

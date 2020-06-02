@@ -1,45 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/types/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-close-account',
   templateUrl: './close-account.component.html',
   styleUrls: ['./close-account.component.scss']
 })
-export class CloseAccountComponent implements OnInit {
+export class CloseAccountComponent implements OnInit, OnDestroy {
 
   formDeleteAccount: FormGroup;
-  error: boolean;
+  error: String;
   user: User;
 
   loading = false;
   success = false;
 
+  private subscriptions: Subscription[] = [];
+
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
-    private router: Router
+    private userService: UserService
   ) { }
 
-  ngOnInit(): void {
-    debugger
-    this.userService.getLoggedUser().subscribe((res) => {
-      this.user = res;
-      console.log(res)
-    })
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
 
+  ngOnInit(): void {
+    this.subscriptions.push(
+      this.userService.getLoggedUser().subscribe((res) => {
+        this.user = res;
+      }));
     this.formDeleteAccount = this.fb.group({
       currentPassword: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
 
   submit(form) {
-    this.userService.closeAccount(this.user).subscribe((res) => {
-      console.log('Delete successfully')
-    })
+    this.subscriptions.push(
+      this.userService.closeAccount(this.user).subscribe(() => {
+        console.log('Delete successfully')
+      })
+    )
   }
 
   passwordHasError(password) {
@@ -50,6 +55,10 @@ export class CloseAccountComponent implements OnInit {
 
   errorClose() {
     this.error = null;
+  }
+
+  successClose() {
+    this.success = false;
   }
 
 }
