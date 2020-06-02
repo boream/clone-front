@@ -1,4 +1,5 @@
 <div class="container-upload">
   <h1 class="container-upload__title">Upload your images</h1>
   <app-smart></app-smart>
+  <app-images-list [imagesList]="imagesListTest" (updateImagesList)="printList()"></app-images-list>
 </div>
