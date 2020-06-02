@@ -29,15 +29,12 @@ export class FormUploadComponent implements OnInit {
       reader.onload = e => this.imageSelected = reader.result;
       this.imageFile.emit(this.image)
       console.log(this.imageFile);
-      debugger
     }
   }
 
   filesDropped(files): void {
-    debugger
-    // TODO use service
-    this.imageFile.emit(files);
-    console.log(this.files);
+    this.imageFile.emit(files[0].file);
+    console.log(this.imageFile);
   }
 
 }

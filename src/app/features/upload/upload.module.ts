@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { UploadComponent } from './components/upload/upload.component';
 import { UploadRoutingModule } from './upload-routing.module';
-import { SmartComponent } from './components/smart/smart.component';
 
 import { DragDropDirective } from '../../directives/drag-drop.directive';
 import { FormUploadComponent } from './components/form-upload/form-upload.component';
@@ -11,7 +10,6 @@ import { FormUploadComponent } from './components/form-upload/form-upload.compon
 
 @NgModule({
   declarations: [UploadComponent,
-    SmartComponent,
     DragDropDirective,
     FormUploadComponent,],
   imports: [

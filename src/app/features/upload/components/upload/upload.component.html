@@ -6,9 +6,10 @@
   <p>Images submitted</p>
   <button class="btn btn__close" (click)="successClose()" type="button">&times;</button>
 </div>
-<div class="container-upload">
+<div  class="container-upload">
+  <img [src]="image" width="100" height="100" alt="">
   <h1 class="container-upload__title">Upload your images</h1>
-  <app-smart></app-smart>
+  <app-form-upload (imageFile)="imageFileSubmit($event)"></app-form-upload>
 </div>
 <footer class="footer-upload">
   <button class="btn btn__link" type="reset">Cancel</button>
