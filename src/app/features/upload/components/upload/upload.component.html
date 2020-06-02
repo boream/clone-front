@@ -1,3 +1,11 @@
+<div *ngIf="error" class="container-error">
+  <p>{{error}}</p>
+  <button class="btn btn__close" (click)="errorClose()" type="button">&times;</button>
+</div>
+<div *ngIf="success" class="container-success">
+  <p>Images submitted</p>
+  <button class="btn btn__close" (click)="successClose()" type="button">&times;</button>
+</div>
 <div class="container-upload">
   <h1 class="container-upload__title">Upload your images</h1>
   <app-smart></app-smart>
