@@ -12,6 +12,7 @@ export class TagComponent implements OnInit {
 
   @Output() tagChecked = new EventEmitter();
   @Output() tagUnChecked = new EventEmitter();
+  @Output() tagAdded = new EventEmitter();
 
   searchText: string = '';
   filteredList: Tag[] = [];
@@ -36,6 +37,12 @@ export class TagComponent implements OnInit {
     } else {
       const searchRegex = new RegExp(text, 'i');
       this.filteredList = this.tags.filter(tag => searchRegex.test(tag.name.toLowerCase()));
+    }
+  }
+
+  addTag(tag) {
+    if (tag) {
+      this.tagAdded.emit(tag);
     }
   }
 

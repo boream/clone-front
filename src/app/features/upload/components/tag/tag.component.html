@@ -21,10 +21,11 @@
     </li>
     <li class="tags__elem" *ngIf="filteredList.length === 0">Not tags found</li>
   </ul>
+
   <label>
     <div class="tags__input tags__input--add">
-      <input type="text" placeholder="New..." class="tags__control">
-      <button type="button" class="btn btn--add">Add tag</button>
+      <input type="text" placeholder="New..." class="tags__control" #input>
+      <button type="button" class="btn btn--add" (click)="addTag(input.value)">Add tag</button>
     </div>
   </label>
 
