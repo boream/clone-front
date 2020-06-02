@@ -27,4 +27,17 @@ export class ImageService {
     formData.append('data', JSON.stringify(data));
     return this.http.post(this.imagesUrl, formData);
   }
+
+  updateImage(image: Image) {
+    return this.http.put<Image>(`${this.imagesUrl}/${image.id}`, image);
+  }
+
+  updateImageFile(image: Image): Observable<any> {
+    const formData = new FormData();
+    formData.append('files', image.file, image.file.name);
+    formData.append('ref', 'image');
+    formData.append('refId', image.id);
+    formData.append('field', 'file');
+    return this.http.post(`${environment.apiUrl}upload`, formData);
+  }
 }
