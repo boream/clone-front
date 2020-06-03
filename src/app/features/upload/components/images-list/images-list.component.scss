@@ -1,0 +1,14 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+.images-list {
+  @include size(100%, 100%);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(rem(267px), 1fr));
+  grid-template-rows: max-content;
+  column-gap: 8px;
+  row-gap: 39px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 30px;
+}

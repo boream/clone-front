@@ -9,7 +9,7 @@
 <div  class="container-upload">
   <img [src]="image" width="100" height="100" alt="">
   <h1 class="container-upload__title">Upload your images</h1>
-  <app-form-upload (imageFile)="imageFileSubmit($event)"></app-form-upload>
+  <app-images-list [imagesList]="imagesListTest" (updateImagesList)="printList()"></app-images-list>
 </div>
 <footer class="footer-upload">
   <button class="btn btn__link" type="reset">Cancel</button>

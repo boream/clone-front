@@ -1,0 +1,120 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+//------------------------------//
+// TAGS                         //
+// ---------------------------- //
+.tags {
+  @include size(100%, auto);
+  display: flex;
+  flex-direction: column;
+  max-height: rem(297px);
+  overflow: hidden;
+
+  &__input {
+    @include size(100%, rem(34px));
+    @include flex(center, flex-start);
+    position: relative;
+    padding-left: 13px;
+    background-color: #fff;
+
+    &:last-child {
+      border-top: 1px solid $border-control;
+    }
+  }
+
+  &__search-bar {
+    @include flex(center, flex-start);
+    width: 100%;
+    padding-right: 13px;
+  }
+
+  &__control {
+    width: 100%;
+    border: none;
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
+    font-size: rem(13px);
+  }
+
+  &__icon {
+    &--search {
+      @include size(1.1rem, 1rem);
+      margin-right: 10px;
+      fill: $border-control;
+    }
+  }
+
+  &__list {
+    border-top: 1px solid $border-control;
+    padding: 16px 13px;
+    overflow: auto;
+  }
+
+  &__elem {
+    @include flex(center, flex-start);
+
+    &+& {
+      margin-top: 10px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__name {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}
+
+.btn--add {
+  @include size(rem(74px), 100%);
+  display: inline;
+  background-color: $success;
+}
+
+
+//------------------------------//
+// CHECKBOX                     //
+// ---------------------------- //
+
+:root {
+  --checkbox-size: 1.25rem;
+  --checkmark-size: 1.5rem;
+}
+
+.checkbox {
+  @include size (1rem, 1rem);
+  position: relative;
+  border: 1px solid $border-control;
+  border-radius: 3px;
+  background-color: #fff;
+  margin-right: 10px;
+
+  &__box {
+    @include size();
+
+    position: absolute;
+    opacity: 0;
+    z-index: 100;
+    cursor: pointer;
+  }
+
+  &__checkmark {
+    @include flex();
+    @include size(var(--checkbox-size));
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__box:checked~&__checkmark::after {
+    content: '\2713';
+    color: $success;
+    font-size: var(--checkmark-size);
+    transform: rotate(2deg);
+  }
+}
