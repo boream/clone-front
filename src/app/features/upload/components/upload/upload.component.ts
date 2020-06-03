@@ -49,5 +49,4 @@ export class UploadComponent implements OnInit {
       console.log(this.imageFiles);
     })
   }
-
 }
