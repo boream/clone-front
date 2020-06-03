@@ -61,10 +61,6 @@ export class UploadComponent implements OnInit, OnDestroy {
     );
   }
 
-  printList() {
-    console.log(this.imageFiles);
-  }
-
   private getImages() {
     return this.userService.getLoggedUser().pipe(
       tap(res => { this.user = res }),
