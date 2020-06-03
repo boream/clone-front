@@ -22,6 +22,8 @@ export class ImageService {
     if (image.tags) {
       data.tags = image.tags;
     }
+    data.user = image.user.id;
+    data.published = image.published
     const formData = new FormData();
     formData.append('files.file', image.file, image.file.name);
     formData.append('data', JSON.stringify(data));
