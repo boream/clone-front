@@ -6,7 +6,10 @@
 // ---------------------------- //
 .tags {
   @include size(100%, auto);
+  display: flex;
+  flex-direction: column;
   max-height: rem(297px);
+  overflow: hidden;
 
   &__input {
     @include size(100%, rem(34px));
