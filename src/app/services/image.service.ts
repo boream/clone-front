@@ -15,6 +15,7 @@ export class ImageService {
   constructor(private http: HttpClient) { }
 
   saveImage(image: Image): Observable<any> {
+    debugger
     const data: any = {};
     data.name = image.title;
     if (image.category) {
@@ -36,6 +37,7 @@ export class ImageService {
   }
 
   updateImageFile(image: Image): Observable<any> {
+    debugger
     const formData = new FormData();
     formData.append('files', image.file, image.file.name);
     formData.append('ref', 'image');

@@ -20,7 +20,7 @@ export class UploadComponent implements OnInit, OnDestroy {
   image: Image;
   imageFiles: Array<Image> = []
 
-  images$: Observable<any[]>;
+  images$: Observable<Image[]>;
 
   subscriptions: Subscription[] = [];
 
@@ -76,5 +76,24 @@ export class UploadComponent implements OnInit, OnDestroy {
         )
       })
     );
+  }
+
+  publishedImages() {
+    this.images$.forEach(element => {
+      debugger
+      element.forEach(image => {
+        image = {
+          file: image.file,
+          user: this.user,
+          published: true
+        };
+        debugger
+        this.imageService.updateImageFile(image);
+      })
+    });
+  }
+
+  cancelImages() {
+
   }
 }

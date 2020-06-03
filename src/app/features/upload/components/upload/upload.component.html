@@ -1,17 +1,10 @@
-<div *ngIf="error" class="container-error">
-  <p>{{error}}</p>
-  <button class="btn btn__close" (click)="errorClose()" type="button">&times;</button>
-</div>
-<div *ngIf="success" class="container-success">
-  <p>Images submitted</p>
-  <button class="btn btn__close" (click)="successClose()" type="button">&times;</button>
-</div>
+
 <div  class="container-upload">
   <h1 class="container-upload__title">Upload your images</h1>
   <app-form-upload (imageFile)="imageFileSubmit($event)" ></app-form-upload>
   <app-images-list [imagesList]="images$ | async" (updateImagesList)="printList()"></app-images-list>
 </div>
 <footer class="footer-upload">
-  <button class="btn btn__link" type="reset">Cancel</button>
-  <button class="btn btn__primary btn__primary--big" type="submit">Publish images</button>
+  <button (click)="cancelImages()" class="btn btn__link" type="reset">Cancel</button>
+  <button (click)="publishedImages()" class="btn btn__primary btn__primary--big" type="submit">Publish images</button>
 </footer>
