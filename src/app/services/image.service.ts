@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Image } from '../types/image';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,17 @@ export class ImageService {
     formData.append('refId', image.id);
     formData.append('field', 'file');
     return this.http.post(`${environment.apiUrl}upload`, formData);
+  }
+
+  getUserImagesByUsername(username: string): Observable<Image[]> {
+    return this.http.get(this.imagesUrl)
+      .pipe(
+        map((images: Image[]) => images.filter((img: Image) => {
+          if (img.user && img.user.username === username) {
+            img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
+            return img;
+          }
+        }))
+      )
   }
 }

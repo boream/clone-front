@@ -90,16 +90,4 @@ export class UserService {
       )
   }
 
-  getUserImagesByUsername(username: string): Observable<Image[]> {
-    return this.http.get(this.imagesUrl)
-      .pipe(
-        map((images: Image[]) => images.filter((img: Image) => {
-          if (img.user && img.user.username === username.slice(1)) {
-            img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
-            return img;
-          }
-        }))
-      )
-  }
-
 }
