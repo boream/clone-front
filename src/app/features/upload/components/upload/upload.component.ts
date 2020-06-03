@@ -24,7 +24,6 @@ export class UploadComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getLoggedUser().subscribe((res) => {
-      debugger
       this.user = res;
     });
   }
@@ -45,6 +44,7 @@ export class UploadComponent implements OnInit {
     };
     console.log(this.image);
     this.imageService.saveImage(this.image).subscribe((res) => {
+      debugger
       this.imageFiles.push(res)
       console.log(res);
 
