@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../../../../types/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { map, switchMap } from 'rxjs/operators';
 
 
 @Component({
