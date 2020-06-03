@@ -30,7 +30,6 @@ export class TagComponent implements OnInit, OnChanges {
 
 
   onChecked(tag) {
-    debugger
     if (!tag.checked) {
       tag['checked'] = true;
       this.tagChecked.emit(tag);
