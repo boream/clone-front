@@ -15,12 +15,19 @@ export class TagComponent implements OnInit {
   @Output() tagAdded = new EventEmitter();
 
   searchText: string = '';
-  filteredList: Tag[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.filteredList = this.tags;
+
+  }
+
+  get filteredList(): Tag[] {
+    return this.tags;
+  }
+
+  set filteredList(tags: Tag[]) {
+    this.filteredList = tags;
   }
 
   onChecked(tag) {

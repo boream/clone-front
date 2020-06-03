@@ -18,7 +18,7 @@
       <li class="card__select-default" [class.card__select-default--selected]="image.isSelected.tags" (click)="toggleSelectTags(image)">Tags...</li>
       <div *ngIf="image.isSelected.tags" class="card__select-dropdown">
         <!-- Sustituir por component -->
-        <app-tag [tags]="tags" (tagChecked)="selectTag($event, image)" (tagUnChecked)="unSelectTag($event, image)"></app-tag>
+        <app-tag [tags]="tags" (tagChecked)="selectTag($event, image)" (tagUnChecked)="unSelectTag($event, image)" (tagAdded)="addTag($event)"></app-tag>
          <!-- // Sustituir por component -->
       </div>
     </ul>

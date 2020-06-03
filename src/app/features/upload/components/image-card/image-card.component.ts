@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TagsService } from 'src/app/services/tags.service';
 import { Tag } from 'src/app/types/tag';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-image-card',
@@ -16,7 +17,7 @@ export class ImageCardComponent implements OnInit {
   @Output() update = new EventEmitter();
 
   categories$: Observable<[]>;
-  tags: [];
+  tags: Tag[];
 
   constructor(
     private categoriesService: CategoriesService,
@@ -29,9 +30,9 @@ export class ImageCardComponent implements OnInit {
       categories: false,
       tags: false,
     }
-    this.image.category = {Title: 'Categories...'};
+    this.image.category = { Title: 'Categories...' };
     this.categories$ = this.categoriesService.getCategories();
-    this.tagsService.getTags().subscribe(tags => this.tags = tags);
+    this.tagsService.getTags().subscribe((tags: Tag[]) => this.tags = tags);
   }
 
   toggleSelectCategories(image) {
@@ -54,7 +55,7 @@ export class ImageCardComponent implements OnInit {
     this.update.emit(image);
   }
 
-  selectTag(tag: Tag, image){
+  selectTag(tag: Tag, image) {
     this.image.tags.push(tag);
     this.update.emit(image);
   }
@@ -63,6 +64,14 @@ export class ImageCardComponent implements OnInit {
     const imageList = this.image.tags.filter((t: Tag) => t.id !== tag.id);
     image.tags = imageList;
     this.update.emit(image);
+  }
+
+  addTag(tag) {
+    this.tagsService.addTag(tag)
+      .pipe(
+        switchMap(_ => this.tagsService.getTags())
+      )
+      .subscribe((tags: Tag[]) => this.tags = tags);
   }
 
 
