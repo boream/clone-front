@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../../../../types/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { map, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -13,23 +14,31 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderUserComponent implements OnInit {
 
   @Input() user: User;
+  username: User['username'];
 
   showControls: boolean = false;
   optionsActived: boolean = false;
 
   constructor(
-    private activedRouter: ActivatedRoute,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    const username = this.activedRouter.snapshot.params.username;
-    this.userService.getLoggedUser().subscribe((user: User) => {
-      if (username === `@${user.username}`) {
-        this.showControls = true;
-      }
-    });
+    this.route.paramMap
+      .pipe(
+        map((res) => res['params']),
+        switchMap(params => {
+          this.username = params['username'];
+          return this.userService.getLoggedUser();
+        }),
+      )
+      .subscribe((user: User) => {
+        if (this.username === `@${user.username}`) {
+          this.showControls = true;
+        }
+      })
   }
 
   showOptions() {
