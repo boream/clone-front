@@ -57,13 +57,11 @@ export class ImageCardComponent implements OnInit {
 
   selectTag(tag: Tag, image) {
     this.image.tags.push(tag);
-    this.update.emit(image);
   }
 
   unSelectTag(tag: Tag, image) {
     const imageList = this.image.tags.filter((t: Tag) => t.id !== tag.id);
     image.tags = imageList;
-    this.update.emit(image);
   }
 
   addTag(tag) {

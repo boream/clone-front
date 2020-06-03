@@ -5,17 +5,18 @@
       <svg class="tags__icon--search">
         <use xlink:href="/assets/icons/sprite.svg#search" />
       </svg>
-      <input #search type="search" placeholder="Search tag..." class="tags__control" [(ngModel)]="searchText" (input)="filterTags(search.value)">
+      <input #search type="search" placeholder="Search tag..." class="tags__control" [(ngModel)]="searchText"
+        (input)="filterTags(search.value)">
     </label>
   </div>
 
   <ul class="tags__list">
-    <li *ngFor="let tag of filteredList" class="tags__elem" (click)="onChecked(tag)">
-      <div class="checkbox">
-        <input type="checkbox" [id]="tag.id" class="checkbox__box" [checked]="tag.checked" (click)="onChecked(tag)">
-        <span class="checkbox__checkmark"></span>
-      </div>
-      <label [for]="tag.id" class="tags__name">
+    <li *ngFor="let tag of filteredList" class="tags__elem">
+      <label [for]="tag.id" class="tags__label">
+        <div class="checkbox">
+          <input type="checkbox" [id]="tag.id" class="checkbox__box" [checked]="tag.checked" (change)="onChecked(tag)">
+          <span class="checkbox__checkmark"></span>
+        </div>
         {{ tag.name }}
       </label>
     </li>
