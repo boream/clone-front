@@ -36,6 +36,7 @@
         border-right: 1px solid $border-control;
         font-weight: $font-weight-normal;
         color: $grey-300;
+        overflow: hidden;
       }
       &:hover {
         cursor: pointer;
