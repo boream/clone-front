@@ -8,8 +8,15 @@
   @include size(100%, auto);
   display: flex;
   flex-direction: column;
-  max-height: rem(297px);
   overflow: hidden;
+
+  &__label {
+    @include flex(center, flex-start);
+    width: 100%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   &__input {
     @include size(100%, rem(34px));
@@ -47,6 +54,7 @@
 
   &__list {
     border-top: 1px solid $border-control;
+    max-height: rem(229px);
     padding: 16px 13px;
     overflow: auto;
   }
@@ -58,12 +66,6 @@
       margin-top: 10px;
     }
 
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  &__name {
     &:hover {
       cursor: pointer;
     }
