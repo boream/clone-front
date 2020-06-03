@@ -21,7 +21,6 @@ export class UploadComponent implements OnInit {
 
   constructor(private userService: UserService,
               private imageService: ImageService) { }
-  imagesListTest = [{ title: '', url: '/assets/img/background_desktop.png', tags: [], category: {} }, { title: '', url: '/assets/img/background_desktop.png', tags: [], category: '' }, { title: '', url: '/assets/img/background_desktop.png', tags: [], category: '' }, { title: '', url: '/assets/img/background_desktop.png', tags: [], category: '' }, { title: '', url: '/assets/img/background_desktop.png', tags: [], category: '' }]
 
   ngOnInit(): void {
     this.userService.getLoggedUser().subscribe((res) => {
@@ -47,11 +46,12 @@ export class UploadComponent implements OnInit {
     console.log(this.image);
     this.imageService.saveImage(this.image).subscribe((res) => {
       this.imageFiles.push(res)
-      console.log(this.imageFiles);
+      console.log(res);
+
     })
   }
-  
+
   printList() {
-    console.log(this.imagesListTest);
+    console.log(this.imageFiles);
   }
 }
