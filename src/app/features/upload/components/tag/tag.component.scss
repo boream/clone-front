@@ -8,7 +8,6 @@
   @include size(100%, auto);
   display: flex;
   flex-direction: column;
-  max-height: rem(297px);
   overflow: hidden;
 
   &__input {
@@ -47,6 +46,7 @@
 
   &__list {
     border-top: 1px solid $border-control;
+    max-height: rem(229px);
     padding: 16px 13px;
     overflow: auto;
   }
