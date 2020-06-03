@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { Tag } from 'src/app/types/tag';
 
 @Component({
@@ -6,7 +6,7 @@ import { Tag } from 'src/app/types/tag';
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss']
 })
-export class TagComponent implements OnInit {
+export class TagComponent implements OnInit, OnChanges {
 
   @Input() tags: Tag[];
 
@@ -15,20 +15,19 @@ export class TagComponent implements OnInit {
   @Output() tagAdded = new EventEmitter();
 
   searchText: string = '';
-
+  filteredList: Tag[] = [];
   constructor() { }
 
   ngOnInit(): void {
 
   }
 
-  get filteredList(): Tag[] {
-    return this.tags;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.tags) {
+      this.filteredList = this.tags;
+    }
   }
 
-  set filteredList(tags: Tag[]) {
-    this.filteredList = tags;
-  }
 
   onChecked(tag) {
     if (!tag.checked) {
