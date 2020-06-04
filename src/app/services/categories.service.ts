@@ -16,14 +16,6 @@ export class CategoriesService {
   ) { }
 
   getCategories(): Observable<[]> {
-    return this.http.get<[]>(this.url).pipe(
-      map(res => {
-        res.map(category => {
-          category['title'] = category['Title'];
-          return category;
-        })
-        return res;
-      })
-    )
+    return this.http.get<[]>(this.url)
   }
 }
