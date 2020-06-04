@@ -33,9 +33,12 @@ export class ImageCardComponent implements OnInit {
       categories: false,
       tags: false,
     };
-    this.image['title'] = this.image['name']
+    this.image['title'] = this.image['name'];
     this.categories$ = this.categoriesService.getCategories();
-    this.tagsService.getTags().subscribe((tags: Tag[]) => this.tags = tags);
+    this.tagsService.getTags().subscribe((tags: Tag[]) => {
+      this.image.tags.map(tag => { tag['checked'] = true; return tag });
+      this.tags = tags.map(tag => this.image.tags.find(imgTag => imgTag.id === tag.id) || tag);
+    })
   }
 
   toggleSelectCategories(image: Image) {
