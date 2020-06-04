@@ -4,7 +4,7 @@ import { UploadComponent } from './upload.component';
 import { asyncData } from 'src/test-utils';
 import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
-describe('UploadComponent', () => {
+fdescribe('UploadComponent', () => {
   let component: UploadComponent;
   let fixture: ComponentFixture<UploadComponent>;
 
@@ -89,6 +89,6 @@ describe('UploadComponent', () => {
   it('should call imageService on imageFileSubmit', () => {
     component.user = user;
     component.imageFileSubmit(image)
-    expect(imageServiceSpy.saveImage.calls.count()).toBe(1, 'one call');
+    expect(imageServiceSpy.saveImage.calls.count()).toBe(1, 'two call');
   });
 });

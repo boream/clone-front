@@ -32,7 +32,14 @@ export class ImageService {
   }
 
   updateImage(image: Image) {
-    return this.http.put<Image>(`${this.imagesUrl}/${image.id}`, image);
+    const updateImage = {
+      name: image.file.name,
+      published: image.published,
+      tags: image.tags,
+      category: image.category,
+      user: image.user,
+    }
+    return this.http.put<Image>(`${this.imagesUrl}/${image.id}`, updateImage);
   }
 
   updateImageFile(image: Image): Observable<any> {
@@ -52,5 +59,9 @@ export class ImageService {
           return img;
         }))
       )
+  }
+
+  deleteImage(image: Image) {
+    return this.http.delete<Image>(`${this.imagesUrl}/${image.id}`);
   }
 }
