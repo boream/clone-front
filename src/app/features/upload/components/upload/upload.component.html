@@ -2,7 +2,7 @@
 <div  class="container-upload">
   <h1 class="container-upload__title">Upload your images</h1>
   <app-form-upload (imageFile)="imageFileSubmit($event)" ></app-form-upload>
-  <app-images-list [imagesList]="images$ | async" (updateImagesList)="printList()"></app-images-list>
+  <app-images-list [imagesList]="images$ | async"></app-images-list>
 </div>
 <footer class="footer-upload">
   <button (click)="cancelImages()" class="btn btn__link" type="reset">Cancel</button>

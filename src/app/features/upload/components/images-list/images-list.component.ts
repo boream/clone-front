@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Image } from 'src/app/types/image';
+import { Category } from 'src/app/types/category';
 
 @Component({
   selector: 'app-images-list',
@@ -7,18 +9,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ImagesListComponent implements OnInit {
 
-  @Input() imagesList: [];
-  @Input() categories: [];
+  @Input() imagesList: Image[];
 
   @Output() updateImagesList = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  update() {
-    this.updateImagesList.emit(this.imagesList);
   }
 
 }
