@@ -56,7 +56,6 @@ export class UploadComponent implements OnInit, OnDestroy {
     console.log(this.image);
     this.subscriptions.push(
       this.imageService.saveImage(this.image).subscribe((res) => {
-        debugger
         this.images$ = this.getImages();
       })
     );
@@ -81,15 +80,13 @@ export class UploadComponent implements OnInit, OnDestroy {
 
   publishedImages() {
     this.images$.forEach(element => {
-      debugger
       element.forEach(image => {
         image = {
           id: image.id,
           file: image.file,
           user: this.user,
           published: true
-        };
-        debugger
+        }
         this.imageService.updateImage(image).subscribe((res) => {console.log(res);
           this.images$ = this.getImages();
         })
@@ -99,9 +96,7 @@ export class UploadComponent implements OnInit, OnDestroy {
 
   cancelImages() {
     this.images$.forEach(element => {
-      debugger
       element.forEach(image => {
-        debugger
         this.imageService.deleteImage(image).subscribe((res) => {console.log(res);
           this.images$ = this.getImages();
         })
