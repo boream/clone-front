@@ -26,6 +26,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'image',
+    loadChildren: () => import('./features/page-img/page-img.module').then(m => m.PageImgModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'upload',
     loadChildren: () => import('./features/upload/upload.module').then(m => m.UploadModule),
     canActivate: [AuthGuard]
@@ -35,6 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./features/user/user.module').then(m => m.UserModule),
     canActivate: [AuthGuard]
   },
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

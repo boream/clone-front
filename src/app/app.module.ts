@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
+import { PageImgModule } from './features/page-img/page-img.module';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { UploadModule } from './features/upload/upload.module';
     HttpClientModule,
     UserModule,
     UploadModule,
+    PageImgModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
