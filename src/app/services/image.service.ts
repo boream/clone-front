@@ -54,7 +54,7 @@ export class ImageService {
   getUserUnpublishedImagesByUsername(username: string): Observable<Image[]> {
     return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=false`)
       .pipe(
-        map((images: Image[]) => this.formatUrl(images))
+        map((images: Image[]) => this.formatUrl(images).map(img => this.checkImageFields(img)))
       )
   }
 
@@ -71,4 +71,17 @@ export class ImageService {
     })
     return images;
   }
+
+  private checkImageFields(image: Image) {
+    image['error'] = { title: false, category: false };
+    if (!image['name']) {
+      image['error'].title = true;
+    }
+    if (!image.category) {
+      image['error'].category = true;
+    }
+    return image;
+  }
+
+
 }

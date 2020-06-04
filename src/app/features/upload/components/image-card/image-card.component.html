@@ -1,12 +1,17 @@
 <div class="card">
   <img [src]="image.url" class="card__img">
-  <h3 class="card__title"><input #title type="text" placeholder="Title..." class="card__input" [(ngModel)]="image.title" (input)="updateTitle(title.value)"></h3>
+  <h3 class="card__title">
+    <input #title type="text" placeholder="Title..." class="card__input" [class.card__invalid]="image['error']?.title"
+      [(ngModel)]="image.title" (input)="updateTitle(title.value)">
+  </h3>
   <div class="card__select" (click)="toggleSelectCategories(image)">
     <ul class="card__select-control">
-      <li class="card__select-default" [class.card__select-default--selected]="image['isSelected'].categories">{{ image.category?.title || 'Categories...' }}</li>
+      <li class="card__select-default" [class.card__select-default--selected]="image['isSelected'].categories"  [class.card__invalid]="image['error']?.category">
+        {{ image.category?.title || 'Categories...' }}</li>
       <div *ngIf="image['isSelected'].categories" class="card__select-dropdown">
         <li class="card__select-item" (click)="selectCategory(image, defaultCategory)">Categories...</li>
-        <li *ngFor="let category of categories$ | async" class="card__select-item" (click)="selectCategory(image, category)"> {{ category.title }} </li>
+        <li *ngFor="let category of categories$ | async" class="card__select-item"
+          (click)="selectCategory(image, category)"> {{ category.title }} </li>
       </div>
     </ul>
     <svg class="card__select-icon" [class.card__select-icon--selected]="image['isSelected'].categories">
@@ -15,12 +20,15 @@
   </div>
   <div class="card__select">
     <ul class="card__select-control">
-      <li class="card__select-default" [class.card__select-default--selected]="image['isSelected'].tags" (click)="toggleSelectTags(image)">Tags...</li>
+      <li class="card__select-default" [class.card__select-default--selected]="image['isSelected'].tags"
+        (click)="toggleSelectTags(image)">Tags...</li>
       <div *ngIf="image['isSelected'].tags" class="card__select-dropdown">
-        <app-tag [tags]="tags" (tagChecked)="selectTag($event, image)" (tagUnChecked)="unSelectTag($event, image)" (tagAdded)="addTag($event)"></app-tag>
+        <app-tag [tags]="tags" (tagChecked)="selectTag($event, image)" (tagUnChecked)="unSelectTag($event, image)"
+          (tagAdded)="addTag($event)"></app-tag>
       </div>
     </ul>
-    <svg class="card__select-icon" [class.card__select-icon--selected]="image['isSelected'].tags" (click)="toggleSelectTags(image)">
+    <svg class="card__select-icon" [class.card__select-icon--selected]="image['isSelected'].tags"
+      (click)="toggleSelectTags(image)">
       <use xlink:href="/assets/icons/sprite.svg#arrow"></use>
     </svg>
   </div>

@@ -3,7 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
 import { User } from 'src/app/types/user';
 import { Image } from 'src/app/types/image';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -64,17 +64,14 @@ export class UploadComponent implements OnInit, OnDestroy {
   publishedImages() {
     this.images$.forEach(element => {
       element.forEach(image => {
-        image = {
-          id: image.id,
-          file: image.file,
-          user: this.user,
-          published: true
+        if (image['name'] && image.category) {
+          image.published = true;
         }
         this.subscriptions.push(
           this.imageService.updateImage(image).subscribe((res) => this.images$ = this.getImages())
         )
       })
-    });
+    })
   }
 
   cancelImages() {

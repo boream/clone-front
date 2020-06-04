@@ -30,11 +30,7 @@ export class ImageCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.image['isSelected'] = {
-      categories: false,
-      tags: false,
-    };
-    this.image['title'] = this.image['name'];
+    this.setImage();
     this.categories$ = this.categoriesService.getCategories();
     this.subscriptions.push(
       this.tagsService.getTags().subscribe((tags: Tag[]) => {
@@ -48,6 +44,11 @@ export class ImageCardComponent implements OnInit {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  setImage() {
+    this.image['isSelected'] = { categories: false, tags: false};
+    this.image['title'] = this.image['name'];
+  }
+
   toggleSelectCategories(image: Image) {
     image['isSelected'].categories = !image['isSelected'].categories;
     image['isSelected'].tags = false;
@@ -59,6 +60,11 @@ export class ImageCardComponent implements OnInit {
   }
 
   updateTitle(title: String) {
+    if (this.image['error'] && title !== '') {
+      this.image['error'].title = false;
+    } else {
+      this.image['error'].title = true;
+    }
     this.image['name'] = title;
     this.updateImage();
   }
@@ -66,7 +72,11 @@ export class ImageCardComponent implements OnInit {
   selectCategory(image: Image, category: Category) {
     if (category.title) {
       image.category = category;
+      if (this.image['error']) {
+        this.image['error'].category = false;
+      }
     } else {
+      this.image['error'].category = true;
       image.category = null;
     }
     this.updateImage();
