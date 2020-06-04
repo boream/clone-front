@@ -11,4 +11,8 @@
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 30px;
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(rem(267px), 0.5fr));
+  }
 }

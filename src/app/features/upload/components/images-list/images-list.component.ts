@@ -11,8 +11,6 @@ export class ImagesListComponent implements OnInit {
 
   @Input() imagesList: Image[];
 
-  @Output() updateImagesList = new EventEmitter();
-
   constructor() { }
 
   ngOnInit(): void {

@@ -30,8 +30,8 @@ export class UserComponent implements OnInit {
       map((res) => res['params']),
       switchMap(params => {
         return forkJoin(
-          this.userService.getUserByUsername(params['username']), 
-          this.imageService.getUserImagesByUsername(params['username'].slice(1)))
+          this.userService.getUserByUsername(params['username']),
+          this.imageService.getUserPublishedImagesByUsername(params['username'].slice(1)))
       })
     )
     .subscribe(res => {

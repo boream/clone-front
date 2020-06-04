@@ -22,19 +22,16 @@ export class FormUploadComponent implements OnInit {
   }
 
   changeFile(event) {
-    // TODO use service
     if (event.target.files.length > 0) {
       this.image = <File>event.target.files[0];
       const reader = new FileReader();
       reader.onload = e => this.imageSelected = reader.result;
       this.imageFile.emit(this.image)
-      console.log(this.imageFile);
     }
   }
 
   filesDropped(files): void {
     this.imageFile.emit(files[0].file);
-    console.log(this.imageFile);
   }
 
 }
