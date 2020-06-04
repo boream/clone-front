@@ -1,6 +1,6 @@
 <div class="card">
   <img [src]="image.url" class="card__img">
-  <h3 class="card__title"><input #title type="text" placeholder="Title..." class="card__input" [(ngModel)]="inputTitle" (input)="updateTitle(title.value)"></h3>
+  <h3 class="card__title"><input #title type="text" placeholder="Title..." class="card__input" [(ngModel)]="image.title" (input)="updateTitle(title.value)"></h3>
   <div class="card__select" (click)="toggleSelectCategories(image)">
     <ul class="card__select-control">
       <li class="card__select-default" [class.card__select-default--selected]="image['isSelected'].categories">{{ image.category?.title || 'Categories...' }}</li>

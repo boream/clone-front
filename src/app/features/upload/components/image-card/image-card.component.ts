@@ -33,6 +33,7 @@ export class ImageCardComponent implements OnInit {
       categories: false,
       tags: false,
     };
+    this.image['title'] = this.image['name']
     this.categories$ = this.categoriesService.getCategories();
     this.tagsService.getTags().subscribe((tags: Tag[]) => this.tags = tags);
   }
