@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SmartComponent } from './smart.component';
+import { ImagesListComponent } from './images-list.component';
 
-describe('SmartComponent', () => {
-  let component: SmartComponent;
-  let fixture: ComponentFixture<SmartComponent>;
+describe('ImagesListComponent', () => {
+  let component: ImagesListComponent;
+  let fixture: ComponentFixture<ImagesListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SmartComponent ]
+      declarations: [ ImagesListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SmartComponent);
+    fixture = TestBed.createComponent(ImagesListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

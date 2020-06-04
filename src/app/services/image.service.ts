@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Image } from '../types/image';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,8 @@ export class ImageService {
     if (image.tags) {
       data.tags = image.tags;
     }
+    data.user = image.user.id;
+    data.published = image.published
     const formData = new FormData();
     formData.append('files.file', image.file, image.file.name);
     formData.append('data', JSON.stringify(data));
@@ -39,5 +42,33 @@ export class ImageService {
     formData.append('refId', image.id);
     formData.append('field', 'file');
     return this.http.post(`${environment.apiUrl}upload`, formData);
+  }
+
+  getUserPublishedImagesByUsername(username: string): Observable<Image[]> {
+    return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=true`)
+      .pipe(
+        map((images: Image[]) => this.formatUrl(images))
+      )
+  }
+
+  getUserUnpublishedImagesByUsername(username: string): Observable<Image[]> {
+    return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=false`)
+      .pipe(
+        map((images: Image[]) => this.formatUrl(images))
+      )
+  }
+
+  deleteImage(image: Image) {
+    return this.http.delete<Image>(`${this.imagesUrl}/${image.id}`);
+  }
+
+  private formatUrl(images: Image[]) {
+    images.map(img => {
+      if (img.file['url']) {
+        img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
+      }
+      return img;
+    })
+    return images;
   }
 }

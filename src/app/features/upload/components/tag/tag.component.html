@@ -1,0 +1,33 @@
+<div class="tags">
+
+  <div class="tags__input">
+    <label class="tags__search-bar">
+      <svg class="tags__icon--search">
+        <use xlink:href="/assets/icons/sprite.svg#search" />
+      </svg>
+      <input #search type="search" placeholder="Search tag..." class="tags__control" [(ngModel)]="searchText"
+        (input)="filterTags(search.value)">
+    </label>
+  </div>
+
+  <ul class="tags__list">
+    <li *ngFor="let tag of filteredList" class="tags__elem">
+      <label [for]="tag.id" class="tags__label">
+        <div class="checkbox">
+          <input type="checkbox" [id]="tag.id" class="checkbox__box" [checked]="tag.checked" (change)="onChecked(tag)">
+          <span class="checkbox__checkmark"></span>
+        </div>
+        {{ tag.name }}
+      </label>
+    </li>
+    <li class="tags__elem" *ngIf="filteredList.length === 0">Not tags found</li>
+  </ul>
+
+  <label>
+    <div class="tags__input tags__input--add">
+      <input type="text" placeholder="New..." class="tags__control" #input>
+      <button type="button" class="btn btn--add" (click)="addTag(input.value)">Add tag</button>
+    </div>
+  </label>
+
+</div>

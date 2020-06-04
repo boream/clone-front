@@ -2,7 +2,6 @@
 @import "mixins/rem";
 
 .container-upload {
-  width: 100%;
   padding: 60px 35px;
 
   &__title {
@@ -14,4 +13,17 @@
     padding-bottom: 30px;
     color: $grey-300;
   }
+}
+
+.footer-upload {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px 50px;
+  background: rgba(255, 255, 255, 0.945367);
+}
+
+.btn__primary--big {
+  padding: 20px 50px;
+  margin-left: 60px;
 }

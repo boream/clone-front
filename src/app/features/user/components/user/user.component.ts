@@ -6,6 +6,7 @@ import { User } from 'src/app/types/user';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { map } from 'rxjs/internal/operators/map';
 import { forkJoin } from 'rxjs';
+import { ImageService } from 'src/app/services/image.service';
 
 
 @Component({
@@ -20,14 +21,17 @@ export class UserComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
       map((res) => res['params']),
       switchMap(params => {
-        return forkJoin(this.userService.getUserByUsername(params['username']), this.userService.getUserImagesByUsername(params['username']))
+        return forkJoin(
+          this.userService.getUserByUsername(params['username']),
+          this.imageService.getUserPublishedImagesByUsername(params['username'].slice(1)))
       })
     )
     .subscribe(res => {

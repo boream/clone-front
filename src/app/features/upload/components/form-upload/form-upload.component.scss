@@ -5,11 +5,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: rem(240px);
   background: #ffffff;
   border: 1px dashed $border-control;
   box-sizing: border-box;
-  padding: 0px 35px;
+  margin-bottom: 30px;
 
   &__control {
     height: 100%;
@@ -33,16 +32,6 @@
     font-size: 20px;
     padding-right: 5px;
     color: $grey-200;
-  }
-
-  &__link {
-    font-family: $font-primary;
-    font-weight: $font-weight-ligth;
-    font-size: 20px;
-    padding-right: 5px;
-    color: $grey-200;
-    text-decoration-line: underline;
-    cursor: pointer;
   }
 }
 
