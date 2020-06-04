@@ -1,6 +1,38 @@
-
+@import "global/variables";
+@import "mixins/rem";
 
 .sub-header {
+  display: flex;
+  justify-content: space-between;
   height: rem(65px);
-  background-color: #fff;
+  padding: 15px 30px;
+  background-color: $base;
+
+  &__close {
+    font-size: rem(18px);
+    padding-right: 5px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+}
+
+.btn__back {
+  font-family: $font-primary;
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: $grey-300;
+}
+.expandButton  svg{
+  width: rem(20px);
+  height: rem(20px);
 }
