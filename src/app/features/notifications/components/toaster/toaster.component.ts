@@ -41,7 +41,10 @@ export class ToasterComponent implements OnInit, OnDestroy {
         this._changeDetectionRef.detectChanges();
         // auto close alert if required
         if (alert.autoClose) {
-          setTimeout(() => this.removeAlert(alert), 3000);
+          setTimeout(() => {
+            this.removeAlert(alert);
+            this._changeDetectionRef.detectChanges();
+          }, 3000);
         }
       });
 
@@ -49,6 +52,7 @@ export class ToasterComponent implements OnInit, OnDestroy {
     this.routeSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.toasterService.clear(this.id);
+        this._changeDetectionRef.detectChanges();
       }
     });
   }
@@ -64,11 +68,13 @@ export class ToasterComponent implements OnInit, OnDestroy {
       // remove alert after faded out
       setTimeout(() => {
         this.toasters = this.toasters.filter(x => x !== toaster);
+        this._changeDetectionRef.detectChanges();
       }, 250);
     } else {
       // remove alert
       this.toasters = this.toasters.filter(x => x !== toaster);
     }
+    this._changeDetectionRef.detectChanges();
   }
 
   ngOnDestroy() {

@@ -57,6 +57,7 @@ export class ToasterService {
         this.subject.next(new Toaster({ id }));
     }
 
+    // TODO explore provider factory...
     injectComponent<T>(component: Type<T>) {
         if (!this.compRef) {
             const compFactory = this.resolver.resolveComponentFactory(component);

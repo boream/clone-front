@@ -9,26 +9,47 @@
 
 div {
     margin: 5px;
-    border-radius: 5px;
+    padding: 5px 15px;
+    border-radius: 10px;
     position: relative;
     min-width: 250px;
-    min-height: 50px;
+    max-width: 90vw;
+    min-height: 40px;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: whitesmoke;
+    font-weight: bold;
     a {
         position: absolute;
-        right: 5px;
-        top: 5px;
-        font-size: 20px;
+        right: 2px;
+        top: 1px;
+        font-size: 16px;
+        cursor: pointer;
     }
 
-    span {
-        opacity: 1;
+    &.alert {
+        border: solid 2px; 
     }
 
     &.alert-success{
         border-color: green;
-        background-color:greenyellow;
+        background-color:rgb(138, 199, 46, 0.8);
+    }
+
+    &.alert-info{
+        border-color: blue;
+        background-color:rgba(0, 119, 255, 0.8);
+    }
+
+    &.alert-danger{
+        border-color: red;
+        background-color:rgba(219, 52, 10, 0.8);
+    }
+
+    &.alert-warning{
+        border-color: yellow;
+        background-color:rgba(255, 196, 2, 0.8);
     }
 }
