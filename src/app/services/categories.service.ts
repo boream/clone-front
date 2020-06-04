@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, of } from 'rxjs';
-import { Category } from '../types/category';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
 
-  categoriesUrl = `${environment.apiUrl}categories`
+  url = `${environment.apiUrl}categories`;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  getCategories() {
-    return this.http.get<Category[]>(`${this.categoriesUrl}`);
+  getCategories(): Observable<[]> {
+    return this.http.get<[]>(this.url)
   }
 }

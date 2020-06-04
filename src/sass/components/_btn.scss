@@ -7,6 +7,21 @@
   cursor: pointer;
   outline: none;
 
+  &__link {
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
+    font-size: 20px;
+    padding: 10px;
+    color: $grey-200;
+    text-decoration-line: underline;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  &__link:hover {
+    color: $grey-300;
+  }
+
   &__success {
     min-width: rem(278px);
     height: rem(40px);

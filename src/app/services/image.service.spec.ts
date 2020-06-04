@@ -4,9 +4,6 @@ import { ImageService } from './image.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { Image } from '../types/image';
-import { environment } from 'src/environments/environment';
-
-const testUrl = environment.apiUrl;
 
 describe('ImageService', () => {
   let service: ImageService;
@@ -32,9 +29,15 @@ describe('ImageService', () => {
 
   it('should save an image', () => {
     const newImage: Image = {
+      id: '1',
       published: false,
       title: 'un titulo',
-      file: new File(["asdfasfdasdfasdfasdfasdfasd"], "filename")
+      file: new File(["asdfasfdasdfasdfasdfasdfasd"], "filename"),
+      user: {
+        id: '1',
+        username: 'hola',
+        email: 'hola@hol.ac'
+      }
     };
 
     const expectedImage: any = {

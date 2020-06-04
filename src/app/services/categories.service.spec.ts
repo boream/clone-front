@@ -1,18 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CategoriesService } from './categories.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CategoriesService', () => {
   let service: CategoriesService;
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ]
+      imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(CategoriesService);
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {

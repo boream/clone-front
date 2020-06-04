@@ -1,0 +1,93 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+.card {
+  font-size: rem(13px);
+  font-family: $font-primary;
+
+  &__input {
+    @include size(100%, rem(34px));
+    font-size: rem(13px);
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
+    padding: 9px;
+    border: none;
+  }
+
+  &__select {
+    @include flex(center, flex-end);
+    position: relative;
+    margin-top: 8px;
+
+    &-control {
+      @include size(100%, rem(24px));
+      @include flex(flex-start, center);
+      flex-direction: column;
+      position: relative;
+      background-color: #fff;
+      color: $grey-300;
+      border: none;
+      border-radius: 0px;
+      font-weight: $font-weight-regular;
+      -webkit-appearance: none;
+      -webkit-border-radius: 0px;
+      appearance: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-default {
+      @include size(100%, 100%);
+      @include flex(center, flex-start);
+      padding: 0px 9px;
+
+      &--selected {
+        outline: none;
+        border: 1px solid $border-control;
+      }
+    }
+
+    &-dropdown {
+      @include size(100%, auto);
+      background-color: #fff;
+      position: absolute;
+      top: 26px;
+      border: 1px solid $border-control;
+      z-index: 1000;
+    }
+
+    &-item {
+      padding: 8px;
+
+      &:hover {
+        color: $success;
+        cursor: pointer;
+      }
+    }
+
+    &-icon {
+      @include size(rem(12px), rem(7px));
+      position: absolute;
+      right: 9px;
+      fill: $border-control;
+      transition: all 0.15s linear;
+
+      &--selected {
+        transform-origin: center;
+        transform: scale(1, -1);
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  &__img {
+    @include size(100%, rem(167px));
+    object-fit: cover;
+  }
+}
