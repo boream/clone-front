@@ -16,6 +16,7 @@ import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
 import { HeadersubComponent } from './components/headersub/headersub.component';
+import { NotificationsModule } from './features/notifications/notifications.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HeadersubComponent } from './components/headersub/headersub.component';
     LoginComponent,
     HeaderComponent,
     HeadersubComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { HeadersubComponent } from './components/headersub/headersub.component';
     HttpClientModule,
     UserModule,
     UploadModule,
+    NotificationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
