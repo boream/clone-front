@@ -16,6 +16,7 @@ export class TagComponent implements OnInit, OnChanges {
 
   searchText: string = '';
   filteredList: Tag[] = [];
+
   constructor() { }
 
   ngOnInit(): void {

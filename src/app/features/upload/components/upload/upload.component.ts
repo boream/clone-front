@@ -3,7 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
 import { User } from 'src/app/types/user';
 import { Image } from 'src/app/types/image';
-import { tap, switchMap, map } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -24,8 +24,11 @@ export class UploadComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private userService: UserService,
-              private imageService: ImageService) { }
+  constructor(
+    private userService: UserService,
+    private imageService: ImageService
+  ) { }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
@@ -47,30 +50,14 @@ export class UploadComponent implements OnInit, OnDestroy {
     this.success = false;
   }
 
-  imageFileSubmit(imagefile):void {
+  imageFileSubmit(imagefile): void {
     this.image = {
       file: imagefile,
       user: this.user,
       published: false
     };
-    console.log(this.image);
     this.subscriptions.push(
-      this.imageService.saveImage(this.image).subscribe((res) => {
-        this.images$ = this.getImages();
-      })
-    );
-  }
-
-  private getImages() {
-    return this.userService.getLoggedUser().pipe(
-      tap(res => { this.user = res }),
-      switchMap(user => {
-        return this.imageService.getUserImagesByUsername(user.username).pipe(
-          map(images => {
-            return images.filter(img => !img.published || img.published === false)
-          })
-        )
-      })
+      this.imageService.saveImage(this.image).subscribe((res) => this.images$ = this.getImages())
     );
   }
 
@@ -83,9 +70,9 @@ export class UploadComponent implements OnInit, OnDestroy {
           user: this.user,
           published: true
         }
-        this.imageService.updateImage(image).subscribe((res) => {console.log(res);
-          this.images$ = this.getImages();
-        })
+        this.subscriptions.push(
+          this.imageService.updateImage(image).subscribe((res) => this.images$ = this.getImages())
+        )
       })
     });
   }
@@ -93,10 +80,20 @@ export class UploadComponent implements OnInit, OnDestroy {
   cancelImages() {
     this.images$.forEach(element => {
       element.forEach(image => {
-        this.imageService.deleteImage(image).subscribe((res) => {console.log(res);
-          this.images$ = this.getImages();
-        })
-      })
-    });
+        this.subscriptions.push(
+          this.imageService.deleteImage(image).subscribe((res) => this.images$ = this.getImages())
+        )
+      });
+    })
   }
+
+  private getImages() {
+    return this.userService.getLoggedUser().pipe(
+      tap(res => { this.user = res }),
+      switchMap(user => {
+        return this.imageService.getUserUnpublishedImagesByUsername(user.username);
+      })
+    );
+  }
+
 }

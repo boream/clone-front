@@ -32,14 +32,7 @@ export class ImageService {
   }
 
   updateImage(image: Image) {
-    const updateImage = {
-      name: image.file.name,
-      published: image.published,
-      tags: image.tags,
-      category: image.category,
-      user: image.user,
-    }
-    return this.http.put<Image>(`${this.imagesUrl}/${image.id}`, updateImage);
+    return this.http.put<Image>(`${this.imagesUrl}/${image.id}`, image);
   }
 
   updateImageFile(image: Image): Observable<any> {
@@ -51,17 +44,31 @@ export class ImageService {
     return this.http.post(`${environment.apiUrl}upload`, formData);
   }
 
-  getUserImagesByUsername(username: string): Observable<Image[]> {
-    return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}`)
+  getUserPublishedImagesByUsername(username: string): Observable<Image[]> {
+    return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=true`)
       .pipe(
-        map((images: Image[]) => images.map(img => {
-          img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
-          return img;
-        }))
+        map((images: Image[]) => this.formatUrl(images))
+      )
+  }
+
+  getUserUnpublishedImagesByUsername(username: string): Observable<Image[]> {
+    return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=false`)
+      .pipe(
+        map((images: Image[]) => this.formatUrl(images))
       )
   }
 
   deleteImage(image: Image) {
     return this.http.delete<Image>(`${this.imagesUrl}/${image.id}`);
+  }
+
+  private formatUrl(images: Image[]) {
+    images.map(img => {
+      if (img.file['url']) {
+        img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
+      }
+      return img;
+    })
+    return images;
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TagsService } from 'src/app/services/tags.service';
 import { Tag } from 'src/app/types/tag';
@@ -21,6 +21,7 @@ export class ImageCardComponent implements OnInit {
   tags: Tag[];
   defaultCategory = { title: '' };
   inputTitle: String = '';
+  subscriptions: Subscription[] = [];
 
   constructor(
     private categoriesService: CategoriesService,
@@ -35,10 +36,16 @@ export class ImageCardComponent implements OnInit {
     };
     this.image['title'] = this.image['name'];
     this.categories$ = this.categoriesService.getCategories();
-    this.tagsService.getTags().subscribe((tags: Tag[]) => {
-      this.image.tags.map(tag => { tag['checked'] = true; return tag });
-      this.tags = tags.map(tag => this.image.tags.find(imgTag => imgTag.id === tag.id) || tag);
-    })
+    this.subscriptions.push(
+      this.tagsService.getTags().subscribe((tags: Tag[]) => {
+        this.image.tags.map(tag => { tag['checked'] = true; return tag });
+        this.tags = tags.map(tag => this.image.tags.find(imgTag => imgTag.id === tag.id) || tag);
+      })
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   toggleSelectCategories(image: Image) {
@@ -77,19 +84,23 @@ export class ImageCardComponent implements OnInit {
   }
 
   addTag(tag: Tag) {
-    this.tagsService.addTag(tag)
-      .pipe(
-        switchMap(_ => this.tagsService.getTags())
-      )
-      .subscribe((tags: Tag[]) => this.tags = tags);
+    this.subscriptions.push(
+      this.tagsService.addTag(tag)
+        .pipe(
+          switchMap(_ => this.tagsService.getTags())
+        )
+        .subscribe((tags: Tag[]) => this.tags = tags)
+    )
   }
 
   private updateImage() {
-    this.imageService.updateImage(this.image).subscribe(res => {
-      if (!res.category) {
-        res.category = this.defaultCategory
-      }
-    })
+    this.subscriptions.push(
+      this.imageService.updateImage(this.image).subscribe(res => {
+        if (!res.category) {
+          res.category = this.defaultCategory
+        }
+      })
+    )
   }
 
 }
