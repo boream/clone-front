@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Image } from '../types/image';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -45,13 +45,11 @@ export class ImageService {
   }
 
   getUserImagesByUsername(username: string): Observable<Image[]> {
-    return this.http.get(this.imagesUrl)
+    return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}`)
       .pipe(
-        map((images: Image[]) => images.filter((img: Image) => {
-          if (img.user && img.user.username === username) {
-            img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
-            return img;
-          }
+        map((images: Image[]) => images.map(img => {
+          img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
+          return img;
         }))
       )
   }
