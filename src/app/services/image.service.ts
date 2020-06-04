@@ -65,4 +65,9 @@ export class ImageService {
         }))
       )
   }
+
+  deleteImage(image: Image) {
+    debugger
+    return this.http.delete<Image>(`${this.imagesUrl}/${image.id}`);
+  }
 }

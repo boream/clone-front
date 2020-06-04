@@ -98,6 +98,14 @@ export class UploadComponent implements OnInit, OnDestroy {
   }
 
   cancelImages() {
-
+    this.images$.forEach(element => {
+      debugger
+      element.forEach(image => {
+        debugger
+        this.imageService.deleteImage(image).subscribe((res) => {console.log(res);
+          this.images$ = this.getImages();
+        })
+      })
+    });
   }
 }
