@@ -110,10 +110,7 @@ describe('AuthService', () => {
     }
 
     ngZone.run(() => {
-      authService.signup(user).subscribe(
-        (res: any) => expect(res.jwt).toEqual(token, 'expected token'),
-        fail
-      );
+      authService.signup(user);
   
       const req = httpTestingController.expectOne(`${environment.apiUrl}auth/local/register`);
       expect(req.request.method).toEqual('POST');
