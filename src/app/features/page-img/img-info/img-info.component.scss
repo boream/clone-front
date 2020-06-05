@@ -1,0 +1,48 @@
+@import "global/variables";
+@import "mixins/rem";
+
+.container-img {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+
+.img {
+  width: rem(779px);
+  height: rem(590px);
+
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+
+.arrowLeft {
+  position: absolute;
+  left: 0;
+  padding: 35px 0px 274px 0px;
+  width: rem(23px);
+  height: rem(40px);
+}
+
+.arrowRights {
+  position: absolute;
+  right: 0;
+  width: rem(23px);
+  height: rem(40px);
+}
+
+.expandButton {
+  fill: $grey-300;
+  width: rem(18px);
+  height: rem(18px);
+}

@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { SmartImgComponent } from './components/smart-img/smart-img.component';
 import { SubHeaderComponent } from './components/sub-header/sub-header.component';
 import { PageImgRoutingModule } from './page-img-routing.module';
+import { ImgInfoComponent } from './img-info/img-info.component';
 
 
 
 @NgModule({
   declarations: [
     SmartImgComponent,
-    SubHeaderComponent
+    SubHeaderComponent,
+    ImgInfoComponent
   ],
   imports: [
     CommonModule,
