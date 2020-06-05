@@ -23,7 +23,7 @@
       <li class="card__select-default" [class.card__select-default--selected]="isSelected.tags"
         (click)="toggleSelectTags(image)">Tags...</li>
       <div *ngIf="isSelected.tags" class="card__select-dropdown">
-        <app-tag [tags]="tags" (tagChecked)="selectTag($event, image)" (tagUnChecked)="unSelectTag($event, image)"
+        <app-tag [tags]="tags" (tagChecked)="selectTag($event)" (tagUnChecked)="unSelectTag($event, image)"
           (tagAdded)="addTag($event)"></app-tag>
       </div>
     </ul>
