@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/types/user';
 import { Subscription, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ToasterService } from '../../../notifications/services/toaster.service';
 
 @Component({
   selector: 'app-edit',
@@ -34,7 +35,8 @@ export class EditComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private toasters: ToasterService
   ) { }
 
   ngOnInit(): void {
@@ -69,12 +71,20 @@ export class EditComponent implements OnInit {
   submit(form) {
     const updatedUser = Object.assign({}, this.user, form.value);
     this.userService.updateUser(updatedUser, this.newAvatar).subscribe(
+      // () => {
+      //   this.success = true;
+      // }, () => {
+      //   this.error = "Error al guardar usuario";
+      // }
       () => {
-        this.success = true;
-      }, () => {
-        this.error = "Error al guardar usuario";
+        this.toasters.success('Profile succesfully edited')
       }
-    )
+    ), (error) => {
+      this.toasters.error(
+        error.error.message[0].messages[0].message,
+        { fade: true }
+      )
+    }
   }
 
   firstNameHasError(form) {
@@ -101,13 +111,13 @@ export class EditComponent implements OnInit {
     }
   }
 
-  errorClose() {
-    this.error = null;
-  }
+  // errorClose() {
+  //   this.error = null;
+  // }
 
-  successClose() {
-    this.success = false;
-  }
+  // successClose() {
+  //   this.success = false;
+  // }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
