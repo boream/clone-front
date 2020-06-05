@@ -4,12 +4,15 @@ import { UploadComponent } from './upload.component';
 import { asyncData } from 'src/test-utils';
 import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
-fdescribe('UploadComponent', () => {
+describe('UploadComponent', () => {
   let component: UploadComponent;
   let fixture: ComponentFixture<UploadComponent>;
 
   let userServiceSpy: { getLoggedUser: jasmine.Spy };
-  let imageServiceSpy: { saveImage: jasmine.Spy };
+  let imageServiceSpy: {
+    saveImage: jasmine.Spy,
+    getUserUnpublishedImagesByUsername: jasmine.Spy
+  };
 
   const user = {
     id: '1',
@@ -59,17 +62,18 @@ fdescribe('UploadComponent', () => {
 
   beforeEach(async(() => {
     userServiceSpy = jasmine.createSpyObj('UserService', ['getLoggedUser']);
-    imageServiceSpy = jasmine.createSpyObj('ImageService', ['saveImage']);
+    imageServiceSpy = jasmine.createSpyObj('ImageService', ['saveImage', 'getUserUnpublishedImagesByUsername']);
     userServiceSpy.getLoggedUser.and.returnValue(asyncData(user));
     imageServiceSpy.saveImage.and.returnValue(asyncData(image));
+    imageServiceSpy.getUserUnpublishedImagesByUsername.and.returnValue(asyncData([]))
     TestBed.configureTestingModule({
-      declarations: [ UploadComponent ],
+      declarations: [UploadComponent],
       providers: [
         { provide: UserService, useValue: userServiceSpy },
         { provide: ImageService, useValue: imageServiceSpy }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

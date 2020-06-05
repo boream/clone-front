@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImageCardComponent } from './image-card.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ImageCardComponent', () => {
   let component: ImageCardComponent;
@@ -8,7 +9,10 @@ describe('ImageCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImageCardComponent ]
+      declarations: [ ImageCardComponent ],
+      imports: [
+        HttpClientTestingModule
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +20,10 @@ describe('ImageCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageCardComponent);
     component = fixture.componentInstance;
+    component.image = {
+      file: null,
+      published: false
+    };
     fixture.detectChanges();
   });
 
