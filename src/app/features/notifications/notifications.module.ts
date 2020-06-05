@@ -22,4 +22,4 @@ export class NotificationsModule {
   constructor(toasterService: ToasterService) {
     toasterService.injectComponent(ToasterComponent);
   }
- }
+}
