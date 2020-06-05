@@ -7,7 +7,7 @@ import { SmartImgComponent } from './components/smart-img/smart-img.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: SmartImgComponent,
   },
 ];

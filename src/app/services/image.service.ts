@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Image } from '../types/image';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -10,7 +10,9 @@ import { map, tap } from 'rxjs/operators';
 })
 export class ImageService {
 
-  imagesUrl = `${environment.apiUrl}images`
+  imagesUrl = `${environment.apiUrl}images`;
+
+  savedImages$ = new BehaviorSubject<Image[]>([]);
 
   constructor(private http: HttpClient) { }
 
@@ -47,6 +49,7 @@ export class ImageService {
   getUserPublishedImagesByUsername(username: string): Observable<Image[]> {
     return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=true`)
       .pipe(
+        tap((images: Image[]) => this.savedImages$.next(images)),
         map((images: Image[]) => this.formatUrl(images))
       )
   }
