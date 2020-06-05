@@ -15,6 +15,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
+import { HeadersubComponent } from './components/headersub/headersub.component';
+import { NotificationsModule } from './features/notifications/notifications.module';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { UploadModule } from './features/upload/upload.module';
     PageNotFoundComponent,
     LoginComponent,
     HeaderComponent,
+    HeadersubComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,7 @@ import { UploadModule } from './features/upload/upload.module';
     HttpClientModule,
     UserModule,
     UploadModule,
+    NotificationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
