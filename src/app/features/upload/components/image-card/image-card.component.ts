@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TagsService } from 'src/app/services/tags.service';
@@ -20,7 +20,6 @@ export class ImageCardComponent implements OnInit {
   categories$: Observable<Category[]>;
   tags: Tag[];
   defaultCategory = { title: '' };
-  inputTitle: String = '';
   subscriptions: Subscription[] = [];
   isSelected = {
     categories: false,
