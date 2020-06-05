@@ -6,8 +6,10 @@ import { asyncData } from 'src/test-utils';
 import { UserService } from 'src/app/services/user.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
-fdescribe('UserComponent', () => {
+describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
   let userServiceSpy: {
@@ -59,7 +61,15 @@ fdescribe('UserComponent', () => {
       declarations: [ UserComponent ],
       providers: [
         { provide: UserService, useValue: userServiceSpy },
-        { provide: ImageService, useValue: imageServiceSpy }
+        { provide: ImageService, useValue: imageServiceSpy },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            paramMap: of({
+              params: { username: '@usuario' }
+            }),
+          },
+        }
       ],
       imports: [
         RouterTestingModule.withRoutes([{

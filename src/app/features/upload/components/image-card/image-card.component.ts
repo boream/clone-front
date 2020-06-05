@@ -30,6 +30,7 @@ export class ImageCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // TODO antipattern you can't set @Input properties
     this.image['isSelected'] = {
       categories: false,
       tags: false,

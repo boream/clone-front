@@ -9,7 +9,7 @@ describe('UploadComponent', () => {
   let fixture: ComponentFixture<UploadComponent>;
 
   let userServiceSpy: { getLoggedUser: jasmine.Spy };
-  let imageServiceSpy: { 
+  let imageServiceSpy: {
     saveImage: jasmine.Spy,
     getUserUnpublishedImagesByUsername: jasmine.Spy
   };
@@ -67,13 +67,13 @@ describe('UploadComponent', () => {
     imageServiceSpy.saveImage.and.returnValue(asyncData(image));
     imageServiceSpy.getUserUnpublishedImagesByUsername.and.returnValue(asyncData([]))
     TestBed.configureTestingModule({
-      declarations: [ UploadComponent ],
+      declarations: [UploadComponent],
       providers: [
         { provide: UserService, useValue: userServiceSpy },
         { provide: ImageService, useValue: imageServiceSpy }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
