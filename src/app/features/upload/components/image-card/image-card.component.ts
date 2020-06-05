@@ -17,7 +17,7 @@ export class ImageCardComponent implements OnInit {
 
   @Input() image: Image;
 
-  categories$: Observable<[]>;
+  categories$: Observable<Category[]>;
   tags: Tag[];
   defaultCategory = { title: '' };
   inputTitle: String = '';
