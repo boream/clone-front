@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/types/user';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ToasterService } from '../../../notifications/services/toaster.service';
 
@@ -68,23 +68,25 @@ export class EditComponent implements OnInit {
     })
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
   submit(form) {
     const updatedUser = Object.assign({}, this.user, form.value);
-    this.userService.updateUser(updatedUser, this.newAvatar).subscribe(
-      // () => {
-      //   this.success = true;
-      // }, () => {
-      //   this.error = "Error al guardar usuario";
-      // }
-      () => {
-        this.toasters.success('Profile succesfully edited')
-      }
-    ), (error) => {
-      this.toasters.error(
-        error.error.message[0].messages[0].message,
-        { fade: true }
+    this.subscriptions.push(
+      this.userService.updateUser(updatedUser, this.newAvatar).subscribe(
+        () => {
+          this.toasters.success('Profile succesfully edited.', { autoClose: false })
+        },
+        () => {
+          this.toasters.error(
+            'There was an error updating the profile.',
+            { fade: true }
+          )
+        }
       )
-    }
+    );
   }
 
   firstNameHasError(form) {
@@ -109,18 +111,6 @@ export class EditComponent implements OnInit {
     if (form.controls.username.touched || form.controls.username.dirty) {
       return form.controls.username.errors?.pattern || form.controls.username.errors?.required || form.controls.username.errors?.minlength;
     }
-  }
-
-  // errorClose() {
-  //   this.error = null;
-  // }
-
-  // successClose() {
-  //   this.success = false;
-  // }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   changeAvatar(file: File): void {
