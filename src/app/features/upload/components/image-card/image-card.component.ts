@@ -22,6 +22,11 @@ export class ImageCardComponent implements OnInit {
   defaultCategory = { title: '' };
   inputTitle: String = '';
   subscriptions: Subscription[] = [];
+  isSelected = {
+    categories: false,
+    tags: false,
+  }
+  imgTitle: string = '';
 
   constructor(
     private categoriesService: CategoriesService,
@@ -30,13 +35,7 @@ export class ImageCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setImage();
-    // TODO antipattern you can't set @Input properties
-    // this.image['isSelected'] = {
-    //   categories: false,
-    //   tags: false,
-    // };
-    // this.image['title'] = this.image['name'];
+    this.imgTitle = this.image['name'];
     this.categories$ = this.categoriesService.getCategories();
     this.subscriptions.push(
       this.tagsService.getTags().subscribe((tags: Tag[]) => {
@@ -50,19 +49,14 @@ export class ImageCardComponent implements OnInit {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  setImage() {
-    this.image['isSelected'] = { categories: false, tags: false};
-    this.image['title'] = this.image['name'];
-  }
-
   toggleSelectCategories(image: Image) {
-    image['isSelected'].categories = !image['isSelected'].categories;
-    image['isSelected'].tags = false;
+    this.isSelected.categories = !this.isSelected.categories;
+    this.isSelected.tags = false;
   }
 
   toggleSelectTags(image: Image) {
-    image['isSelected'].tags = !image['isSelected'].tags;
-    image['isSelected'].categories = false;
+    this.isSelected.tags = !this.isSelected.tags;
+    this.isSelected.categories = false;
   }
 
   updateTitle(title: String) {
@@ -88,7 +82,7 @@ export class ImageCardComponent implements OnInit {
     this.updateImage();
   }
 
-  selectTag(tag: Tag, image: Image) {
+  selectTag(tag: Tag) {
     this.image.tags.push(tag);
     this.updateImage();
   }
