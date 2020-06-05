@@ -34,11 +34,6 @@ export class UploadComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.userService.getLoggedUser().subscribe((res) => {
-        this.user = res;
-      })
-    );
     this.images$ = this.getImages();
   }
 

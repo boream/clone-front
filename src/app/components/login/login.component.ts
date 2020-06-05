@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ToasterService } from 'src/app/features/notifications/services/toaster.service';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +24,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute) {
-  }
+    private toasters: ToasterService
+  ) {  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
@@ -35,12 +36,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       identifier: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-
-    this.subscriptions.push(
-      this.route.queryParams.pipe(
-        map(query => !!query.signupSuccess)
-      ).subscribe(res => this.showSignupSuccess = res)
-    );
   }
 
   emailHasError(form) {
@@ -57,19 +52,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   submit(form) {
     this.auth.login(form).subscribe(
-      (res) => {
+      () => {
         this.router.navigate(['/home'])
       }, (error) => {
-        this.showErrorMessage = error.error.message[0].messages[0].message;
+        this.toasters.error(error.error.message[0].messages[0].message);
       }
     )
-  }
-
-  errorClose() {
-    this.showErrorMessage = null;
-  }
-
-  successClose() {
-    this.showSignupSuccess = false;
   }
 }

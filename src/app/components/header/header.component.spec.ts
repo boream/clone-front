@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { asyncData } from 'src/test-utils';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HomeComponent } from '../home/home.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -28,7 +29,9 @@ describe('HeaderComponent', () => {
     }));
     userServiceSpy.getLoggedUserAvatar.and.returnValue(asyncData('hola'))
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
+      declarations: [
+        HeaderComponent
+      ],
       providers: [
         { provide: UserService, useValue: userServiceSpy }
       ],
@@ -37,6 +40,9 @@ describe('HeaderComponent', () => {
           path: 'home',
           component: HomeComponent
         }])
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
       ]
     })
       .compileComponents();

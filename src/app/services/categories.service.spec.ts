@@ -4,7 +4,7 @@ import { CategoriesService } from './categories.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
-fdescribe('CategoriesService', () => {
+describe('CategoriesService', () => {
   let service: CategoriesService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;

@@ -5,8 +5,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { asyncData } from 'src/test-utils';
 import { UserService } from 'src/app/services/user.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ImageService } from 'src/app/services/image.service';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
-fdescribe('UserComponent', () => {
+describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
   let userServiceSpy: {
@@ -15,11 +18,18 @@ fdescribe('UserComponent', () => {
     getUserUnpublishedImagesByUsername: jasmine.Spy,
   };
 
+  let imageServiceSpy: {
+    getUserPublishedImagesByUsername: jasmine.Spy
+  };
+
   beforeEach(async(() => {
     userServiceSpy = jasmine.createSpyObj('UserService', [
       'getUserByUsername',
       'getUserPublishedImagesByUsername',
       'getUserUnpublishedImagesByUsername'
+    ]);
+    imageServiceSpy = jasmine.createSpyObj('ImageService', [
+      'getUserPublishedImagesByUsername'
     ]);
     userServiceSpy.getUserByUsername.and.returnValue(asyncData({
       username: 'hola'
@@ -44,13 +54,28 @@ fdescribe('UserComponent', () => {
         url: ''
       }
     ]));
+    imageServiceSpy.getUserPublishedImagesByUsername.and.returnValue(
+      asyncData([])
+    );
     TestBed.configureTestingModule({
       declarations: [ UserComponent ],
       providers: [
-        { provide: UserService, useValue: userServiceSpy }
+        { provide: UserService, useValue: userServiceSpy },
+        { provide: ImageService, useValue: imageServiceSpy },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            paramMap: of({
+              params: { username: '@usuario' }
+            }),
+          },
+        }
       ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule.withRoutes([{
+          path: ':username',
+          component: UserComponent
+        }])
       ],
       schemas: [
         NO_ERRORS_SCHEMA

@@ -17,7 +17,7 @@ export class ImageCardComponent implements OnInit {
 
   @Input() image: Image;
 
-  categories$: Observable<[]>;
+  categories$: Observable<Category[]>;
   tags: Tag[];
   defaultCategory = { title: '' };
   inputTitle: String = '';
@@ -31,6 +31,12 @@ export class ImageCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.setImage();
+    // TODO antipattern you can't set @Input properties
+    // this.image['isSelected'] = {
+    //   categories: false,
+    //   tags: false,
+    // };
+    // this.image['title'] = this.image['name'];
     this.categories$ = this.categoriesService.getCategories();
     this.subscriptions.push(
       this.tagsService.getTags().subscribe((tags: Tag[]) => {
