@@ -15,7 +15,7 @@ export class CategoriesService {
     private http: HttpClient
   ) { }
 
-  getCategories(): Observable<[]> {
-    return this.http.get<[]>(this.url)
+  getCategories(): Observable<any[]> {
+    return this.http.get<any[]>(this.url);
   }
 }

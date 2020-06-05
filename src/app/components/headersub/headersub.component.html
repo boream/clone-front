@@ -2,7 +2,7 @@
   <div class="subheader__categories">
     <ul class="subheader__categories-list">
       <li class="subheader__categories-item">Latest</li>
-      <li class="subheader__categories-item" *ngFor="let category of categories">{{ category.Title }}</li>
+      <li class="subheader__categories-item" *ngFor="let category of categories$ | async">{{ category.title }}</li>
     </ul>
   </div>
 </div>

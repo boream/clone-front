@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CategoriesService } from '../../services/categories.service';
 import { Category } from '../../types/category';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-headersub',
@@ -10,16 +11,14 @@ import { Category } from '../../types/category';
 export class HeadersubComponent implements OnInit {
 
   //@Input() categories: string[] = ['Example'];
-  public categories: Category[] = [];
+  public categories$: Observable<Category[]>;
 
   constructor(
     private categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe((res: Category[]) => {
-      this.categories = res;
-    })
+    this.categories$ = this.categoriesService.getCategories();
   }
 
 }
