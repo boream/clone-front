@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
+import { Observable, combineLatest, BehaviorSubject, of } from 'rxjs';
 import { ImageService } from './image.service';
-import { Image } from '../types/image';
-import { map } from 'rxjs/operators';
-import { ActivatedRoute, Params } from '@angular/router';
+import { withLatestFrom, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,39 +11,49 @@ export class ImageListService {
 
   // entrada del componente al servicio
   direction$ = new BehaviorSubject<Number>(0);
-  params$ = new BehaviorSubject<Params>(null);
+  currentImage$ = new BehaviorSubject<String>('');
 
   // salida del servicio al componente
   image$: Observable<any>;
 
-  miRuta: Observable<any>;
-
-
-  constructor(private imageService: ImageService, private route: ActivatedRoute) { 
-
+  constructor(private imageService: ImageService, private router: Router) {
     this.image$ = combineLatest(
       this.imageService.savedImages$,
-      this.params$,
-      this.direction$
+      this.currentImage$
     ).pipe(
-      map(([images, params, direction]) => {
-        debugger
-        let imageIndex = -1;
-        if (Array.isArray(images) && params && params.id) {
-          imageIndex = images.findIndex(img => img.id === params.id)
-          if (imageIndex > 0 && imageIndex < images.length - 1) {
-            return images[imageIndex + +direction];
-          } else if (imageIndex === 0) {
-            return images[images.length - 1];
-          } else if (imageIndex === images.length - 1) {
-            return images[0]
-          }
+      switchMap(([images, currentImage]) => {
+        const image = images.find(img => img.id === currentImage);
+        if (image) {
+          return of(image);
         }
-        return null;
+        if (currentImage) {
+          return this.imageService.getImageById(currentImage);
+        }
+        return of(null);
       })
-    )
+    );
+
+    this.direction$.pipe(
+      withLatestFrom(combineLatest(
+        this.imageService.savedImages$,
+        this.currentImage$,
+      ))
+    ).subscribe(([direction, [images, currentImage]]) => {
+      let imageIndex = -1;
+      if (currentImage) {
+        imageIndex = images.findIndex(img => img.id === currentImage)
+        if (imageIndex > -1) {
+          imageIndex = imageIndex + +direction;
+          if (imageIndex < 0) {
+            imageIndex = images.length - 1;
+          } else if (imageIndex >= images.length) {
+            imageIndex = 0;
+          }
+          this.router.navigate(['/image', images[imageIndex].id]);
+        }
+      }
+    });
+
   }
-
-
 
 }

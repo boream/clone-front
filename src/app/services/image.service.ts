@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Image } from '../types/image';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,14 @@ export class ImageService {
   savedImages$ = new BehaviorSubject<Image[]>([]);
 
   constructor(private http: HttpClient) { }
+
+  getImageById(id: String) {
+    return this.http.get<Image>(`${this.imagesUrl}/${id}`).pipe(
+      map(img => Object.assign({}, img,
+        { url: `${environment.apiUrl}${img.file['url'].slice(1)}` })),
+      catchError(() => of(null))
+    );
+  }
 
   saveImage(image: Image): Observable<any> {
     const data: any = {};

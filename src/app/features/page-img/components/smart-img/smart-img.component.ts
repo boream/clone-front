@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ImageListService } from 'src/app/services/image-list.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { has } from 'lodash';
 
 @Component({
   selector: 'app-smart-img',
@@ -17,8 +18,10 @@ export class SmartImgComponent implements OnInit {
   ngOnInit(): void {
     this.image$ = this.imageListService.image$;
 
-    this.route.params.subscribe(res => {
-      this.imageListService.params$.next(res);
+    this.route.params.subscribe(params => {
+      if (has(params, 'id')) {
+        this.imageListService.currentImage$.next(params.id);
+      }
     })
   }
 
