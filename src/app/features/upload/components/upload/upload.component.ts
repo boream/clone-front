@@ -3,8 +3,9 @@ import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
 import { User } from 'src/app/types/user';
 import { Image } from 'src/app/types/image';
-import { tap, switchMap, map } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { tap, switchMap, map, concatMap, take } from 'rxjs/operators';
+import { Observable, Subscription, forkJoin } from 'rxjs';
+import { ToasterService } from 'src/app/features/notifications/services/toaster.service';
 
 @Component({
   selector: 'app-upload',
@@ -12,9 +13,6 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit, OnDestroy {
-
-  error: boolean = true;
-  success: boolean = true;
 
   user: User
   image: Image;
@@ -26,7 +24,8 @@ export class UploadComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private toasters: ToasterService
   ) { }
 
   ngOnDestroy(): void {
@@ -35,14 +34,6 @@ export class UploadComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.images$ = this.getImages();
-  }
-
-  errorClose() {
-    this.error = null;
-  }
-
-  successClose() {
-    this.success = false;
   }
 
   imageFileSubmit(imagefile): void {
@@ -57,13 +48,32 @@ export class UploadComponent implements OnInit, OnDestroy {
   }
 
   publishedImages() {
+    // this.images$ = this.images$
+    //   .pipe(
+    //     switchMap(images => forkJoin(images.map(image => {
+    //       image['name'] && image.category ? image.published = true : image.published = false;
+    //       return this.imageService.updateImage(image);
+    //     }))),
+    //     map(images => {
+    //       images.map(image => {
+    //         this.checkImageFields(image);
+    //         this.imageService.formatUrl(image);
+    //       })
+    //       return images.filter(image => image.published === false);
+    //     }),
+    //     tap((res) => {debugger})
+    //   )
     this.images$.forEach(element => {
       element.forEach(image => {
         if (image['name'] && image.category) {
           image.published = true;
         }
         this.subscriptions.push(
-          this.imageService.updateImage(image).subscribe((res) => this.images$ = this.getImages())
+          this.imageService.updateImage(image).subscribe(() => this.images$ = this.getImages()
+            .pipe(
+              map(images => images.map(image => (this.checkImageFields(image))))
+            )
+          )
         )
       })
     })
@@ -86,6 +96,19 @@ export class UploadComponent implements OnInit, OnDestroy {
         return this.imageService.getUserUnpublishedImagesByUsername(user.username);
       })
     );
+  }
+
+
+  private checkImageFields(image: Image) {
+    const imageChecked = image;
+    imageChecked['error'] = { title: false, category: false };
+    if (!imageChecked['name']) {
+      imageChecked['error'].title = true;
+    }
+    if (!imageChecked.category) {
+      imageChecked['error'].category = true;
+    }
+    return imageChecked;
   }
 
 }
