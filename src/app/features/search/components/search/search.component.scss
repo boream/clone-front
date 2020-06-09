@@ -1,0 +1,22 @@
+@import "global/variables";
+@import "mixins/mixins";
+
+.search {
+  padding: 61px 10px;
+
+  &__query {
+    padding: 0 24px 50px;
+    color: $grey-300;
+    font-family: $font-secundary;
+    font-weight: $font-weight-bold;
+    font-size: rem(40px);
+  }
+
+  &__desc {
+    margin-left: 18px;
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
+    font-size: 1rem;
+    text-transform: lowercase;
+  }
+}
