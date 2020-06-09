@@ -42,19 +42,16 @@ export class CloseAccountComponent implements OnInit, OnDestroy {
   }
 
   submit(form) {
-    debugger
     this.subscriptions.push(
       this.userService.closeAccount(this.user).subscribe(
         () => {
-          debugger
           this.toasters.success('Account deleted succesfully.', { autoClose: false })
         },
-        (error) => {
-          // this.toasters.error(
-          //   'Password given is not the correct one.',
-          //   { fade: true }
-          // )
-          console.log(error)
+        () => {
+          this.toasters.error(
+            'Password given is not the correct one.',
+            { fade: true }
+          )
         }
       )
     )
