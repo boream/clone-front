@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
+import { PageImgModule } from './features/page-img/page-img.module';
 import { HeadersubComponent } from './components/headersub/headersub.component';
 import { NotificationsModule } from './features/notifications/notifications.module';
 
@@ -40,6 +41,7 @@ import { NotificationsModule } from './features/notifications/notifications.modu
     HttpClientModule,
     UserModule,
     UploadModule,
+    PageImgModule,
     NotificationsModule
   ],
   providers: [

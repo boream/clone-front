@@ -1,0 +1,35 @@
+<div class="container-img">
+  <button  class="btn btn__primary arrowButton" type="button" (click)="direction.emit(-1)">
+    <svg class="user__icon--top" >
+      <use xlink:href="/assets/icons/sprite.svg#arrow-left"></use>
+    </svg>
+  </button>
+  <div>
+    <img class="img" [src]="image?.url" alt="">
+    <div class="img__info">
+      <h3>Title img</h3>
+      <div class="img__controls">
+        <button  class="btn btn__primary expandButton" type="button">
+          <svg class="user__icon--top" >
+            <use xlink:href="/assets/icons/sprite.svg#plusGray"></use>
+          </svg>
+        </button>
+        <button  class="btn btn__primary expandButton" type="button">
+          <svg class="user__icon--top" >
+            <use xlink:href="/assets/icons/sprite.svg#fav"></use>
+          </svg>
+        </button>
+        <button  class="btn btn__primary expandButton" type="button">
+          <svg class="user__icon--top">
+            <use xlink:href="/assets/icons/sprite.svg#download"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <button  class="btn  arrowButton" type="button" (click)="direction.emit(1)">
+    <svg class="user__icon--top" >
+      <use xlink:href="/assets/icons/sprite.svg#arrow-right"></use>
+    </svg>
+  </button>
+</div>
