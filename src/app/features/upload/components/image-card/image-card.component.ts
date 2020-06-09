@@ -34,6 +34,7 @@ export class ImageCardComponent implements OnInit {
     private imageService: ImageService
   ) { }
 
+  // TODO change to reactive form
   ngOnInit(): void {
     this.imgTitle = this.image['name'];
     this.invalidField = this.image['error'] ? this.image['error'] : { title: false, category: false };
