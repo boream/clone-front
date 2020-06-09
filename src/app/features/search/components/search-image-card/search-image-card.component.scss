@@ -27,13 +27,13 @@
 
   &__tags {
     @include size(100%, 100%);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &__tag {
+    margin-bottom: 5px;
+    margin-right: 10px;
     padding: 3px 7px;
     color: $grey-200;
     background-color: #fff;
