@@ -47,14 +47,14 @@ export class ImageService {
   getUserPublishedImagesByUsername(username: string): Observable<Image[]> {
     return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=true`)
       .pipe(
-        map((images: Image[]) => this.formatUrl(images))
+        map((images: Image[]) => images.map(image => this.formatUrl(image)))
       )
   }
 
   getUserUnpublishedImagesByUsername(username: string): Observable<Image[]> {
     return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=false`)
       .pipe(
-        map((images: Image[]) => this.formatUrl(images).map(img => this.checkImageFields(img)))
+        map((images: Image[]) => images.map(image => this.formatUrl(image)))
       )
   }
 
@@ -62,26 +62,10 @@ export class ImageService {
     return this.http.delete<Image>(`${this.imagesUrl}/${image.id}`);
   }
 
-  private formatUrl(images: Image[]) {
-    images.map(img => {
-      if (img.file['url']) {
-        img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
-      }
-      return img;
-    })
-    return images;
+  formatUrl(image: Image) {
+    const img = image;
+    img.url = `${environment.apiUrl}${img.file['url'].slice(1)}`;
+    return img;
   }
-
-  private checkImageFields(image: Image) {
-    image['error'] = { title: false, category: false };
-    if (!image['name']) {
-      image['error'].title = true;
-    }
-    if (!image.category) {
-      image['error'].category = true;
-    }
-    return image;
-  }
-
 
 }

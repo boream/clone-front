@@ -26,6 +26,7 @@ export class ImageCardComponent implements OnInit {
     tags: false,
   }
   imgTitle: string = '';
+  invalidField = { title: false, category: false };
 
   constructor(
     private categoriesService: CategoriesService,
@@ -35,6 +36,7 @@ export class ImageCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.imgTitle = this.image['name'];
+    this.invalidField = this.image['error'] ? this.image['error'] : { title: false, category: false };
     this.categories$ = this.categoriesService.getCategories();
     this.subscriptions.push(
       this.tagsService.getTags().subscribe((tags: Tag[]) => {
@@ -59,10 +61,10 @@ export class ImageCardComponent implements OnInit {
   }
 
   updateTitle(title: String) {
-    if (this.image['error'] && title !== '') {
-      this.image['error'].title = false;
+    if (this.invalidField && title !== '') {
+      this.invalidField.title = false;
     } else {
-      this.image['error'].title = true;
+      this.invalidField.title = true;
     }
     this.image['name'] = title;
     this.updateImage();
@@ -71,11 +73,11 @@ export class ImageCardComponent implements OnInit {
   selectCategory(image: Image, category: Category) {
     if (category.title) {
       image.category = category;
-      if (this.image['error']) {
-        this.image['error'].category = false;
+      if (this.invalidField) {
+        this.invalidField.category = false;
       }
     } else {
-      this.image['error'].category = true;
+      this.invalidField.category = true;
       image.category = null;
     }
     this.updateImage();

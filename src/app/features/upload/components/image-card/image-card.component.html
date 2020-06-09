@@ -1,12 +1,12 @@
 <div class="card">
   <img [src]="image.url" class="card__img">
   <h3 class="card__title">
-    <input #title type="text" placeholder="Title..." class="card__input" [class.card__invalid]="image['error']?.title"
-      [(ngModel)]="imgTitle" (input)="updateTitle(title.value)">
+    <input #title type="text" placeholder="Title..." class="card__input" [class.card__invalid]="invalidField.title"
+      [(ngModel)]="imgTitle" (input)="updateTitle(title.value)" (click)="updateTitle(title.value)">
   </h3>
   <div class="card__select" (click)="toggleSelectCategories(image)">
     <ul class="card__select-control">
-      <li class="card__select-default" [class.card__select-default--selected]="isSelected.categories"  [class.card__invalid]="image['error']?.category">
+      <li class="card__select-default" [class.card__select-default--selected]="isSelected.categories"  [class.card__invalid]="invalidField.category">
         {{ image.category?.title || 'Categories...' }}</li>
       <div *ngIf="isSelected.categories" class="card__select-dropdown">
         <li class="card__select-item" (click)="selectCategory(image, defaultCategory)">Categories...</li>
