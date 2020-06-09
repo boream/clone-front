@@ -4,6 +4,9 @@
 .container-img {
   display: flex;
   justify-content: center;
+}
+
+.carrousel {
   position: relative;
 }
 
@@ -12,10 +15,24 @@
   width: rem(779px);
   height: rem(590px);
 
+  &__expand {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
+    font-size: 24px;
+    line-height: 28px;
+    color: $grey-300;
+  }
+
   &__info {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 25px 0px;
   }
 
   &__controls {
@@ -25,24 +42,31 @@
   }
 }
 
-
 .arrowLeft {
   position: absolute;
+  top: 50%;
+  padding: 0px 35px;
   left: 0;
-  padding: 35px 0px 274px 0px;
   width: rem(23px);
   height: rem(40px);
 }
 
-.arrowRights {
+.arrowRight {
   position: absolute;
+  padding: 0px 35px;
+  top: 50%;
   right: 0;
   width: rem(23px);
   height: rem(40px);
 }
 
-.expandButton {
+.expandButton svg{
   fill: $grey-300;
   width: rem(18px);
-  height: rem(18px);
+  height: rem(20px);
+}
+
+
+.expandButton svg:hover{
+  fill: $grey-200;
 }

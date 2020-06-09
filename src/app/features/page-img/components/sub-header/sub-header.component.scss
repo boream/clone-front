@@ -19,6 +19,10 @@
     align-items: center;
     color: $grey-300;
   }
+
+  &__link:hover {
+    color: $grey-200;
+  }
 }
 
 .img {
@@ -27,25 +31,33 @@
   border-radius: 50%;
 }
 
-.btn__back {
-  font-family: $font-primary;
-  font-style: normal;
-  font-weight: $font-weight-normal;
-  font-size: 14px;
-  line-height: 16px;
-  color: $grey-300;
-}
+
 
 .btn {
   position: relative;
   padding: 10px 12px;
   background-color: #fff;
+
+  &__back {
+    font-family: $font-primary;
+    font-style: normal;
+    font-weight: $font-weight-normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: $grey-300;
+  }
+
+  &__back:hover {
+    color: $grey-200;
+  }
 }
 
 .expandButton  svg{
+  fill: $grey-300;
   width: rem(8px);
   height: rem(8px);
 }
+
 
 .user__icon--top {
   position: absolute;
