@@ -12,4 +12,7 @@ export class SubHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  expandImg() {
+
+  }
 }

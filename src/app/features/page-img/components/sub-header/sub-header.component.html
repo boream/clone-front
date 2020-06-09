@@ -7,7 +7,7 @@
     <img class="img" src="./assets/img/chinaguy.png" alt="">
     Deividev
   </a>
-  <button  class="btn btn__icon expandButton" type="button">
+  <button [ngClass]="{'img__expand': true, 'img': false }"  class="btn btn__icon expandButton" type="button">
     <svg class="user__icon--top" >
       <use xlink:href="/assets/icons/sprite.svg#expand"></use>
     </svg>
