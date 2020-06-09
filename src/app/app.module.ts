@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SearchComponent } from './components/search/search.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
@@ -25,7 +24,6 @@ import { NotificationsModule } from './features/notifications/notifications.modu
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    SearchComponent,
     LoginComponent,
     SignupComponent,
     PageNotFoundComponent,
