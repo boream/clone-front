@@ -21,8 +21,8 @@ const routes: Routes = [
     component: PageNotFoundComponent,
   },
   {
-    path: 'search',
-    component: SearchComponent,
+    path: 'search/:query',
+    loadChildren: () => import('./features/search/search.module').then(m => m.SearchModule),
     canActivate: [AuthGuard]
   },
   {
