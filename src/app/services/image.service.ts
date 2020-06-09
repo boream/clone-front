@@ -62,6 +62,14 @@ export class ImageService {
       )
   }
 
+  getUserPublishedImagesByUsernameLimit(username: string, limit: number): Observable<Image[]> {
+    return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=true&_limit=${limit}`)
+      .pipe(
+        tap((images: Image[]) => this.savedImages$.next(images)),
+        map((images: Image[]) => images.map(image => this.formatUrl(image)))
+      )
+  }
+
   getUserUnpublishedImagesByUsername(username: string): Observable<Image[]> {
     return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=false`)
       .pipe(

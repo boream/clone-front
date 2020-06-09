@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.query$ = this.route.params.pipe(map(params => params['query']));
-    this.currentChild$ = this.route.firstChild.url.pipe(map(res => res[0].path));
+    this.currentChild$ = this.route.firstChild?.url.pipe(map(res => res[0].path));
   }
 
 }

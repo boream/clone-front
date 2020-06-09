@@ -1,0 +1,75 @@
+@import "global/variables";
+@import "mixins/mixins";
+
+.search-people-card {
+  padding: 30px 20px;
+  background-color: #fff;
+  max-width: rem(444px);
+
+  &__header {
+    @include flex(center, flex-start);
+    margin-bottom: 20px;
+  }
+
+  &__user {
+    margin-right: auto;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__user-avatar {
+    @include size(rem(60px), rem(60px));
+    margin-right: 20px;
+    filter: brightness(0.25);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__user-fullname {
+    color: $grey-300;
+    font-size: rem(20px);
+    font-family: $font-secundary;
+    font-weight: $font-weight-bold;
+  }
+
+  &__username {
+    color: #999;
+    font-size: rem(14px);
+    font-family: $font-primary;
+    font-weight: $font-weight-regular;
+  }
+
+  &__button {
+    @include size(rem(30px), rem(30px));
+    margin-right: 13px;
+    border: none;
+    background-color: $grey-400;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__icon {
+    @include size(1rem, 1rem);
+    fill: #fff;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(auto, rem(128px)));
+    grid-template-rows: max-content;
+    gap: 10px;
+  }
+
+  &__image {
+    @include size(100%, rem(92.46px));
+    object-fit: cover;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

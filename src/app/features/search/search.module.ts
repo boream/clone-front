@@ -6,10 +6,11 @@ import { SearchComponent } from './components/search/search.component';
 import { SearchImagesComponent } from './components/search-images/search-images.component';
 import { SearchPeopleComponent } from './components/search-people/search-people.component';
 import { SearchTagsComponent } from './components/search-tags/search-tags.component';
+import { SearchPeopleCardComponent } from './components/search-people-card/search-people-card.component';
 
 
 @NgModule({
-  declarations: [SearchComponent, SearchImagesComponent, SearchPeopleComponent, SearchTagsComponent,],
+  declarations: [SearchComponent, SearchImagesComponent, SearchPeopleComponent, SearchTagsComponent, SearchPeopleCardComponent,],
   imports: [
     CommonModule,
     SearchRoutingModule
