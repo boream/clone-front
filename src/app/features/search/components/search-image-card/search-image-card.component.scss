@@ -10,6 +10,9 @@
   &__img {
     @include size(100%, 100%);
     object-fit: cover;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__title {
@@ -36,5 +39,8 @@
     background-color: #fff;
     text-transform: capitalize;
     text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
