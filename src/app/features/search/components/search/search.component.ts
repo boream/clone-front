@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  query$: Observable<string>;
+  currentChild$: Observable<string>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.query$ = this.route.params.pipe(map(params => params['query']));
+    this.currentChild$ = this.route.firstChild.url.pipe(map(res => res[0].path));
   }
 
 }
