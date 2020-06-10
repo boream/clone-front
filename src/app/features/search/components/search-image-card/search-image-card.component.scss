@@ -1,0 +1,46 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+.search-image-card {
+  @include flex(flex-start, flex-start);
+  flex-direction: column;
+  font-family: $font-primary;
+  font-size: rem(12px);
+
+  &__img {
+    @include size(100%, 100%);
+    object-fit: cover;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__title {
+    @include size(100%, auto);
+    margin-bottom: 8px;
+    padding: 10px;
+    background-color: #fff;
+    color: $grey-300;
+    font-weight: $font-weight-normal;
+    text-transform: uppercase;
+  }
+
+  &__tags {
+    @include size(100%, 100%);
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__tag {
+    margin-bottom: 5px;
+    margin-right: 10px;
+    padding: 3px 7px;
+    color: $grey-200;
+    background-color: #fff;
+    text-transform: capitalize;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

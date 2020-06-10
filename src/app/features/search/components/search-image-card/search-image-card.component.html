@@ -1,0 +1,7 @@
+<div class="search-image-card">
+  <img class="search-image-card__img" [src]="image?.url"  [routerLink]="['/image', image?.id]">
+  <h2 class="search-image-card__title">{{ image?.name }}</h2>
+  <ul class="search-image-card__tags">
+    <li class="search-image-card__tag" *ngFor="let tag of image?.tags" [routerLink]="['/search', tag?.name]"> {{ tag.name }}</li>
+  </ul>
+</div>

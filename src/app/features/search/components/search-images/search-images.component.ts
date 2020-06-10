@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Image } from 'src/app/types/image';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-search-images',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchImagesComponent implements OnInit {
 
-  constructor() { }
+  image$: Observable<Image>;
+
+  constructor(
+    private imageService: ImageService
+  ) { }
 
   ngOnInit(): void {
+    this.image$ = this.imageService.getImageById('5ed79778f8031497f9638f5e');
   }
 
 }
