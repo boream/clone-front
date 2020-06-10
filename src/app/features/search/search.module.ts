@@ -8,12 +8,14 @@ import { SearchPeopleComponent } from './components/search-people/search-people.
 import { SearchTagsComponent } from './components/search-tags/search-tags.component';
 import { SearchPeopleCardComponent } from './components/search-people-card/search-people-card.component';
 import { SearchImageCardComponent } from './components/search-image-card/search-image-card.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [SearchComponent, SearchImagesComponent, SearchPeopleComponent, SearchTagsComponent, SearchImageCardComponent, SearchPeopleCardComponent],
   imports: [
     CommonModule,
+    SharedModule,
     SearchRoutingModule
   ]
 })
