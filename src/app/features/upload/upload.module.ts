@@ -11,6 +11,7 @@ import { ImageCardComponent } from './components/image-card/image-card.component
 import { DragDropDirective } from '../../directives/drag-drop.directive';
 import { FormUploadComponent } from './components/form-upload/form-upload.component';
 import { TagComponent } from './components/tag/tag.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { TagComponent } from './components/tag/tag.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     UploadRoutingModule,
     FormsModule
   ],
