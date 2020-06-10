@@ -34,7 +34,6 @@ export class UploadComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.images$ = this.imageService.unpublishedImages$.pipe(
       map(images => {
-        debugger
         if (this.published) {
           return images.map(this.checkImageFields);
         }
