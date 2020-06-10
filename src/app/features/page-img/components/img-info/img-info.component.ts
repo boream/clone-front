@@ -11,6 +11,7 @@ import { Image } from '../../../../types/image';
 export class ImgInfoComponent implements OnInit, OnChanges {
 
   @Input() image: Image;
+  @Input() showButtons: Boolean;
   @Output() direction = new EventEmitter<Number>();
 
   constructor() { }

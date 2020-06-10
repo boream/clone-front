@@ -1,5 +1,5 @@
 <div class="container-img">
-  <button  class="btn btn__icon arrowLeft" type="button" (click)="direction.emit(-1)">
+  <button *ngIf="showButtons" class="btn btn__icon arrowLeft" type="button" (click)="direction.emit(-1)">
     <svg>
       <use xlink:href="/assets/icons/sprite.svg#arrow-left"></use>
     </svg>
@@ -27,7 +27,7 @@
       </div>
     </div>
   </div>
-  <button  class="btn btn__icon arrowRight" type="button" (click)="direction.emit(1)">
+  <button *ngIf="showButtons"  class="btn btn__icon arrowRight" type="button" (click)="direction.emit(1)">
     <svg>
       <use xlink:href="/assets/icons/sprite.svg#arrow-right"></use>
     </svg>

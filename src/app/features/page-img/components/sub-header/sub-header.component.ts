@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ImageListService } from 'src/app/services/image-list.service';
+import { Observable } from 'rxjs';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-sub-header',
@@ -7,12 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubHeaderComponent implements OnInit {
 
-  constructor() { }
+  showButtons$: Observable<Boolean>;
+
+  constructor(private imageListService: ImageListService, private _location: Location) { }
 
   ngOnInit(): void {
+    this.showButtons$ = this.imageListService.fromList$;
   }
 
   expandImg() {
 
+  }
+
+  back() {
+    this._location.back();
   }
 }

@@ -15,6 +15,8 @@
   }
 
   &__link {
+    flex-grow: 1;
+    padding: 0 10%;
     display: flex;
     align-items: center;
     color: $grey-300;
@@ -30,14 +32,9 @@
   height: rem(35px);
   border-radius: 50%;
 
-  &__expand{
-
+  &__expand {
   }
 }
-
-
-
-
 
 .btn {
   position: relative;
@@ -58,12 +55,11 @@
   }
 }
 
-.expandButton  svg{
+.expandButton svg {
   fill: $grey-300;
   width: rem(8px);
   height: rem(8px);
 }
-
 
 .user__icon--top {
   position: absolute;
