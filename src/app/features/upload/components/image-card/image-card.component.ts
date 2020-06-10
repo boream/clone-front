@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { TagsService } from 'src/app/services/tags.service';
@@ -20,8 +20,13 @@ export class ImageCardComponent implements OnInit {
   categories$: Observable<Category[]>;
   tags: Tag[];
   defaultCategory = { title: '' };
-  inputTitle: String = '';
   subscriptions: Subscription[] = [];
+  isSelected = {
+    categories: false,
+    tags: false,
+  }
+  imgTitle: string = '';
+  invalidField = { title: false, category: false };
 
   constructor(
     private categoriesService: CategoriesService,
@@ -29,13 +34,10 @@ export class ImageCardComponent implements OnInit {
     private imageService: ImageService
   ) { }
 
+  // TODO change to reactive form
   ngOnInit(): void {
-    // TODO antipattern you can't set @Input properties
-    this.image['isSelected'] = {
-      categories: false,
-      tags: false,
-    };
-    this.image['title'] = this.image['name'];
+    this.imgTitle = this.image['name'];
+    this.invalidField = this.image['error'] ? this.image['error'] : { title: false, category: false };
     this.categories$ = this.categoriesService.getCategories();
     this.subscriptions.push(
       this.tagsService.getTags().subscribe((tags: Tag[]) => {
@@ -50,16 +52,21 @@ export class ImageCardComponent implements OnInit {
   }
 
   toggleSelectCategories(image: Image) {
-    image['isSelected'].categories = !image['isSelected'].categories;
-    image['isSelected'].tags = false;
+    this.isSelected.categories = !this.isSelected.categories;
+    this.isSelected.tags = false;
   }
 
   toggleSelectTags(image: Image) {
-    image['isSelected'].tags = !image['isSelected'].tags;
-    image['isSelected'].categories = false;
+    this.isSelected.tags = !this.isSelected.tags;
+    this.isSelected.categories = false;
   }
 
   updateTitle(title: String) {
+    if (this.invalidField && title !== '') {
+      this.invalidField.title = false;
+    } else {
+      this.invalidField.title = true;
+    }
     this.image['name'] = title;
     this.updateImage();
   }
@@ -67,13 +74,17 @@ export class ImageCardComponent implements OnInit {
   selectCategory(image: Image, category: Category) {
     if (category.title) {
       image.category = category;
+      if (this.invalidField) {
+        this.invalidField.category = false;
+      }
     } else {
+      this.invalidField.category = true;
       image.category = null;
     }
     this.updateImage();
   }
 
-  selectTag(tag: Tag, image: Image) {
+  selectTag(tag: Tag) {
     this.image.tags.push(tag);
     this.updateImage();
   }

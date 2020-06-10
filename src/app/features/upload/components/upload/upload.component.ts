@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
 import { User } from 'src/app/types/user';
 import { Image } from 'src/app/types/image';
-import { tap, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -13,19 +12,17 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class UploadComponent implements OnInit, OnDestroy {
 
-  error: boolean = true;
-  success: boolean = true;
-
   user: User
   image: Image;
-  imageFiles: Array<Image> = []
+  imageFiles: Array<Image> = [];
+
+  published = false;
 
   images$: Observable<Image[]>;
 
   subscriptions: Subscription[] = [];
 
   constructor(
-    private userService: UserService,
     private imageService: ImageService
   ) { }
 
@@ -34,15 +31,14 @@ export class UploadComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.images$ = this.getImages();
-  }
-
-  errorClose() {
-    this.error = null;
-  }
-
-  successClose() {
-    this.success = false;
+    this.images$ = this.imageService.unpublishedImages$.pipe(
+      map(images => {
+        if (this.published) {
+          return images.map(this.checkImageFields);
+        }
+        return images;
+      })
+    )
   }
 
   imageFileSubmit(imagefile): void {
@@ -52,43 +48,29 @@ export class UploadComponent implements OnInit, OnDestroy {
       published: false
     };
     this.subscriptions.push(
-      this.imageService.saveImage(this.image).subscribe((res) => this.images$ = this.getImages())
+      this.imageService.saveImage(this.image).subscribe(_ => this.imageService.refreshUnpublished$.next(null))
     );
   }
 
-  publishedImages() {
-    this.images$.forEach(element => {
-      element.forEach(image => {
-        image = {
-          id: image.id,
-          file: image.file,
-          user: this.user,
-          published: true
-        }
-        this.subscriptions.push(
-          this.imageService.updateImage(image).subscribe((res) => this.images$ = this.getImages())
-        )
-      })
-    });
+  publishImages() {
+    this.published = true;
+    this.imageService.publishImages();
   }
 
   cancelImages() {
-    this.images$.forEach(element => {
-      element.forEach(image => {
-        this.subscriptions.push(
-          this.imageService.deleteImage(image).subscribe((res) => this.images$ = this.getImages())
-        )
-      });
-    })
+    this.imageService.cancelUnpublishedImages();
   }
 
-  private getImages() {
-    return this.userService.getLoggedUser().pipe(
-      tap(res => { this.user = res }),
-      switchMap(user => {
-        return this.imageService.getUserUnpublishedImagesByUsername(user.username);
-      })
-    );
+  private checkImageFields(image: Image) {
+    const imageChecked = image;
+    imageChecked['error'] = { title: false, category: false };
+    if (!imageChecked['name']) {
+      imageChecked['error'].title = true;
+    }
+    if (!imageChecked.category) {
+      imageChecked['error'].category = true;
+    }
+    return imageChecked;
   }
 
 }

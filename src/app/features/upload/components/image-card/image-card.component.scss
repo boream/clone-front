@@ -36,6 +36,7 @@
       &:hover {
         cursor: pointer;
       }
+
     }
 
     &-default {
@@ -89,5 +90,9 @@
   &__img {
     @include size(100%, rem(167px));
     object-fit: cover;
+  }
+
+  &__invalid {
+    border: 1px solid $error;
   }
 }

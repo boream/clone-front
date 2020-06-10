@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { SearchComponent } from './components/search/search.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -21,8 +20,13 @@ const routes: Routes = [
     component: PageNotFoundComponent,
   },
   {
-    path: 'search',
-    component: SearchComponent,
+    path: 'search/:query',
+    loadChildren: () => import('./features/search/search.module').then(m => m.SearchModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'image',
+    loadChildren: () => import('./features/page-img/page-img.module').then(m => m.PageImgModule),
     canActivate: [AuthGuard]
   },
   {
@@ -35,6 +39,7 @@ const routes: Routes = [
     loadChildren: () => import('./features/user/user.module').then(m => m.UserModule),
     canActivate: [AuthGuard]
   },
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

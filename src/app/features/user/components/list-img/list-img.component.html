@@ -1,5 +1,5 @@
 <div class="grid">
-  <div *ngFor="let image of listImages" class="grid__item">
+  <div *ngFor="let image of listImages" class="grid__item" [routerLink]="['/image', image.id]">
     <img [src]="image.url" alt="uno">
   </div>
 </div>
