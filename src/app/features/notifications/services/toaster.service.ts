@@ -63,7 +63,7 @@ export class ToasterService {
             const compFactory = this.resolver.resolveComponentFactory(component);
             this.compRef = compFactory.create(this.injector);
             this.appRef.attachView(this.compRef.hostView);
-            this._document.body.prepend(this.compRef.location.nativeElement);
+            this._document.body.appendChild(this.compRef.location.nativeElement);
         }
     }
 

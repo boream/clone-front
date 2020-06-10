@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/types/user';
 import { Subscription } from 'rxjs';
+import { ToasterService } from '../../../notifications/services/toaster.service';
 
 @Component({
   selector: 'app-close-account',
@@ -12,17 +13,15 @@ import { Subscription } from 'rxjs';
 export class CloseAccountComponent implements OnInit, OnDestroy {
 
   formDeleteAccount: FormGroup;
-  error: String;
-  user: User;
 
-  loading = false;
-  success = false;
+  user: User;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private toasters: ToasterService
   ) { }
 
   ngOnDestroy(): void {
@@ -30,9 +29,12 @@ export class CloseAccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    debugger
     this.subscriptions.push(
       this.userService.getLoggedUser().subscribe((res) => {
+        debugger
         this.user = res;
+        debugger
       }));
     this.formDeleteAccount = this.fb.group({
       currentPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -41,9 +43,17 @@ export class CloseAccountComponent implements OnInit, OnDestroy {
 
   submit(form) {
     this.subscriptions.push(
-      this.userService.closeAccount(this.user).subscribe(() => {
-        console.log('Delete successfully')
-      })
+      this.userService.closeAccount(this.user).subscribe(
+        () => {
+          this.toasters.success('Account deleted succesfully.', { autoClose: false })
+        },
+        () => {
+          this.toasters.error(
+            'Password given is not the correct one.',
+            { fade: true }
+          )
+        }
+      )
     )
   }
 
@@ -53,13 +63,6 @@ export class CloseAccountComponent implements OnInit, OnDestroy {
     }
   }
 
-  errorClose() {
-    this.error = null;
-  }
-
-  successClose() {
-    this.success = false;
-  }
 
 }
 

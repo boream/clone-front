@@ -1,0 +1,17 @@
+<div class="search-people-card">
+  <div class="search-people-card__header">
+    <img class="search-people-card__user-avatar" [src]="user?.profile.url" alt="" (click)="visitUser(user?.username)">
+    <div class="search-people-card__user" (click)="visitUser(user?.username)">
+      <h3 class="search-people-card__user-fullname">{{ user?.firstname }} {{ user?.lastname }}</h3>
+      <p class="search-people-card__username">@{{ user?.username }}</p>
+    </div>
+    <button class="search-people-card__button" (click)="addUser(user)">
+      <svg class="search-people-card__icon">
+        <use xlink:href="/assets/icons/sprite.svg#addUser"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="search-people-card__list">
+      <img class="search-people-card__image"  *ngFor="let image of userImages" [src]="image?.url" alt="" [routerLink]="['/image', image?.id]">
+  </div>
+</div>
