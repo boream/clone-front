@@ -10,14 +10,14 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class SearchImagesComponent implements OnInit {
 
-  image$: Observable<Image>;
+  images$: Observable<Image[]>;
 
   constructor(
     private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
-    this.image$ = this.imageService.getImageById('5ed79778f8031497f9638f5e');
+    this.images$ = this.imageService.getUserPublishedImagesByUsername('claudiabdm');
   }
 
 }
