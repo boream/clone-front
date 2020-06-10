@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
 import { ImageService } from 'src/app/services/image.service';
 import { User } from 'src/app/types/user';
 import { Image } from 'src/app/types/image';
