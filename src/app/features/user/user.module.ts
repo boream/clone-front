@@ -10,6 +10,7 @@ import { EditComponent } from './components/edit/edit.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CloseAccountComponent } from './components/close-account/close-account.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CloseAccountComponent],
   imports: [
     CommonModule,
+    SharedModule,
     UserRoutingModule,
     ReactiveFormsModule,
   ],
