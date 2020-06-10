@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { User } from 'src/app/types/user';
 import { Image } from 'src/app/types/image';
 import { UserService } from 'src/app/services/user.service';
@@ -12,17 +12,13 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class SearchPeopleComponent implements OnInit {
 
-  user$: Observable<User>;
-  userImages$: Observable<Image[]>;
-
+  users$: Observable<User[]>;
   constructor(
     private userService: UserService,
-    private imageService: ImageService,
   ) { }
 
   ngOnInit(): void {
-    this.user$ = this.userService.getUserByUsername('@claudiabdm');
-    this.userImages$ = this.imageService.getUserPublishedImagesByUsernameLimit('claudiabdm', 3);
+    this.users$ = combineLatest(this.userService.getUserByUsername('@claudiabdm'), this.userService.getUserByUsername('@test'));
   }
 
 }
