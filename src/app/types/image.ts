@@ -12,4 +12,5 @@ export interface Image {
     publishedDate?: Date;
     url?: string;
     user?: User;
+    name?: any;
 }
