@@ -8,6 +8,7 @@
   grid-template-rows: max-content;
   align-items: flex-start;
   gap: 20px;
+  padding: 24px;
 
   @media screen and (min-width: 767px) {
     grid-template-columns: repeat(auto-fit, minmax(rem(300px), 1fr));

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
 import { User } from 'src/app/types/user';
-import { Image } from 'src/app/types/image';
 import { UserService } from 'src/app/services/user.service';
-import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-search-people',
