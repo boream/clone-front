@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/types/user';
 import { Subscription } from 'rxjs';
+import { ToasterService } from '../../../notifications/services/toaster.service';
+
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -17,18 +19,15 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
   charactersPattern: any = /A-Za-z0-9\-\_]+/;
 
-  error: boolean;
-
   user: User;
 
-  loading = false;
-  success = false;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private toasters: ToasterService
     ) { }
 
   ngOnDestroy(): void {
@@ -54,11 +53,15 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   submit(form) {
     this.subscriptions.push(this.userService.changePassword(this.user, form.value.newPassword).subscribe(
       () => {
-        this.success = true;
-      }, (error) => {
-        console.log(error)
+        this.toasters.success('Password updated.', { autoClose: true })
+      }, () => {
+        this.toasters.error(
+          'There was an error changing the password.',
+          { fade: true }
+        )
       }
     ));
+    this.formChangePswd.reset();
   }
 
   passwordHasError(password) {
@@ -94,11 +97,4 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     }
   }
 
-  errorClose() {
-    this.error = null;
-  }
-
-  successClose() {
-    this.success = false;
-  }
 }
