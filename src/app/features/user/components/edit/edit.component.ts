@@ -75,7 +75,7 @@ export class EditComponent implements OnInit {
     this.subscriptions.push(
       this.userService.updateUser(updatedUser, this.newAvatar).subscribe(
         () => {
-          this.toasters.success('Profile succesfully edited.', { autoClose: true })
+          this.toasters.success('Profile succesfully edited.', { autoClose: true });
         },
         () => {
           this.toasters.error(
@@ -85,7 +85,6 @@ export class EditComponent implements OnInit {
         }
       )
     );
-    this.formEditProfile.reset();
   }
 
   firstNameHasError(form) {
