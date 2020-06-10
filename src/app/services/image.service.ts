@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Image } from '../types/image';
-import { Observable, BehaviorSubject, of } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of, Subject, forkJoin } from 'rxjs';
+import { map, tap, catchError, switchMap, repeatWhen, take } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import { User } from '../types/user';
+import { ToasterService } from '../features/notifications/services/toaster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +15,61 @@ export class ImageService {
 
   imagesUrl = `${environment.apiUrl}images`;
 
+  unpublishedImages$: Observable<Image[]>;
+  refreshUnpublished$ = new Subject();
+
+  publishedImages$ = new BehaviorSubject<Image[]>([]);
   savedImages$ = new BehaviorSubject<Image[]>([]);
 
-  constructor(private http: HttpClient) { }
+  user: User;
+
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private toaster: ToasterService) {
+
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+
+    this.unpublishedImages$ = this.authService.user$.pipe(
+      switchMap(user => {
+        return this.getUserUnpublishedImagesByUsername(user.username).pipe(
+          repeatWhen(() => this.refreshUnpublished$)
+        )
+      })
+    );
+  }
+
+  publishImages() {
+    this.unpublishedImages$.pipe(
+      take(1),
+      switchMap(images => {
+        const toPublish = images.filter(img => img['name'] && img.category).map(img => {
+          img.published = true;
+          return img;
+        });
+        if (toPublish.length != images.length) {
+          this.toaster.error('Some images cannot be saved.');
+        }
+        const requests = toPublish.map(img => this.updateImage(img));
+        if (requests.length > 0) {
+          return forkJoin(requests);
+        }
+        return of(images);
+      })
+    ).subscribe(() => this.refreshUnpublished$.next())
+  }
+
+  cancelUnpublishedImages() {
+    this.unpublishedImages$.pipe(
+      take(1),
+      switchMap(images => {
+        const requests = images.map(img => this.deleteImage(img));
+        return forkJoin(requests);
+      })
+    ).subscribe(() => this.refreshUnpublished$.next());
+  }
 
   getImageById(id: String) {
     return this.http.get<Image>(`${this.imagesUrl}/${id}`).pipe(
@@ -33,7 +88,7 @@ export class ImageService {
     if (image.tags) {
       data.tags = image.tags;
     }
-    data.user = image.user.id;
+    data.user = this.user.id;
     data.published = image.published
     const formData = new FormData();
     formData.append('files.file', image.file, image.file.name);
@@ -64,9 +119,7 @@ export class ImageService {
 
   getUserUnpublishedImagesByUsername(username: string): Observable<Image[]> {
     return this.http.get<Image[]>(`${this.imagesUrl}?user.username=${username}&published=false`)
-      .pipe(
-        map((images: Image[]) => images.map(image => this.formatUrl(image)))
-      )
+      .pipe(map((images: Image[]) => images.map(image => this.formatUrl(image))))
   }
 
   deleteImage(image: Image) {
