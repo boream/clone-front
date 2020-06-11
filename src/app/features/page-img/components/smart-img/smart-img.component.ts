@@ -35,7 +35,6 @@ export class SmartImgComponent implements OnInit {
   }
 
   expandImg(expand) {
-    debugger
     this.expanded = expand;
   }
 

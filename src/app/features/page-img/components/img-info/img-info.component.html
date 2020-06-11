@@ -5,6 +5,10 @@
     </svg>
   </button>
   <div class="carrousel">
+    <a class="sub-header__link" [routerLink]="">
+      <img class="carrousel__user-img" src="./assets/img/chinaguy.png" alt="">
+      Deividev
+    </a>
     <img class="img" [class.img__expand]="expand" [src]="image?.url" alt="">
     <div class="img__info">
       <h3 class="img__title">{{image.file.name}}</h3>
@@ -25,6 +29,10 @@
           </svg>
         </button>
       </div>
+      <a class="user__link" [routerLink]="">
+        <img class="carrousel__user-img" src="./assets/img/chinaguy.png" alt="">
+        Deividev
+      </a>
     </div>
   </div>
   <button *ngIf="showButtons"  class="btn btn__icon arrowRight" type="button" (click)="direction.emit(1)">
@@ -33,3 +41,5 @@
     </svg>
   </button>
 </div>
+
+<footer></footer>
