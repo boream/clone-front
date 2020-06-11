@@ -4,7 +4,7 @@ import { Image } from '../types/image';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ImageService } from './image.service';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { clone } from 'lodash';
 
 @Injectable({
@@ -20,14 +20,18 @@ export class SearchService {
 
   search$ = new BehaviorSubject<Image[]>([]);
 
+  totalPeople: number = 0;
+  totalImages: number = 0;
+  totalTags: number = 0;
+
   constructor(private http: HttpClient, private imageService: ImageService) {
 
-    this.images$ = this.search$;
-
+    this.images$ = this.search$.pipe(tap(images => this.totalImages = images.length));
     this.people$ = this.search$.pipe(
       switchMap(images => {
-        const users = images.map(img => img.user.id)
+        const users = images.map(img => img.user.id);
         const uniq = [... new Set(users)];
+        this.totalPeople = uniq.length;
         const request = uniq.map(id => this.getThreeUserImages(id));
         return forkJoin(request).pipe(
           map(imagesResponse => {
@@ -37,6 +41,11 @@ export class SearchService {
               selectedImages.forEach(img => {
                 delete img.user;
               });
+              if (!user.profile) {
+                user.profile = { url: '/assets/icons/user.svg' };
+              } else {
+                user.profile.url = `${environment.apiUrl}${user.profile.url.slice(1)}`;
+              }
               user.images = selectedImages;
               return user;
             });
@@ -61,7 +70,10 @@ export class SearchService {
   }
 
   search(categoryName) {
-    this.getImagesByCategoryName(categoryName).subscribe(res => this.search$.next(res));
+    return this.getImagesByCategoryName(categoryName)
+      .pipe(
+        tap(res => this.search$.next(res))
+      );
   }
 
   getThreeUserImages(userId) {

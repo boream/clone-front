@@ -1,11 +1,5 @@
 <ul class="list">
   <li class="list__elem" *ngFor="let user of users$ | async">
-    <!-- <app-search-people-card [user]="user"></app-search-people-card> -->
-    <span style="font-weight: bold;">{{user.username}}</span>
-    <ul>
-      <li *ngFor="let img of user.images">
-        {{ img | json}}
-      </li>
-    </ul>
+    <app-search-people-card [user]="user"></app-search-people-card>
   </li>
 </ul>

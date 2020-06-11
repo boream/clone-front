@@ -14,19 +14,15 @@ export class SearchPeopleCardComponent implements OnInit {
 
   @Input() user: User;
 
-  userImages$: Observable<Image[]>;
   username: string;
   isDefault: boolean;
 
   constructor(
     private router: Router,
-    private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
-    this.userImages$ = this.imageService.getUserPublishedImagesByUsernameLimit(this.user.username, 3);
     this.isDefault = this.user.profile.url === '/assets/icons/user.svg';
-
   }
 
   visitUser(username: string) {
