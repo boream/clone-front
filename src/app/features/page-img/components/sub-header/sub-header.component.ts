@@ -23,7 +23,8 @@ export class SubHeaderComponent implements OnInit {
 
   expandImg($event) {
     debugger
-    this.expandEvent.emit(this.expand = !this.expand);
+    this.expand = !this.expand
+    this.expandEvent.emit(this.expand);
   }
 
   back() {

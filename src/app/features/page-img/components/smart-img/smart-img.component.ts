@@ -14,6 +14,9 @@ export class SmartImgComponent implements OnInit {
   image$: Observable<any>
   showButtons$: Observable<Boolean>;
 
+  expanded:Boolean;
+
+
   constructor(private imageListService: ImageListService,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -31,8 +34,9 @@ export class SmartImgComponent implements OnInit {
     this.imageListService.direction$.next(event);
   }
 
-  expandImg(event) {
-
+  expandImg(expand) {
+    debugger
+    this.expanded = expand;
   }
 
 }

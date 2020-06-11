@@ -1,5 +1,5 @@
 <app-header-img></app-header-img>
 <div class="container-pageImg">
-  <app-sub-header></app-sub-header>
-  <app-img-info [image]="image$ | async"  (expandEvent)="expandImg($event)" [showButtons]="showButtons$ | async" (direction)="go($event)" ></app-img-info>
+  <app-sub-header (expandEvent)="expandImg($event)"></app-sub-header>
+  <app-img-info [image]="image$ | async"  [expand]="expanded" [showButtons]="showButtons$ | async" (direction)="go($event)" ></app-img-info>
 </div>
