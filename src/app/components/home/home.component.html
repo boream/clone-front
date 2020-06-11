@@ -13,6 +13,10 @@
     </div>
     <p class="home__main-desc">Trending searches: <span class="br"></span>raining, stormy wather, sunset, thunder.</p>
   </div>
-  <div class="home__gallery"></div>
+  <div class="home__gallery">
+    <div *ngFor="let image of listImages" class="home__gallery-item" [routerLink]="['/image', image.id]">
+      <img [src]="image.url" alt="uno">
+    </div>
+  </div>
 </div>
 <router-outlet></router-outlet>
