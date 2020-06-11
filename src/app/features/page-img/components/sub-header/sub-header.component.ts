@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ImageListService } from 'src/app/services/image-list.service';
 import { Observable } from 'rxjs';
 import {Location} from '@angular/common';
@@ -10,7 +10,10 @@ import {Location} from '@angular/common';
 })
 export class SubHeaderComponent implements OnInit {
 
+  @Output() expandEvent = new EventEmitter<any>();
+
   showButtons$: Observable<Boolean>;
+  expand: Boolean = false;
 
   constructor(private imageListService: ImageListService, private _location: Location) { }
 
@@ -18,8 +21,9 @@ export class SubHeaderComponent implements OnInit {
     this.showButtons$ = this.imageListService.fromList$;
   }
 
-  expandImg() {
-
+  expandImg($event) {
+    debugger
+    this.expandEvent.emit(this.expand = !this.expand);
   }
 
   back() {

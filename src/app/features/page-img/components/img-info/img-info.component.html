@@ -5,7 +5,7 @@
     </svg>
   </button>
   <div class="carrousel">
-    <img class="img" [src]="image?.url" alt="">
+    <img class="img" [class.img__expand]="expand" [src]="image?.url" alt="">
     <div class="img__info">
       <h3 class="img__title">{{image.file.name}}</h3>
       <div class="img__controls">

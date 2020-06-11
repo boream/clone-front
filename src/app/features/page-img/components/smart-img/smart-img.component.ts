@@ -31,4 +31,8 @@ export class SmartImgComponent implements OnInit {
     this.imageListService.direction$.next(event);
   }
 
+  expandImg(event) {
+
+  }
+
 }

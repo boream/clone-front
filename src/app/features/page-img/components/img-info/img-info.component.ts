@@ -12,6 +12,8 @@ export class ImgInfoComponent implements OnInit, OnChanges {
 
   @Input() image: Image;
   @Input() showButtons: Boolean;
+  @Input() expand: Boolean;
+  @Output() expanded: EventEmitter<Boolean> = new EventEmitter;
   @Output() direction = new EventEmitter<Number>();
 
   constructor() { }
@@ -22,5 +24,6 @@ export class ImgInfoComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
   }
+
 
 }
