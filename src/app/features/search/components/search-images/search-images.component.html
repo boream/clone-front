@@ -1,1 +1,5 @@
-<app-search-image-card [image]="image$ | async"></app-search-image-card>
+<ul class="grid">
+  <li class="grid__item" *ngFor="let image of images$ | async" [routerLink]="['/image', image.id]">
+    <app-search-image-card class="grid__img " [image]="image"></app-search-image-card>
+  </li>
+</ul>
