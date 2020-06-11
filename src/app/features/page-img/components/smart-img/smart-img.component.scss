@@ -1,29 +1,42 @@
-@import 'global/variables';
-@import 'mixins/mixins';
-
-
-
-
+@import "global/variables";
+@import "mixins/mixins";
 
 //FOOTER
 
 .footer {
-  background-color: $grey-400;
+  @media screen and (min-width: 1024px) {display: none;}
+  @media screen and (min-width: 767px) {display: none;}
+  position: relative;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 3.5625rem;
+  color: #fff;
+  padding: 15px;
+  background-color: #2e2e2e;
 
+  &__icon--search {
+    width: 36px;
+    height: 25px;
+    margin-left: 0;
+    height: 1rem;
+    fill: #bbb;
+  }
   // SEARCH
   // -----------------
   &__search {
     position: relative;
     width: 68%;
     min-width: 100px;
-    margin-left: 10%;
     margin-right: 10px;
     border-radius: 5px;
     padding: 10px;
-    background-color: #fff;
+    background-color: $grey-400;
 
     &-bar {
-      @include flex(center, flex-start)
+      @include flex(center, flex-start);
     }
 
     &-control {
@@ -32,22 +45,17 @@
       font-family: $font-primary;
       font-weight: $font-weight-ligth;
       font-size: 1rem;
+      background-color: $grey-400;
+      color: #fff;
     }
 
     &__icon {
-      @include size(rem(36px), rem(25px));
 
       margin-left: 35px;
       fill: #fff;
       opacity: 0.6;
 
 
-      &--search {
-        margin-left: 0;
-        height: 1rem;
-        fill: #bbb;
-      }
     }
-
   }
 }
