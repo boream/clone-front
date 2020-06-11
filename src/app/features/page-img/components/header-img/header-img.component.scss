@@ -32,12 +32,24 @@
   // LINK
   // -----------------
   &__link {
+    display: none;
     color: #fff;
   }
+
+  &__back {
+    font-size:  14px;
+    color: #fff;
+    padding: 10px 120px;
+  }
+
 
   // SEARCH
   // -----------------
   &__search {
+    @media screen and (min-width: 767px) {
+      visibility: visible;
+    }
+    visibility: hidden;
     position: relative;
     width: 68%;
     min-width: 100px;

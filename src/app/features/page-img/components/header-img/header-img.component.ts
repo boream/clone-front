@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/internal/operators/map';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/types/user';
+import {Location} from '@angular/common';
+
 
 
 @Component({
@@ -24,8 +25,8 @@ export class HeaderImgComponent implements OnInit {
 
 
   constructor(
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private _location: Location) { }
 
   ngOnInit(): void {
     this.userService.getLoggedUser().subscribe((user: User) => {
@@ -40,6 +41,10 @@ export class HeaderImgComponent implements OnInit {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  back() {
+    this._location.back();
   }
 
 }

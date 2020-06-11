@@ -3,3 +3,17 @@
   <app-sub-header (expandEvent)="expandImg($event)"></app-sub-header>
   <app-img-info [image]="image$ | async"  [expand]="expanded" [showButtons]="showButtons$ | async" (direction)="go($event)" ></app-img-info>
 </div>
+<!-- SEARCH BAR (only visible in user page)-->
+<div>
+<footer class="footer">
+  <div class="footer__search">
+    <label class="footer__search-bar">
+      <svg class="footer__icon footer__icon--search">
+        <use xlink:href="/assets/icons/sprite.svg#search" />
+      </svg>
+      <input type="search" placeholder="Search..." class="footer__search-control">
+    </label>
+  </div>
+</footer>
+</div>
+<!-- // SEARCH BAR -->

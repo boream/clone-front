@@ -1,0 +1,53 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+
+
+
+
+//FOOTER
+
+.footer {
+  background-color: $grey-400;
+
+  // SEARCH
+  // -----------------
+  &__search {
+    position: relative;
+    width: 68%;
+    min-width: 100px;
+    margin-left: 10%;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+
+    &-bar {
+      @include flex(center, flex-start)
+    }
+
+    &-control {
+      width: 100%;
+      border: none;
+      font-family: $font-primary;
+      font-weight: $font-weight-ligth;
+      font-size: 1rem;
+    }
+
+    &__icon {
+      @include size(rem(36px), rem(25px));
+
+      margin-left: 35px;
+      fill: #fff;
+      opacity: 0.6;
+
+
+      &--search {
+        margin-left: 0;
+        height: 1rem;
+        fill: #bbb;
+      }
+    }
+
+  }
+}
