@@ -1,1 +1,5 @@
-<app-search-people-card [user]="user$ | async" [userImages]="userImages$ | async"></app-search-people-card>
+<ul class="list">
+  <li class="list__elem" *ngFor="let user of users$ | async">
+    <app-search-people-card [user]="user"></app-search-people-card>
+  </li>
+</ul>
