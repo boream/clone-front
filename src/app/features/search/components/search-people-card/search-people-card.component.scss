@@ -3,8 +3,8 @@
 
 .search-people-card {
   padding: 30px 20px;
+  height: rem(235px);
   background-color: #fff;
-  max-width: rem(444px);
 
   &__header {
     @include flex(center, flex-start);
@@ -21,9 +21,14 @@
   &__user-avatar {
     @include size(rem(60px), rem(60px));
     margin-right: 20px;
-    filter: brightness(0.25);
+    border-radius: 50%;
+    object-fit: cover;
     &:hover {
       cursor: pointer;
+    }
+
+    &--filter {
+      filter: brightness(0.25);
     }
   }
 

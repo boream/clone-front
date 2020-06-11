@@ -1,0 +1,20 @@
+@import "global/variables";
+@import "mixins/mixins";
+
+.list {
+  @include size(100%, 100%);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+
+  @media screen and (min-width: 767px) {
+    grid-template-columns: repeat(auto-fit, minmax(rem(300px), 1fr));
+  }
+
+  @media screen and (min-width: 1023px) {
+    grid-template-columns: repeat(auto-fit, rem(444px));
+  }
+}
