@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, forkJoin } from 'rxjs';
+import { Observable, BehaviorSubject, forkJoin, combineLatest } from 'rxjs';
 import { Image } from '../types/image';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -14,11 +14,14 @@ export class SearchService {
 
   imagesUrl = `${environment.apiUrl}images?published=true`;
 
-  images$: Observable<Image[]>;
-  people$: Observable<any[]>;
+  images$ = new BehaviorSubject<any[]>([]);
+  totalResults$: Observable<number>;
+  people$ = new BehaviorSubject<any[]>([]);
   tags$: Observable<any[]>;
 
   search$ = new BehaviorSubject<Image[]>([]);
+
+  childPage$ = new BehaviorSubject<string>('');
 
   totalPeople: number = 0;
   totalImages: number = 0;
@@ -26,10 +29,16 @@ export class SearchService {
 
   constructor(private http: HttpClient, private imageService: ImageService) {
 
-    this.images$ = this.search$.pipe(tap(images => this.totalImages = images.length));
-    this.people$ = this.search$.pipe(
+    this.search$.subscribe(res => this.images$.next(res))
+
+    this.search$.pipe(
       switchMap(images => {
-        const users = images.map(img => img.user.id);
+        const users = images.map(img => {
+          if (img.user) {
+            return img.user.id;
+          }
+          return null;
+        }).filter(id => id != null);
         const uniq = [... new Set(users)];
         this.totalPeople = uniq.length;
         const request = uniq.map(id => this.getThreeUserImages(id));
@@ -52,6 +61,24 @@ export class SearchService {
             return users;
           })
         )
+      })
+    ).subscribe(res => this.people$.next(res))
+
+
+    this.totalResults$ = combineLatest(
+      this.childPage$,
+      this.images$,
+      this.people$
+    ).pipe(
+      map(([childPage, images, people]) => {
+        switch (childPage) {
+          case 'images':
+            return images.length;
+          case 'people':
+            return people.length;
+          default:
+            return 0;
+        }
       })
     );
 

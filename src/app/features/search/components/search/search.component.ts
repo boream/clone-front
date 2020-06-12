@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, tap, switchMap } from 'rxjs/operators';
+import { map, tap, switchMap, shareReplay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -12,8 +12,11 @@ import { SearchService } from 'src/app/services/search.service';
 export class SearchComponent implements OnInit {
 
   query: string;
+  query$: Observable<string>;
   totalResults: number;
+  totalResults$: Observable<number>;
   currentChild: string;
+  currentChild$: Observable<string>;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,14 +25,20 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.pipe(
-      tap(params => this.query = params.query),
-      switchMap(params => this.searchService.search(params.query)),
-      switchMap(() => this.route.firstChild?.url),
+      switchMap(params => this.searchService.search(params.query))
+    ).subscribe();
+
+    this.query$ = this.route.params.pipe(
+      map(params => params.query),
+      shareReplay(1)
+    );
+
+    this.totalResults$ = this.searchService.totalResults$;
+
+    this.currentChild$ = this.route.firstChild?.url.pipe(
       map(res => res[0].path),
-    ).subscribe(res => {
-      this.currentChild = res;
-      this.getTotalResults(res);
-    });
+      tap(currentChild => this.searchService.childPage$.next(currentChild))
+    )
   }
 
   private getTotalResults(currentChild: string) {
