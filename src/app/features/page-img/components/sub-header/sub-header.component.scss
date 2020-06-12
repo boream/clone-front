@@ -1,60 +1,218 @@
 @import "global/variables";
 @import "mixins/rem";
 
-.sub-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: rem(65px);
-  padding: 15px 30px;
-  background-color: $base;
 
-  &__close {
-    font-size: rem(18px);
-    padding-right: 5px;
+@media screen and (max-width: 767px) {
+.sub-header {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    height: rem(65px);
+    padding: 15px 30px;
+    background-color: $base;
+
+    &__close {
+      font-size: rem(18px);
+      padding-right: 5px;
+    }
+
+    &__link {
+      flex-grow: 1;
+      padding: 0 10%;
+      display: flex;
+      align-items: center;
+      color: $grey-300;
+    }
+
+    &__link:hover {
+      color: $grey-200;
+    }
   }
 
-  &__link {
+  .img {
+    width: rem(35px);
+    height: rem(35px);
+    border-radius: 50%;
+  }
+
+  .btn {
+    position: relative;
+    padding: 10px 12px;
+    background-color: #fff;
+
+    &__back {
+      font-family: $font-primary;
+      font-style: normal;
+      font-weight: $font-weight-normal;
+      font-size: 14px;
+      line-height: 16px;
+      color: $grey-300;
+    }
+
+    &__back:hover {
+      color: $grey-200;
+    }
+  }
+
+  .expandButton svg {
+    fill: $grey-300;
+    width: rem(8px);
+    height: rem(8px);
+  }
+
+  .user__icon--top {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .user__icon--bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .sub-header {
     display: flex;
     align-items: center;
-    color: $grey-300;
+    justify-content: space-between;
+    height: rem(65px);
+    padding: 15px 30px;
+    background-color: $base;
+
+    &__close {
+      font-size: rem(18px);
+      padding-right: 5px;
+    }
+
+    &__link {
+      visibility: hidden;
+      flex-grow: 1;
+      padding: 0 10%;
+      display: flex;
+      align-items: center;
+      color: $grey-300;
+    }
+
+    &__link:hover {
+      color: $grey-200;
+    }
+  }
+
+  .img {
+    width: rem(35px);
+    height: rem(35px);
+    border-radius: 50%;
+  }
+
+  .btn {
+    position: relative;
+    padding: 10px 12px;
+    background-color: #fff;
+
+    &__back {
+      font-family: $font-primary;
+      font-style: normal;
+      font-weight: $font-weight-normal;
+      font-size: 14px;
+      line-height: 16px;
+      color: $grey-300;
+    }
+
+    &__back:hover {
+      color: $grey-200;
+    }
+  }
+
+  .expandButton svg {
+    fill: $grey-300;
+    width: rem(8px);
+    height: rem(8px);
+  }
+
+  .user__icon--top {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .user__icon--bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }
 
-.img {
-  width: rem(35px);
-  height: rem(35px);
-  border-radius: 50%;
-}
+@media screen and (min-width: 1024px) {
+  .sub-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: rem(65px);
+    padding: 15px 30px;
+    background-color: $base;
 
-.btn__back {
-  font-family: $font-primary;
-  font-style: normal;
-  font-weight: $font-weight-normal;
-  font-size: 14px;
-  line-height: 16px;
-  color: $grey-300;
-}
+    &__close {
+      font-size: rem(18px);
+      padding-right: 5px;
+    }
 
-.btn {
-  position: relative;
-  padding: 10px 12px;
-  background-color: #fff;
-}
+    &__link {
+      flex-grow: 1;
+      padding: 0 22%;
+      display: flex;
+      align-items: center;
+      color: $grey-300;
+      visibility: visible;
+    }
 
-.expandButton  svg{
-  width: rem(8px);
-  height: rem(8px);
-}
+    &__link:hover {
+      color: $grey-200;
+    }
+  }
 
-.user__icon--top {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
+  .img {
+    width: rem(35px);
+    height: rem(35px);
+    border-radius: 50%;
+  }
 
-.user__icon--bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  .btn {
+    position: relative;
+    padding: 10px 12px;
+    background-color: #fff;
+
+    &__back {
+      font-family: $font-primary;
+      font-style: normal;
+      font-weight: $font-weight-normal;
+      font-size: 14px;
+      line-height: 16px;
+      color: $grey-300;
+    }
+
+    &__back:hover {
+      color: $grey-200;
+    }
+  }
+
+  .expandButton svg {
+    fill: $grey-300;
+    width: rem(8px);
+    height: rem(8px);
+  }
+
+  .user__icon--top {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .user__icon--bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 }

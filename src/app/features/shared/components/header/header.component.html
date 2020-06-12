@@ -1,0 +1,61 @@
+<header class="header">
+  <div class="header__main">
+
+    <!-- LOGO -->
+    <div class="header__logo">
+      <a class="header__link" [routerLink]="['/home']">/clone</a>
+    </div>
+    <!-- //LOGO -->
+
+    <!-- SEARCH BAR (only visible in user page)-->
+    <div class="header__search">
+      <label class="header__search-bar">
+        <svg class="header__icon header__icon--search">
+          <use xlink:href="/assets/icons/sprite.svg#search" />
+        </svg>
+        <input type="search" placeholder="Search..." class="header__search-control">
+      </label>
+    </div>
+    <!-- // SEARCH BAR -->
+
+    <button class="header__btn" (click)="toggleMenu()">
+      <svg class="header__icon header__icon--lines">
+        <use xlink:href="/assets/icons/sprite.svg#menu-lines" />
+      </svg>
+    </button>
+
+    <!-- POPUP -->
+    <div class="header__popup" [class.header__popup--show]="isMenuOpen">
+      <nav class="header__popup-navbar" [class.header__popup-navbar--show]="isMenuOpen">
+        <button (click)="toggleMenu()" class="header__close">&times;</button>
+        <a class="header__link header__popup-link" [routerLink]="['/upload']" (click)="toggleMenu()">Upload</a>
+        <a class="header__link header__popup-link" (click)="toggleNotifications()">Notifications</a>
+        <a class="header__link header__popup-link" [routerLink]="['/', username]" (click)="toggleMenu()">User</a>
+      </nav>
+    </div>
+    <!-- // POPUP -->
+
+    <!-- NAVBAR -->
+    <nav class="header__navbar">
+      <svg class="header__icon" [routerLink]="['/upload']">
+        <use xlink:href="/assets/icons/sprite.svg#upload" />
+      </svg>
+      <div class="header__notifications" (click)="toggleNotifications()">
+        <svg class="header__icon">
+          <use xlink:href="/assets/icons/sprite.svg#bell" />
+        </svg>
+        <div class="header__notifications-popup" [class.header__notifications-popup--show]="isNotificationOpen">
+          <h3 class="header__notifications-title">Notifications</h3>
+          <div class="header__notifications-container">
+            <p class="header__notifications-empty" *ngIf="notificationsEmpty">No notifications yet</p>
+            <ul class="header__notications-list" *ngIf="!notificationsEmpty">
+              <li *ngFor="let notification of notifications"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <img class="header__avatar" [src]="userAvatar$ | async" alt="User profile avatar" [routerLink]="['/', username]">
+    </nav>
+    <!-- //NAVBAR -->
+  </div>
+</header>

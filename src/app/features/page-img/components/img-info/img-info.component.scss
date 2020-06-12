@@ -1,48 +1,309 @@
 @import "global/variables";
 @import "mixins/rem";
 
-.container-img {
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
 
 
-.img {
-  width: rem(779px);
-  height: rem(590px);
-
-  &__info {
+@media screen and (max-width: 767px) {
+  .container-img {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
 
-  &__controls {
+  .carrousel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 80px;
+
+    &__user-img{
+      width: rem(35px);
+      height: rem(35px);
+      border-radius: 50%;
+    }
+  }
+
+  .user__link {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    color: $grey-300;
+  }
+
+  .user__link:hover {
+    color: $grey-200;
+  }
+
+  .img {
+    position: relative;
+    width: 100%;
+    height: rem(500px);
+
+    &__expand {
+      width: 100vw;
+    }
+
+    &__title {
+      font-family: $font-primary;
+      font-weight: $font-weight-ligth;
+      font-size: 24px;
+      line-height: 28px;
+      color: $grey-300;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+    }
+
+    &__controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .arrowLeft {
+    position: absolute;
+    top: 60%;
+    left: 0;
+    z-index: 10;
+  }
+
+  .arrowLeft svg {
+    width: rem(23px);
+    height: rem(40px);
+    fill: $base;
+    stroke: $grey-200;
+  }
+
+  .arrowRight {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    z-index: 10;
+  }
+
+  .arrowRight svg{
+    width: rem(23px);
+    height: rem(40px);
+    fill: $base;
+    stroke: $grey-200;
+  }
+
+  .expandButton svg{
+    fill: $grey-300;
+    width: rem(18px);
+    height: rem(20px);
+  }
+
+  .expandButton svg:hover{
+    fill: $grey-200;
+  }
+
+
+  .sub-header__link {
+    display: none;
+    align-items: center;
+    padding: 40px 0px 14px 0px;
+    color: $grey-300;
+  }
+
+}
+@media screen and (min-width: 767px) {
+
+  .container-img {
+    display: flex;
+    justify-content: center;
+  }
+
+  .user__link {
+    display: none;
+    align-items: center;
+  }
+
+  .carrousel {
+    display: flex;
+    flex-direction: column;
+
+    &__user-img{
+      width: rem(35px);
+      height: rem(35px);
+      border-radius: 50%;
+    }
+  }
+
+  .img {
+    position: relative;
+    width: rem(651px);
+    height: rem(500px);
+
+    &__expand {
+      width: 100vw;
+    }
+
+    &__title {
+      font-family: $font-primary;
+      font-weight: $font-weight-ligth;
+      font-size: 24px;
+      line-height: 28px;
+      color: $grey-300;
+    }
+
+    &__info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+    }
+
+    &__controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .arrowLeft {
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .arrowLeft svg {
+    width: rem(23px);
+    height: rem(40px);
+  }
+
+  .arrowLeft svg:hover {
+    fill: $grey-200
+  }
+
+  .arrowRight {
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+
+  .arrowRight svg{
+    width: rem(23px);
+    height: rem(40px);
+  }
+
+  .arrowRight svg:hover{
+    fill: $grey-200
+  }
+
+  .expandButton svg{
+    fill: $grey-300;
+    width: rem(18px);
+    height: rem(20px);
+  }
+
+  .expandButton svg:hover{
+    fill: $grey-200;
+  }
+
+  .sub-header__link {
+    display: flex;
+    align-items: center;
+    padding: 40px 0px 14px 0px;
+    color: $grey-300;
   }
 }
 
 
-.arrowLeft {
-  position: absolute;
-  left: 0;
-  padding: 35px 0px 274px 0px;
-  width: rem(23px);
-  height: rem(40px);
-}
+@media screen and (min-width: 1024px) {
+  .container-img {
+    display: flex;
+    justify-content: center;
+  }
 
-.arrowRights {
-  position: absolute;
-  right: 0;
-  width: rem(23px);
-  height: rem(40px);
-}
+  .user__link {
+    display: none;
+    align-items: center;
+  }
 
-.expandButton {
-  fill: $grey-300;
-  width: rem(18px);
-  height: rem(18px);
+  .carrousel {
+    display: flex;
+    flex-direction: column;
+
+    &__user-img{
+      width: rem(35px);
+      height: rem(35px);
+      border-radius: 50%;
+    }
+  }
+
+
+  .img {
+    position: relative;
+    width: rem(779px);
+    height: rem(590px);
+
+    &__expand {
+      width: 100vw;
+    }
+
+    &__title {
+      font-family: $font-primary;
+      font-weight: $font-weight-ligth;
+      font-size: 24px;
+      line-height: 28px;
+      color: $grey-300;
+    }
+
+    &__info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+    }
+
+    &__controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .arrowLeft {
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .arrowLeft svg {
+    width: rem(23px);
+    height: rem(40px);
+  }
+
+  .arrowRight {
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+
+  .arrowRight svg{
+    width: rem(23px);
+    height: rem(40px);
+  }
+
+  .expandButton svg{
+    fill: $grey-300;
+    width: rem(18px);
+    height: rem(20px);
+  }
+
+  .expandButton svg:hover{
+    fill: $grey-200;
+  }
+
+
+  .sub-header__link {
+    display: none;
+    align-items: center;
+    padding: 40px 0px 14px 0px;
+    color: $grey-300;
+  }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, combineLatest, BehaviorSubject, of } from 'rxjs';
 import { ImageService } from './image.service';
-import { withLatestFrom, switchMap } from 'rxjs/operators';
+import { withLatestFrom, switchMap, map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -15,8 +15,15 @@ export class ImageListService {
 
   // salida del servicio al componente
   image$: Observable<any>;
+  fromList$: Observable<any>;
 
   constructor(private imageService: ImageService, private router: Router) {
+
+    this.fromList$ = this.imageService.savedImages$.pipe(
+      map(images => Array.isArray(images) && images.length > 0),
+      shareReplay(1)
+    );
+
     this.image$ = combineLatest(
       this.imageService.savedImages$,
       this.currentImage$

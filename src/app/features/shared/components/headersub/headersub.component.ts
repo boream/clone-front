@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CategoriesService } from '../../services/categories.service';
-import { Category } from '../../types/category';
+import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from '../../../../services/categories.service';
+import { Category } from '../../../../types/category';
 import { Observable } from 'rxjs';
 
 @Component({
