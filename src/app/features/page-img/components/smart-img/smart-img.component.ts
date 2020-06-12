@@ -12,11 +12,16 @@ import { has } from 'lodash';
 export class SmartImgComponent implements OnInit {
 
   image$: Observable<any>
+  showButtons$: Observable<Boolean>;
+
+  expanded:Boolean;
+
 
   constructor(private imageListService: ImageListService,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.image$ = this.imageListService.image$;
+    this.showButtons$ = this.imageListService.fromList$;
 
     this.route.params.subscribe(params => {
       if (has(params, 'id')) {
@@ -27,6 +32,10 @@ export class SmartImgComponent implements OnInit {
 
   go(event) {
     this.imageListService.direction$.next(event);
+  }
+
+  expandImg(expand) {
+    this.expanded = expand;
   }
 
 }

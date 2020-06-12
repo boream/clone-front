@@ -7,6 +7,16 @@
   cursor: pointer;
   outline: none;
 
+
+  &__icon {
+    fill: $grey-300;
+    padding: 25px;
+  }
+
+  &__icon:hover {
+    fill: $grey-200;
+  }
+
   &__link {
     font-family: $font-primary;
     font-weight: $font-weight-ligth;

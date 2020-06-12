@@ -5,7 +5,7 @@
 
   &__main {
     @include flex(center, space-between);
-    @include size(100vw, rem(57px));
+    @include size(100%, rem(57px));
     color: #fff;
 
     padding: 15px;

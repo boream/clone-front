@@ -10,13 +10,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/header/header.component';
 import { UserModule } from './features/user/user.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UploadModule } from './features/upload/upload.module';
 import { PageImgModule } from './features/page-img/page-img.module';
-import { HeadersubComponent } from './components/headersub/headersub.component';
 import { NotificationsModule } from './features/notifications/notifications.module';
+import { SharedModule } from './features/shared/shared.module';
 
 
 @NgModule({
@@ -27,13 +26,11 @@ import { NotificationsModule } from './features/notifications/notifications.modu
     LoginComponent,
     SignupComponent,
     PageNotFoundComponent,
-    LoginComponent,
-    HeaderComponent,
-    HeadersubComponent,
-    HeaderComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    SharedModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
