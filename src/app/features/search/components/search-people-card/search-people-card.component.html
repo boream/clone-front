@@ -12,6 +12,6 @@
     </button>
   </div>
   <div class="search-people-card__list">
-      <img class="search-people-card__image"  *ngFor="let image of userImages$ | async" [src]="image?.url" alt="" [routerLink]="['/image', image?.id]">
+      <img class="search-people-card__image"  *ngFor="let image of user.images" [src]="image?.url" alt="" [routerLink]="['/image', image?.id]">
   </div>
 </div>

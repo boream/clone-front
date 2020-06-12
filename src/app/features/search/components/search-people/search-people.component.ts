@@ -18,7 +18,6 @@ export class SearchPeopleComponent implements OnInit {
 
   ngOnInit(): void {
     // this.users$ = combineLatest(this.userService.getUserByUsername('@claudiabdm'), this.userService.getUserByUsername('@test'));
-
     this.users$ = this.searchService.people$;
   }
 
