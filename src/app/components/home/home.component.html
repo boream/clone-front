@@ -1,4 +1,24 @@
 <app-header></app-header>
 <app-headersub></app-headersub>
-<p>home works!</p>
-
+<div class="home">
+  <div class="home__main">
+    <h1 class="home__main-title">/clone</h1>
+    <p class="home__main-subtitle">Bank images arround <span class="br"></span>the world</p>
+    <p class="home__main-subtitle2">105.530 images related to weather</p>
+    <div class="home__search">
+      <label class="home__search-bar">
+        <svg class="home__icon home__icon--search">
+          <use xlink:href="/assets/icons/sprite.svg#search" />
+        </svg>
+        <input type="search" placeholder="Search..." class="home__search-control">
+      </label>
+    </div>
+    <p class="home__main-desc">Trending searches: <span class="br"></span>raining, stormy wather, sunset, thunder.</p>
+  </div>
+  <div class="home__gallery">
+    <div *ngFor="let image of listImages" class="home__gallery-item" [routerLink]="['/image', image.id]">
+      <img [src]="image.url" alt="uno">
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
