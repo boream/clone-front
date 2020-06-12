@@ -1,34 +1,42 @@
 <div class="container-img">
-  <button  class="btn btn__primary arrowButton" type="button" (click)="direction.emit(-1)">
-    <svg class="user__icon--top" >
+  <button *ngIf="showButtons" class="btn btn__icon arrowLeft" type="button" (click)="direction.emit(-1)">
+    <svg>
       <use xlink:href="/assets/icons/sprite.svg#arrow-left"></use>
     </svg>
   </button>
-  <div>
-    <img class="img" [src]="image?.url" alt="">
+  <div class="carrousel">
+    <a class="sub-header__link" [routerLink]="">
+      <img class="carrousel__user-img" src="./assets/img/chinaguy.png" alt="">
+      Deividev
+    </a>
+    <img class="img" [class.img__expand]="expand" [src]="image?.url" alt="">
     <div class="img__info">
-      <h3>Title img</h3>
+      <h3 class="img__title">{{image.file.name}}</h3>
       <div class="img__controls">
-        <button  class="btn btn__primary expandButton" type="button">
-          <svg class="user__icon--top" >
+        <button  class="btn btn__icon expandButton" type="button">
+          <svg>
             <use xlink:href="/assets/icons/sprite.svg#plusGray"></use>
           </svg>
         </button>
-        <button  class="btn btn__primary expandButton" type="button">
-          <svg class="user__icon--top" >
+        <button  class="btn btn__icon expandButton" type="button">
+          <svg>
             <use xlink:href="/assets/icons/sprite.svg#fav"></use>
           </svg>
         </button>
-        <button  class="btn btn__primary expandButton" type="button">
+        <button  class="btn btn__icon expandButton" type="button">
           <svg class="user__icon--top">
             <use xlink:href="/assets/icons/sprite.svg#download"></use>
           </svg>
         </button>
       </div>
+      <a class="user__link" [routerLink]="">
+        <img class="carrousel__user-img" src="./assets/img/chinaguy.png" alt="">
+        Deividev
+      </a>
     </div>
   </div>
-  <button  class="btn  arrowButton" type="button" (click)="direction.emit(1)">
-    <svg class="user__icon--top" >
+  <button *ngIf="showButtons"  class="btn btn__icon arrowRight" type="button" (click)="direction.emit(1)">
+    <svg>
       <use xlink:href="/assets/icons/sprite.svg#arrow-right"></use>
     </svg>
   </button>

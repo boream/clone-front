@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ImageListService } from 'src/app/services/image-list.service';
+import { Observable } from 'rxjs';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-sub-header',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubHeaderComponent implements OnInit {
 
-  constructor() { }
+  @Output() expandEvent = new EventEmitter<any>();
+
+  showButtons$: Observable<Boolean>;
+  expand: Boolean = false;
+
+  constructor(private imageListService: ImageListService, private _location: Location) { }
 
   ngOnInit(): void {
+    this.showButtons$ = this.imageListService.fromList$;
   }
 
+  expandImg($event) {
+    this.expand = !this.expand
+    this.expandEvent.emit(this.expand);
+  }
+
+  back() {
+    this._location.back();
+  }
 }

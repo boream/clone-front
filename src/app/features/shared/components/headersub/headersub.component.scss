@@ -3,7 +3,7 @@
 
 .subheader {
   @include flex(center, space-between);
-  width: 100vw;
+  width: 100%;
   color: #fff;
   background-color: $grey-400;
 
@@ -16,7 +16,7 @@
   // -----------------
   &__categories {
     @include flex(center, flex-start);
-    @include size(100vw, rem(50px));
+    @include size(100%, rem(50px));
     padding: 14px 16px;
     background-color: #fff;
     font-size: rem(12px);
