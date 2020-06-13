@@ -37,22 +37,10 @@ export class SearchComponent implements OnInit {
 
     this.currentChild$ = this.route.firstChild?.url.pipe(
       map(res => res[0].path),
-      tap(currentChild => this.searchService.childPage$.next(currentChild))
+      tap(currentChild => this.searchService.childPage$.next(currentChild)),
+      switchMap(() => this.searchService.childPage$.asObservable()),
     )
-  }
-
-  private getTotalResults(currentChild: string) {
-    switch (currentChild) {
-      case 'images':
-        this.totalResults = this.searchService.totalImages;
-        break;
-      case 'people':
-        this.totalResults = this.searchService.totalPeople;
-        break;
-      case 'tags':
-        this.totalResults = this.searchService.totalTags;
-        break;
-    }
+    
   }
 
 }
