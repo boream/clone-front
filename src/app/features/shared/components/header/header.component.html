@@ -8,14 +8,15 @@
     <!-- //LOGO -->
 
     <!-- SEARCH BAR (only visible in user page)-->
-    <div class="header__search">
+    <!-- <div class="header__search">
       <label class="header__search-bar">
         <svg class="header__icon header__icon--search">
           <use xlink:href="/assets/icons/sprite.svg#search" />
         </svg>
         <input type="search" placeholder="Search..." class="header__search-control">
       </label>
-    </div>
+    </div> -->
+    <app-search-bar class="header__search"></app-search-bar>
     <!-- // SEARCH BAR -->
 
     <button class="header__btn" (click)="toggleMenu()">

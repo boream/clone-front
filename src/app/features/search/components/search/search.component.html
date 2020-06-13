@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-search-navbar></app-search-navbar>
 <div class="search">
   <h1 class="search__query"> {{ query$ | async }}
     <span class="search__desc"> {{ totalResults$ | async }} {{ query$ | async }} {{ currentChild$ | async }}</span>

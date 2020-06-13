@@ -1,0 +1,39 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+.navbar {
+  @include size(100%, rem(50px));
+  @include flex(center, flex-start);
+  padding: 18px 34px;
+  background-color: #fff;
+
+  &__elem {
+    @include size(rem(70px),rem(50px));
+    @include flex(center, center);
+    flex-direction: column;
+    position: relative;
+    color: $grey-200;
+    font-size: rem(14px);
+    font-family: $font-primary;
+    font-weight: $font-weight-regular;
+    text-transform: uppercase;
+    transition: color 0.15s linear;
+
+    & + & {
+        margin-left: 37px;
+    }
+
+    &--selected {
+      color: $grey-300;
+
+      &::after {
+        @include size(100%, rem(3px));
+        position: absolute;
+        bottom: 0;
+        content: '';
+        background-color: $success;
+      }
+
+    }
+  }
+}

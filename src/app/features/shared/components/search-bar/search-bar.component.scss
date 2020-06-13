@@ -1,0 +1,35 @@
+@import 'global/variables';
+@import 'mixins/mixins';
+
+// SEARCH
+// -----------------
+.search {
+
+  &__bar {
+    @include flex(center, flex-start)
+  }
+
+  &__control {
+    width: 100%;
+    border: none;
+    font-family: $font-primary;
+    font-weight: $font-weight-ligth;
+    font-size: 1rem;
+  }
+
+  // ICONS
+  // -----------------
+  &__icon {
+    @include size(rem(36px), rem(16px));
+    fill: #fff;
+    opacity: 0.6;
+    margin-left: 0;
+    height: 1rem;
+    fill: #bbb;
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+}

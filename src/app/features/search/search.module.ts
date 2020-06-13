@@ -9,10 +9,11 @@ import { SearchTagsComponent } from './components/search-tags/search-tags.compon
 import { SearchPeopleCardComponent } from './components/search-people-card/search-people-card.component';
 import { SearchImageCardComponent } from './components/search-image-card/search-image-card.component';
 import { SharedModule } from '../shared/shared.module';
+import { SearchNavbarComponent } from './components/search-navbar/search-navbar.component';
 
 
 @NgModule({
-  declarations: [SearchComponent, SearchImagesComponent, SearchPeopleComponent, SearchTagsComponent, SearchImageCardComponent, SearchPeopleCardComponent],
+  declarations: [SearchComponent, SearchImagesComponent, SearchPeopleComponent, SearchTagsComponent, SearchImageCardComponent, SearchPeopleCardComponent, SearchNavbarComponent],
   imports: [
     CommonModule,
     SharedModule,
