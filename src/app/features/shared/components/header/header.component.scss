@@ -46,19 +46,6 @@
     border-radius: 5px;
     padding: 10px;
     background-color: #fff;
-
-    &-bar {
-      @include flex(center, flex-start)
-    }
-
-    &-control {
-      width: 100%;
-      border: none;
-      font-family: $font-primary;
-      font-weight: $font-weight-ligth;
-      font-size: 1rem;
-    }
-
   }
 
   // POPUP MENU
