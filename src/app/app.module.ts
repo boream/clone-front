@@ -16,7 +16,6 @@ import { UploadModule } from './features/upload/upload.module';
 import { PageImgModule } from './features/page-img/page-img.module';
 import { NotificationsModule } from './features/notifications/notifications.module';
 import { SharedModule } from './features/shared/shared.module';
-import { SearchNavbarComponent } from './search/components/search-navbar/search-navbar.component';
 
 
 @NgModule({
@@ -27,8 +26,7 @@ import { SearchNavbarComponent } from './search/components/search-navbar/search-
     LoginComponent,
     SignupComponent,
     PageNotFoundComponent,
-    LoginComponent,
-    SearchNavbarComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

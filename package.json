@@ -7,9 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
     "cypress": "./node_modules/.bin/cypress open",
-    "db:reset": "node cypress/reset-db.js"
+    "cypress:run": "./node_modules/.bin/cypress run",
+    "db:reset": "node cypress/reset-db.js",
+    "e2e": "start-server-and-test start http-get://localhost:4200 cypress:run"
   },
   "private": true,
   "dependencies": {
